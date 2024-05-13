@@ -38,7 +38,7 @@ namespace LadowebservisMVC.Util
                 model.Email,
                 model.Meno,
                 model.Captcha,
-
+                model.Password,
                 model.Sprava);
 
             mail.To.Add(model.Email);
