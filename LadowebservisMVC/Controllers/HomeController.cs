@@ -42,7 +42,7 @@ public ActionResult About()
     public ActionResult Login(MemberModel model)
     {
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             if (model.Email == "Email" && model.Password == "Heslo")
             {   

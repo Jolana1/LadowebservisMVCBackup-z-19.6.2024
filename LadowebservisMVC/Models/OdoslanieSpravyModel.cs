@@ -42,7 +42,7 @@ namespace LadowebservisMVC.Models
         [DataType(DataType.Password)]
 
 
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "Adresa")]
         [Required(ErrorMessage = "Psč musí byť zadané")]
