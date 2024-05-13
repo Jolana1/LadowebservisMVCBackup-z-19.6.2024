@@ -1,0 +1,43 @@
+﻿@using LadowebservisMVC.Models
+@model MemberModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+
+
+<div class="form-horizontal w3-text-white pt-4">
+    <h2 class="section-heading text-uppercase">Pre vstup do členskej sekcie sa musíte prihlásiť alebo registrovať!</h2>
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+    {
+        <div class="form-item">
+            @Html.LabelFor(x => x.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail slúži ako prihlasovacie meno" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-item">
+            @Html.LabelFor(x => x.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše heslo" })
+            @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            
+       
+        
+        @Html.ValidationSummary(true)
+        <div class="form-section">
+            <a href="@Url.Action("Member","Home")" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Prihlásenie</a>
+            <input type="submit" id="submitButton" class="hidden" />
+        </div>
+
+    }
+</div>
+
+
+
+
+

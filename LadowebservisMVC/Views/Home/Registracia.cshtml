@@ -1,0 +1,88 @@
+﻿@using LadowebservisMVC.Models
+@model RegisterModel
+
+
+
+@{
+    ViewBag.Title = "Registracia";
+}
+
+<h3 class="section-subheading text-white">
+    Priatelia vašou registráciou<br />máte výhodnejšie nákupy a rôzne zľavy produktov,takže neváhajte!
+</h3>
+
+@using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+{
+    @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+
+
+    @Html.AntiForgeryToken()
+    <div class="form-item">
+        @Html.LabelFor(x => x.Meno)
+        @Html.TextBoxFor(m => m.Meno, new { @class = "form-control", placeholder = "Vaše meno" })
+        @Html.ValidationMessageFor(m => m.Meno)
+    </div>
+
+    <div class="form-item">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Captcha)
+        @Html.PasswordFor(m => m.Captcha, new { @class = "form-control", placeholder = "Potvrďte email" })
+        @Html.ValidationMessageFor(m => m.Captcha)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Telefon)
+        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control", placeholder = "Váše telefónne číslo potrebné pre rýchlejšiu komunikáciu" })
+        @Html.ValidationMessageFor(m => m.Telefon)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Adresa)
+        @Html.PasswordFor(m => m.Adresa, new { @class = "form-control", placeholder = "Vaša ulica" })
+        @Html.ValidationMessageFor(m => m.Adresa)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.PSC)
+        @Html.PasswordFor(m => m.PSC, new { @class = "form-control", placeholder = "Vaše PSČ" })
+        @Html.ValidationMessageFor(m => m.PSC)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Mesto)
+        @Html.PasswordFor(m => m.Mesto, new { @class = "form-control", placeholder = "Vaše mesto alebo obec" })
+        @Html.ValidationMessageFor(m => m.Mesto)
+    </div>
+   
+
+    <div class="form-item">
+        @Html.LabelFor(x => x.Sprava)
+        @Html.TextAreaFor(m => m.Sprava, new { @class = "form-control", placeholder = "Vaša správa alebo zadajte text ak si chcete objednať tovar z Oriflamu v tvare č.str. ,kód,názov a cenu výrobku z akt.katalógu.Ďakujeme." })
+        @Html.ValidationMessageFor(m => m.Sprava)
+        </div>
+
+
+
+    <div class="form-item">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše bezpečné heslo" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+
+
+    @Html.ValidationSummary(true)
+    <div class="form-section">
+        <a href="#" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Uložiť a odoslať</a>
+        <input type="submit" id="submitButton" class="hidden" />
+    </div>
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+﻿@using LadowebservisMVC.Models
+@model MemberinfoModel
+
+
+@{
+    ViewBag.Title = "Memberinfo";
+}
+
+
+
+
+
+
+@*<div class="container w3-center pt-4 w3-text-grey"
+    <h1 style="font-size:22px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb">NOVINKA PRE VÁS,SPRAVTE SI DOBRODRUŽNÝ VÝLET!</h1>
+        <br>
+
+        <h2 class="w3-text-light-blue w3-hover-white w3-center">Priatelia! Ste dobrodruhovia alebo turisti, boli ste už niekedy v Tanzánii, Safari alebo by ste chceli vidieť horu Kilimandžáro?</h2>
+        <hr style="width:px" class="w3-opacity"
+    a href="https://instagram.com/tanzanitegemsculturaltourism?utm_source=ig_profile_share&igshid=15edjqkym7l9h" target="_blank" title="More pics of Instagram Tanzanite-Gems-CT Your all welcome to make a dreams!"><img src="./Image/tanzania/IMG_4116.JPG" style="width:140px; float:left; padding: .3em;" alt="" class="w3-circle"></a
+    img style="border:none;" cellpadding="0" cellspacing="0" src="./Image/sk.webp" height="20"><br>
+        Pozývame Vás v spolupráci so spoločnosťou Tanzanite-Gems-CT na výlet do krajiny Tanzánia, kde na Vás čaká veľa krásnych zážitkov v Národnom parku v Tanzánii, dobrodružstiev v Safari,výstup na najvyšiu horu Kilimandžáro.Okrem toho- Kultúrny turizmus Tanzanite Gems Vás všetkých pozýva, aby ste spoznali a navštívili bane v Mirerani, počas prehliadky dostanete historické informácie v širokom rozsahu od odborného sprievodcu<a class="fa fa-facebook-official w3-text-blue w3-hover-white" href="https://www.facebook.com/bakari.matambi" data-toggle="tooltip" title=" Mr. Bakari Japhari Matambi na FB" target="_blank"></a>
+        <br>Vaše požiadavky ohľadne tohto výletu,vážny záujem či otázky nám napíšte na kontaktný email:info@ladowebservis.online alebo kontaktujte nášho priatela na FB.Prajeme Vám priatelia príjemný pobyt v Tanzánii:)
+        <div class="w3-justify w3-text-grey" id="Onás"
+    h2 class="w3-text-light-blue w3-hover-white w3-center">Mount Kilimanjaro, Safari exploring caves are awaiting you in Tanzania...your adventure is just a click away...</h2>
+        <hr class="w3-opacity"
+    a href="https://instagram.com/tanzanitegemsculturaltourism?utm_source=ig_profile_share&igshid=15edjqkym7l9h" target="_blank" title="More pics of Instagram Tanzanite-Gems-CT Your all welcome to make a dreams!"><img src="./Image/tanzania/IMG_4116.JPG" style="width:140px; float:left; padding: .3em;" alt="" class="w3-circle"></a
+    img style="border:none;" cellpadding="0" cellspacing="0" src="./Image/en.gif" height="20"><br>
+        <hr style="width:" class="w3-opacity">
+
+        We invite you to the most exotic trip of your life to Tanzania. In Tanzania you will experience landscapes that will take your breathe away. What awaits is a National Park, Safari adventures or a climb up the highest mountain in Africa Mount Kilimanjaro. If you are looking for a sparkle in your life check out Tanzanite Gems, Cultural Tourism invites you to visit the mining caves of Tanzanite at Mirerani. This tour includes an expert guides to share the history of Tanzanite. This experience is a once in a lifetime opportunity...book now before all spots are full.<br>Your requests for this trip, serious interest or questions write me on email or go on web.<a class="w3-text-light-blue w3-hover-text-grey " href="" data-toggle="tooltip" title="" target="_blank"> info@ladowebservis.online</a><br> https://tanzaniteadventure.co.tz/
+    </div>*@
+
+
+<div class="form-horizontal w3-text-white w3-center pt-4" id="">
+
+    <div class="col-md-12 text-sm-center">
+
+
+        <h2 class="section-heading text-uppercase">Členská sekcia</h2>
+        @*@{
+                var myUser = System.Web.Security.Membership.GetUser();
+                if (myUser != null)
+
+                {
+                    <p>
+                        @myUser.UserName
+                    </p>
+                    <p>
+                        <a href="@Url.Action("Logout","Member",new {area = "OsobnaStranka"})" class="btn btn-primary btn-lg">Odhlásiť</a>
+                    </p>
+
+                }
+            }*@
+    </div>
+</div>
+
+
+
+<h3 class="section-subheading text-white">Tu nájdete neskôr všetky podstatné informácie o vašom účte.</h3>
+<p>Členská sekcia sa pripravuje.<br>
+ Ako zaregistrovaný zákazník získate následovné výhody:
+<br>
+ Rýchlejší nákup vďaka vlastnému zoznamu obľúbených položiek.
+ Rýchlejšie dokončenie objednávky vďaka automatickému doplneniu adresy a kontaktných údajov.
+ Prehľad o všetkých vašich minulých objednávkach.
+ Možnosť byť informovaný o novinkách a akciách.
+ Prístup do pripravovaného vernostného a zľavového programu.</p>
+<p><q>Ďakujeme za pochopenie.</q></p>
+
+
+@using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+{
+    @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+
+
+    @Html.AntiForgeryToken()
+    <div class="form-item">
+        @Html.LabelFor(x => x.Meno)
+        @Html.TextBoxFor(m => m.Meno, new { @class = "form-control", placeholder = "Vaše meno" })
+        @Html.ValidationMessageFor(m => m.Meno)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Telefon)
+        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control", placeholder = "Váše telefónne číslo" })
+        @Html.ValidationMessageFor(m => m.Telefon)
+    </div>
+
+    <div class="form-item">
+        @Html.LabelFor(x => x.Adresa)
+        @Html.TextBoxFor(m => m.Adresa, new { @class = "form-control", placeholder = "Stačí Psč ,mesto a názov ulice" })
+        @Html.ValidationMessageFor(m => m.Adresa)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Captcha)
+        @Html.PasswordFor(m => m.Captcha, new { @class = "form-control", placeholder = "Potvrďte email" })
+        @Html.ValidationMessageFor(m => m.Captcha)
+    </div>
+
+    <div class="form-item">
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše heslo" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+
+
+
+
+    @Html.ValidationSummary(true)
+    <div class="form-section">
+        <a href="#" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Uložiť a odoslať</a>
+        <input type="submit" id="submitButton" class="hidden" />
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

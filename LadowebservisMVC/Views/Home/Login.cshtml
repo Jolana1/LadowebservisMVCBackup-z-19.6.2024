@@ -1,0 +1,117 @@
+﻿@using LadowebservisMVC.Models
+@model MemberModel
+
+@{
+    ViewBag.Title = "Member";
+
+    }
+
+  <div class="form-horizontal w3-text-white pt-4">
+        <h2 class="section-heading text-uppercase">Hello User <br /></h2>
+        <div class="form-section">
+            <br>Welcome to our advertising website ©LWS.pc-components, computing, software recommendations to tune your pc sets. Your satisfaction is our priority, you choose from our products or services or you still want advicewrite. Do not throw, fix! This saves the environment and your wallet. Thank you very much for your interest.
+            <br><br>
+
+
+            <a class="btn btn-primary glyphicon glyphicon-user btn-lg tlacitko-moje" href="@Url.Action("Memberinfo", "Home")" title="Profil užívatela"> UserName profile</a>
+
+
+            <a class="btn btn-primary glyphicon glyphicon-user btn-lg tlacitko-moje" href="@Url.Action("Registracia", "Home")" title="Vytvorenie nového účtu"> NewUser registration</a>
+           
+            
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Ponúkame Vám pc služby a potravinové produkty"><span class="glyphicon glyphicon-heart"></span> Offer services and products of Zinzino</a>
+            <ul class="dropdown-menu">
+               
+                <li class="active"><a class="btn btn-primary glyphicon glyphicon-star btn-lg w3-hover-white" href="https://www.zinzino.tv/videos/4d9ed8b71c1debc8c4/balance-concept-video-sk" target="_blank" title=""> Zinzino BalanceOil+ video</a></li>
+                <li class="active"><a class="btn btn-primary glyphicon glyphicon-download btn-lg w3-hover-white" href="https://docs.google.com/forms/d/1imNDx3emIENN5_jOi0x6eI-IxlRc-9O9FoVavgoEb90/edit?pli=1" target="_blank" title="Trápia Vás alergie?">
+                        <span class=""></span> Zinzino Video
+                    </a>
+                </li>
+
+            </ul>
+
+
+
+                @*<p><q>Táto sekcia sa momentálne pripravuje</q>
+                <p><q>Ďakujeme za pochopenie.</q></p>*@
+                <div class="w3-row w3-text-center w3-text-white">
+                    <br>
+                    <div class="w3-quarter w3-section ">
+                        <span class="w3-large">25+</span><br>
+                        Partnerov
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-large">55+</span><br>
+                        Projektov
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-large">289+</span><br>
+                        Spokojných Klientov
+                    </div>
+                    <div class="w3-quarter w3-section">
+                        <span class="w3-large">1000+</span><br>
+                        Stretnutí
+                    </div>
+                </div>
+
+
+
+
+        
+
+
+
+        </div>
+        
+        
+      
+
+
+
+
+
+        <br>
+
+
+
+
+        @using (Html.BeginForm("Member", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+        {
+
+            <div class="row submit">
+                <div class="col-md-12">
+                    <a href="" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje"> Odhlásiť</a>
+                    <input type="submit" id="submitButton" class="hidden" />
+                </div>
+            </div>
+
+        }
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
