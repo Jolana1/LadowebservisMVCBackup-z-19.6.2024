@@ -53,14 +53,14 @@ namespace LadowebservisMVC.Models.Captcha
             return string.Format("<div class='g-recaptcha' data-sitekey='{0}'></div>", this.SiteKey);
         }
 
-        //public string EmailAttribute()
-        //{
-        //    return "data-sitekey='" + this.SiteKey + "'";
-        //}
-        //public string CaptchaAttribute()
-        //{
-        //    return "data-sitekey='" + this.SiteKey + "'";
-        //}
+
+
+
+
+
+
+
+       
 
 
     }

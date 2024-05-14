@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using static LadowebservisMVC.Models.NumberAttribute;
+
 
 
 
 
 namespace LadowebservisMVC.Models
 {
-   
-        public class OdoslanieSpravyModel
+
+    public class OdoslanieSpravyModel
         {
 
         [Required(ErrorMessage = "Meno a Priezvisko musí byť zadané")]

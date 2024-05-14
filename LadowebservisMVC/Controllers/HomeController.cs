@@ -1,5 +1,7 @@
-﻿using LadowebservisMVC.Models;
+﻿using LadowebservisMVC.Controllers.Models;
+using LadowebservisMVC.Models;
 using LadowebservisMVC.Util;
+using System.Collections.Generic;
 using System.Reflection;
 
 
@@ -42,7 +44,7 @@ public ActionResult About()
     public ActionResult Login(MemberModel model)
     {
 
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
             if (model.Email == "Email" && model.Password == "Heslo")
             {   
@@ -60,19 +62,19 @@ public ActionResult About()
         public ActionResult Contact()
         {
             ViewBag.PageTitle = "Contact";
-            OdoslanieSpravyModel model = new OdoslanieSpravyModel();
+            Models.ContactModel_Sk model = new Models.ContactModel_Sk();
             return View(model);
         }
-        public ActionResult OdoslanieSpravy(OdoslanieSpravyModel model)
+        public ActionResult OdoslanieSpravy(Models.ContactModel_Sk model)
         {
             ViewBag.PageTitle = "Odoslanie správy";
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("Contact", model);
             }
 
             Mailer mailer = new Mailer();
-            mailer.OdoslanieEmailu(model);
+           mailer.OdoslanieEmailu(model);
 
 
             return View();
@@ -80,11 +82,32 @@ public ActionResult About()
 
         public ActionResult Registracia()
         {
-            ViewBag.PageTitle = "Registrácia";
+            ViewBag.PageTitle = "RegistraciaOdoslana";
             RegisterModel model = new RegisterModel();
             return View(model);
         }
-
+        public ActionResult RegistraciaOdoslana(RegisterModel model)
+        {
+            ViewBag.PageTitle = "RegistraciaOdoslana";
+            if (!ModelState.IsValid)
+            {
+                return View("Registracia", model);
+            }
+            Mailer mailer = new Mailer();
+            MailAttachement attachement = new MailAttachement();
+            return View();
+            
+        }
+        //public ActionResult Galeria()
+        //{
+        //    ViewBag.PageTitle = "Galeria";
+        //    return View();
+        //}
+        //public ActionResult Video()
+        //{
+        //    ViewBag.PageTitle = "Video";
+        //    return View();
+        //}
         public ActionResult Hudba()
         {
             ViewBag.PageTitle = "Hudba";
@@ -101,11 +124,11 @@ public ActionResult About()
 
 
 
-
-
-
     }
+
+
 }
+
 
 
 

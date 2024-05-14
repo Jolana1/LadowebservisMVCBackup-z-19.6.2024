@@ -1,12 +1,11 @@
-﻿using LadowebservisMVC.Models;
-//using System;
-//using System.Collections.Generic;
+﻿using LadowebservisMVC.Controllers.Models;
+using LadowebservisMVC.Models;
+using System;
 using System.Net;
 using System.Net.Mail;
-//using System.Reflection;
-using System.Security.Policy;
 using System.Text;
-//using System.Web.Helpers;
+
+
 
 
 
@@ -17,9 +16,12 @@ namespace LadowebservisMVC.Util
 
     public class Mailer
     {
+        internal static void SendMailTemplate(string v1, string v2, string email, object value)
+        {
+            throw new NotImplementedException();
+        }
 
-
-        public void OdoslanieEmailu(OdoslanieSpravyModel model)
+        public void OdoslanieEmailu(Controllers.Models.ContactModel_Sk model)
         {
             MailMessage mail = new MailMessage
             {
@@ -32,14 +34,15 @@ namespace LadowebservisMVC.Util
             mail.BodyEncoding = Encoding.UTF8;
             mail.Body = model.Email;
 
-            mail.Body = string.Format("\r\n Ďakujeme,že ste sa u nás zaregistrovali a kontaktovali nás.\r\n Váš email: {0} ,Vaše meno: {1} ,\r\n Captcha: {2}," +
-                "\r\n\r\n Vaša správa:\r\n {3}"+"\r\n\r\n Ďakujeme za prejavenú dôveru a správu ,prajeme príjemný deň. \r\n\r\n S pozdravom.",
+            mail.Body = string.Format("\r\n Ďakujeme,že ste sa u nás zaregistrovali a kontaktovali nás.\r\n Váš email: {0} ,Vaše meno: {1} ,\r\n Phone: {2}," +
+                "\r\n\r\n Vaše heslo:\r\n {3},\r\n\r\n Váš text:\r\n {4}"
+                + "\r\n\r\n Ďakujeme za prejavenú dôveru a správu ,prajeme príjemný deň. \r\n\r\n S pozdravom ladowebservis.sk",
 
                 model.Email,
-                model.Meno,
-                model.Captcha,
+                model.Name,
+                model.Phone,
                 model.Password,
-                model.Sprava);
+                model.Text);
 
             mail.To.Add(model.Email);
             mail.Bcc.Add("info@ladowebservis.sk");

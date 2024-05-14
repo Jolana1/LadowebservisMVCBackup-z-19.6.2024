@@ -115,5 +115,6 @@ namespace LadowebservisMVC.Models.Captcha
         public string MainKey { get; set; }
         public string SubKey { get; set; }
     }
+
 }
 

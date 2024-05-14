@@ -3,7 +3,7 @@
 	margin:0 auto;
 	max-width: 980px;
 	width: 90%*/
-}
+
 
 .mystyle {
 	color: red;
@@ -17,7 +17,7 @@ html.js.hide {
 	display: none;
 }
 #animace {
-	background-image: url(../WebServis/Image/bg3.jpg);
+	background-image: url(../styles/animate.css);
 	background-position: -600px 0;
 	background-repeat: no-repeat;
 	border: solid 1px black;
