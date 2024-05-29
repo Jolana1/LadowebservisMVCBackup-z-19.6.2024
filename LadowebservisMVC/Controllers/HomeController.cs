@@ -3,13 +3,6 @@ using LadowebservisMVC.Models;
 using LadowebservisMVC.Util;
 using System.Collections.Generic;
 using System.Reflection;
-
-
-//using Microsoft.Ajax.Utilities;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
@@ -62,10 +55,10 @@ public ActionResult About()
         public ActionResult Contact()
         {
             ViewBag.PageTitle = "Contact";
-            Models.ContactModel_Sk model = new Models.ContactModel_Sk();
+            OdoslanieSpravyModel model= new OdoslanieSpravyModel();
             return View(model);
         }
-        public ActionResult OdoslanieSpravy(Models.ContactModel_Sk model)
+        public ActionResult OdoslanieSpravy(OdoslanieSpravyModel model)
         {
             ViewBag.PageTitle = "Odoslanie správy";
             if (!ModelState.IsValid)
@@ -82,22 +75,24 @@ public ActionResult About()
 
         public ActionResult Registracia()
         {
-            ViewBag.PageTitle = "RegistraciaOdoslana";
-            RegisterModel model = new RegisterModel();
+            ViewBag.PageTitle = "Registracia";
+            RegisterModel model = new RegisterModel();  
             return View(model);
         }
-        public ActionResult RegistraciaOdoslana(RegisterModel model)
+        public ActionResult OdoslanieReg(RegisterModel model,OdoslanieRegModel model1)
         {
-            ViewBag.PageTitle = "RegistraciaOdoslana";
+            ViewBag.PageTitle = "OdoslanieReg";
             if (!ModelState.IsValid)
             {
                 return View("Registracia", model);
             }
             Mailer mailer = new Mailer();
-            MailAttachement attachement = new MailAttachement();
+            mailer.OdoslanieEmailu(model1);
+
             return View();
             
         }
+        
         //public ActionResult Galeria()
         //{
         //    ViewBag.PageTitle = "Galeria";
@@ -120,6 +115,8 @@ public ActionResult About()
             MemberinfoModel model = new MemberinfoModel();
             return View(model);
         }
+        
+        
 
 
 

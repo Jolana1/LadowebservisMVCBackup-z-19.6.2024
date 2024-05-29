@@ -1,5 +1,5 @@
 ﻿@using LadowebservisMVC.Models
-@model LadowebservisMVC.Controllers.Models.ContactModel_Sk
+@model OdoslanieSpravyModel
 
 
 
@@ -14,58 +14,52 @@
 </div>
 @using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
 
-    {
-        @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+{
+    @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
 
 
-                @Html.AntiForgeryToken()
-                <div class="form-item">
-                    @Html.LabelFor(x => x.Name)
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Vaše meno" })
-                    @Html.ValidationMessageFor(m => m.Name)
-                </div>
+    @Html.AntiForgeryToken()
+    <div class="form-item">
+        @Html.LabelFor(x => x.Meno)
+        @Html.TextBoxFor(m => m.Meno, new { @class = "form-control", placeholder = "Vaše meno" })
+        @Html.ValidationMessageFor(m => m.Meno)
+    </div>
 
-                <div class="form-item">
-                    @Html.LabelFor(x => x.Email)
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš email" })
-                    @Html.ValidationMessageFor(m => m.Email)
-                </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš email" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Captcha)
+        @Html.PasswordFor(m => m.Captcha, new { @class = "form-control", placeholder = "Potvrďte email" })
+        @Html.ValidationMessageFor(m => m.Captcha)
+    </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Telefon)
+        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control", placeholder = "Váše telefónne číslo je potrebné pre rýchlejšiu komunikáciu" })
+        @Html.ValidationMessageFor(m => m.Telefon)
+    </div>
 
-
-
-                @*<div class="form-item">
-                    @Html.LabelFor(x => x.Subject)
-                    @Html.PasswordFor(m => m.Subject, new { @class = "form-control", placeholder = "Predmet" })
-                    @Html.ValidationMessageFor(m => m.Subject)
-                    </div>*@
-                <div class="form-item">
-                    @Html.LabelFor(x => x.Phone)
-                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Váše telefónne číslo je potrebné pre rýchlejšiu komunikáciu" })
-                    @Html.ValidationMessageFor(m => m.Phone)
-                </div>
-
-                <div class="form-item">
-                    @Html.LabelFor(x => x.Password)
-                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše bezpečné heslo" })
-                    @Html.ValidationMessageFor(m => m.Password)
-                </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Password)
+        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše bezpečné heslo" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
 
 
-                <div class="form-item">
-                    @Html.LabelFor(x => x.Text)
-                    @Html.TextAreaFor(m => m.Text, new { @class = "form-control", placeholder = "Vaša správa alebo zadajte text ak si chcete objednať tovar z Oriflamu v tvare č.str. ,kód,názov a cenu výrobku z akt.katalógu.Ďakujeme." })
-                    @Html.ValidationMessageFor(m => m.Text)
-                </div>
+    <div class="form-item">
+        @Html.LabelFor(x => x.Sprava)
+        @Html.TextAreaFor(m => m.Sprava, new { @class = "form-control", placeholder = "Vaša správa alebo zadajte text ak si chcete objednať tovar z Oriflamu v tvare č.str. ,kód,názov a cenu výrobku z akt.katalógu.Ďakujeme." })
+        @Html.ValidationMessageFor(m => m.Sprava)
+    </div>
 
-                @Html.ValidationSummary(true)
-                <div class="form-section">
-                    <a href="#" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Odoslať</a>
-                    <input type="submit" id="submitButton" class="hidden" />
-                </div>
-                }
-
-
-
+    @Html.ValidationSummary(true)
+    <div class="form-section">
+        <a href="#" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Odoslať</a>
+        <input type="submit" id="submitButton" class="hidden" />
+    </div>
+}
 
 
 

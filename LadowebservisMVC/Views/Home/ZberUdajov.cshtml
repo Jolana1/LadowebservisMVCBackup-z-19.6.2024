@@ -1,0 +1,69 @@
+﻿
+@model LadowebservisMVC.Models.ZberUdajovModel
+
+@{
+    ViewBag.Title = "ZberUdajov";
+}
+
+<div class="hlavicka">
+    @using (Html.BeginForm("ZberUdajov", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+    {
+        @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Vstup1)
+                @Html.TextBoxFor(m => m.Vstup1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Vstup1)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Vstup2)
+                @Html.TextBoxFor(m => m.Vstup2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Vstup2)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#" onclick="document.getElementById('tlacitkoPreOdoslanie').click(); return false;" class="tlacitko-moje">Odoslat</a>
+                <input type="submit" id="tlacitkoPreOdoslanie" class="hidden" value="Odoslat" />
+            </div>
+        </div>
+    }
+</div>
+
+<br>
+<br>
+
+
+<p>
+    <a href="@Url.Action("Member","Home",new {area = "Memberinfo"})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,7 +42,7 @@ p, h1, h2, h3, h4 {
 
 .page-body {
     padding-top: 60px;
-    background-color: #726539;
+    background-color: #4aacf4;
     background-repeat: no-repeat;
     background-position-x: center;
     background-size: cover;
@@ -130,9 +130,9 @@ p, h1, h2, h3, h4 {
     transition: all .3s ease;
 }
 /*toto sa skryje a zaroven neotravuje a ochrani formular pred robotmi*/
-/*.api-password-group {
+.api-password-group {
     display: none;
-}*/
+}
 
 Photo gallery2
 .gallery-list .gallery-folder {

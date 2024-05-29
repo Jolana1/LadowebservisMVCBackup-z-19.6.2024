@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace LadowebservisMVC.Util
@@ -42,7 +40,7 @@ namespace LadowebservisMVC.Util
         public static string GetTemplateText(string templatePath, string templateName, string templateExtension, List<TextTemplateParam> paramList)
         {
             string templateText = string.Empty;
-            string templateFullName = string.Format("{0}\\{1}.{2}",
+            string templateFullName = string.Format("{0}\\{1}.{2}.",
                 string.IsNullOrEmpty(templatePath) ? HttpContext.Current.Server.MapPath(HttpContext.Current.Request.ApplicationPath) + TextTemplate.DefaultPath : templatePath,
                 templateName,
                 string.IsNullOrEmpty(templateExtension) ? TextTemplate.DefaultExtension : templateExtension);

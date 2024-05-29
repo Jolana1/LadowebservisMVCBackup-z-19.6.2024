@@ -2,7 +2,7 @@
 @model MemberModel
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Member";
 }
 
 
@@ -10,7 +10,7 @@
 
 
 <div class="form-horizontal w3-text-white pt-4">
-    <h2 class="section-heading text-uppercase">Pre vstup do členskej sekcie sa musíte prihlásiť alebo registrovať!</h2>
+    <h2 class="section-heading text-uppercase">Pre vstup do členskej sekcie sa musíte najprv prihlásiť a potom registrovať ako nový člen!</h2>
 
     @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
     {
@@ -29,10 +29,11 @@
        
         
         @Html.ValidationSummary(true)
-        <div class="form-section">
-            <a href="@Url.Action("Member","Home")" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Prihlásenie</a>
-            <input type="submit" id="submitButton" class="hidden" />
-        </div>
+<div class="form-section">
+    <a href="@Url.Action("Member","Home")" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Prihlásenie</a>
+    <input type="submit" id="submitButton" class="hidden" />
+    <p class="text-right"><a href="@Url.Action("Login","Home")"onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Registrovať?</a></p>
+</div>
 
     }
 </div>

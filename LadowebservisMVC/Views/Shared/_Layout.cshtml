@@ -1,22 +1,61 @@
 ﻿<!DOCTYPE html>
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PFBTR5XXW"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+@*<!-- Invoke your consent function when a user interacts with your banner-->*@
 
-        gtag('config', 'G-3PFBTR5XXW');
+    
+    <button onclick="allConsentGranted()">Yes</button>
+    
+        //window.dataLayer = window.dataLayer || [];
+        //function gtag() { dataLayer.push(arguments); }
+        //gtag('consent', 'default', {
+        //    'ad_user_data': 'denied',
+        //    'ad_personalization': 'denied',
+        //    'ad_storage': 'denied',
+        //    'analytics_storage': 'denied',
+        //    'wait_for_update': 500,
+        //});
+        //gtag('js', new Date());
+        //gtag('config', 'G-3PFBTR5XXW');
+
+
+    /*<!-- Google tag (gtag.js) -->*/
+    @*<script async src="https://www.googletagmanager.com/gtag/js?id=G-3PFBTR5XXW"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-3PFBTR5XXW');
+        </script>*@
+
+    grantButton.addEventListener("click", function() {
+    localStorage.setItem("consentGranted", "true");
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag('consent', 'update', {
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
+    ad_storage: 'granted',
+    analytics_storage: 'granted'
+    });
+    });
+
+    // Load gtag.js script.
+    var gtagScript = document.createElement('script');
+    gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3PFBTR5XXW';
+
+    var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(gtagScript, firstScript);
+
     </script>
-
-   
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
     <title>@ViewBag.PageTitle</title>
-
+    <link href="@Url.Content("~/styles/BootstrapStyleSheet.css?v1")" rel="stylesheet">
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet">
     @*<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,12 +74,6 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/bundle.js")"></script>*@
 
 
-
-
-    <link rel="stylesheet" href="@Url.Content("~/styles/BootstrapStyleSheet.css")" />
-  
-    @*<link rel="stylesheet" href="@Url.Content("~/styles/w31.css")" />*@
-    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 
     <meta name="copyright" content="©LWS - Ladowebservis" />
@@ -87,152 +120,148 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 </head>
+@*<script>
+    function allConsentGranted() {
+        gtag('consent', 'update', {
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted'
+        });
+    }
+</script>*@
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light page-body navbar-fixed-top">
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-home" href="@Url.Action("Index", "Home")" title="Ponuka">Offer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-heart" href="@Url.Action("About", "Home")" title="Onás">About</a>
-                       </li>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-home" href="@Url.Action("Index", "Home")" title="Ponuka">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-heart" href="@Url.Action("About", "Home")" title="Ponuka služieb">Offer services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Login", "Home")" title="Prihlásenie do členskej sekcie">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-log-out" href="@Url.Action("Member", "Home")" title="Odhlásenie">Logout</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-music" href="@Url.Action("Hudba", "Home")" title="Youtube Hudba">Music</a>
+                </li>
+            
 
                 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Login", "Home")" title="Prihlásenie do členskej sekcie">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-log-out" href="@Url.Action("Member", "Home")" title="Odhlásenie">Logout</a>
-                    </li>
-                    @*<li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Registracia", "Home")" title="Registrácia nového člena">Register</a>
-                    </li>*@
-
-
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-envelope" href="@Url.Action("Contact", "Home")" title="formulár">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-music" href="@Url.Action("Hudba", "Home")" title="Youtube Hudba">Music</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark glyphicon glyphicon-earphone" href="#footer" title="Volajte +421917952432 alebo 0907151293 only Slovakia">Phone</a>
-                    </li>
-
-                    @*<li class="nav-item">
-            <a class="nav-link text-dark glyphicon glyphicon-shopping-cart" href="@Url.Action("Eshop", "Home")" title="Eshop">Eshop</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark glyphicon glyphicon-education" href="@Url.Action("Vzdelanie", "Home")" title="Vzdelanie">Vzdelanie</a>
-        </li>*@
-                </ul>
-                 </div>
-        
-    <div class="cart-icon w3-text-white">
-        <img src="~/Image/shopping-cart.png" title="Košík výprázdnite obnovením tejto stránky" alt="Cart-Basket">
-        <span id="cart-items" title="Počet kliknutí na pridať do košíka">0</span>
-    </div>
-
-
-
-
-    <a class="navbar-brand image-container" href="@Url.Action("Index","Home")"><img src="~/Image/LWSlogo.jpg" class="img-rounded" alt="logo" title=""></a>
-
-    <div class="collapse navbar-collapse w3-text-white" id="cart-items">
-        <div class="cart-items">
-            <div id="cart-items-list">
-                <!-- Cart items will be added here-->
-            </div>
-            <div class="total-amount">
-                <br>
-                Spolu s DPH: €<span id="total-amount" class="price">0</span>
-            </div>
-            <script async
-                    src="https://js.stripe.com/v3/buy-button.js">
-            </script>
-
-            <stripe-buy-button buy-button-id="buy_btn_1OjKxZFdjXAPBwqYuwTUnBef"
-                               publishable-key="pk_live_51OgVgeFdjXAPBwqY1wpvlVjw8LskEgLPAgDphJi1iYve7NghcBAXxzrMUKfHnWv1MLbq1uXHLljIy1EZc6TwZlL600D3u3WbQJ">
-            </stripe-buy-button>
-        </div>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-            @*<li class="dropdown">
-
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Ponúkame Vám pc služby a potravinové produkty"><span class="glyphicon glyphicon-heart"></span> Eshop</a>
-            <ul class="dropdown-menu">
-                <li class="active"><a class="w3-hover-white" href="#Onás"><span class="glyphicon glyphicon-briefcase"></span> Ponuka pc a web služieb</a></li>
-                <li class="active"><a class="w3-hover-white" href="#products"><span class="glyphicon glyphicon-star"></span> Zinzino produkty nákup</a></li>
-                <li class="active"><a class="w3-hover-white" href="#info"><span class="glyphicon glyphicon-heart-empty"></span> Žite v rovnováhe-info</a></li>
-                <li class="active"><a class="w3-hover-white" href="#hudba" title="Youtube Music"><span class="glyphicon glyphicon-music"></span> Youtube Music</a></li>
 
             </ul>
-        </li>*@
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#Partners" title="Naši partnery"><span class="glyphicon glyphicon-briefcase"></span>Oriflame and Partners</a>
-                <ul class="dropdown-menu">
-                    <!--li>
+        </div>
+
+        <div class="cart-icon w3-text-white">
+            <img src="~/Image/shopping-cart.png" title="Košík výprázdnite obnovením tejto stránky" alt="Cart-Basket">
+            <span id="cart-items" title="Počet kliknutí na pridať do košíka">0</span>
+        </div>
+
+
+
+
+        <a class="navbar-brand image-container" href="@Url.Action("Index","Home")"><img src="~/Image/LWSlogo.jpg" class="img-rounded" alt="logo" title=""></a>
+
+        <div class="collapse navbar-collapse w3-text-white" id="cart-items">
+            <div class="cart-items">
+                <div id="cart-items-list">
+                    <!-- Cart items will be added here-->
+                </div>
+                <div class="total-amount">
+                    <br>
+                    Spolu s DPH: €<span id="total-amount" class="price">0</span>
+                </div>
+                <script async
+                        src="https://js.stripe.com/v3/buy-button.js">
+                </script>
+
+                <stripe-buy-button buy-button-id="buy_btn_1OjKxZFdjXAPBwqYuwTUnBef"
+                                   publishable-key="pk_live_51OgVgeFdjXAPBwqY1wpvlVjw8LskEgLPAgDphJi1iYve7NghcBAXxzrMUKfHnWv1MLbq1uXHLljIy1EZc6TwZlL600D3u3WbQJ">
+                </stripe-buy-button>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+
+
+
+
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#Partners" title="Naši partnery"><span class="glyphicon glyphicon-briefcase"></span>Oriflame and Partners</a>
+                    <ul class="dropdown-menu">
+                        <!--li>
             </li-->
-                    <li class="active"><a class="w3-hover-white" href="https://www.ashampoo.com/de-de" target="_blank" title="Ashampoo antivirus and best safety software Deals • Poradíme správny postup &amp;  doporučíme softvér  vo  vašej oblasti •Mame nahradu za drahý a komplikovaný  MS Office ©LWS - Partner spoločnosti Ashampoo"><img src="~/Image/ashampoo.com-AshampooSoftwareDeals.png" style="width:58px;height:15px" alt="AshampooSoftwareDeals"> Ashampoo Software</a></li>
-                    <li>
-                    </li>
-                    <li class="active">
-                        <a class="w3-hover-white" href="https://www.pikatec.cz/" target="_blank" title="Pikatec • Pikatek • Nanotechnology • Energy • Meníme svet-poriadku, umytia a čistenia">
-                            <img src="~/Image/Pikatec.png" style="width:58px;height:15px" alt="Pikatec • Pikatek • Nanotechnology • Energy • Meníme svet-poriadku, umytia a čistenia">
-                            Pikatec
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a class="w3-hover-white" href="https://www.letakomat.sk/oriflame/katalog-7-2024-od-utorka-07-05-2024-62367/" target="_blank" title="•Oriflame aktuálny katalóg">
-                            <img src="~/Image/sk-oriflame-katalog.png" style="width:58px;height:15px" alt="Oriflame aktuálny katalóg">
-                            Oriflame katalóg 7/2024
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a class="w3-hover-white" href="https://www.mozilla.org/sk/firefox/70.0a2/whatsnew/all/?oldversion=69.0https://www.mozilla.org/sk/firefox/new/" target="_blank" title="kvalitný webový prehliadač">
-                            <img src="~/Image/Layer 0.png" style="width:58px;height:15px" alt="Firefox Mozilla • Fights for family privacy •Technology"> Získajte Firefox Mozilla
-                        </a>
-                    </li>
+                        <li class="active"><a class="w3-hover-white" href="https://www.ashampoo.com/de-de" target="_blank" title="Ashampoo antivirus and best safety software Deals • Poradíme správny postup &amp;  doporučíme softvér  vo  vašej oblasti •Mame nahradu za drahý a komplikovaný  MS Office ©LWS - Partner spoločnosti Ashampoo"><img src="~/Image/ashampoo.com-AshampooSoftwareDeals.png" style="width:58px;height:15px" alt="AshampooSoftwareDeals"> Ashampoo Software</a></li>
+                        <li>
+                        </li>
+                        <li class="active">
+                            <a class="w3-hover-white" href="https://www.pikatec.cz/" target="_blank" title="Pikatec • Pikatek • Nanotechnology • Energy • Meníme svet-poriadku, umytia a čistenia">
+                                <img src="~/Image/Pikatec.png" style="width:58px;height:15px" alt="Pikatec • Pikatek • Nanotechnology • Energy • Meníme svet-poriadku, umytia a čistenia">
+                                Pikatec
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a class="w3-hover-white" href="https://www.letakomat.sk/oriflame/katalog-8-2024-od-utorka-28-05-2024-65589/" target="_blank" title="•Oriflame aktuálny katalóg">
+                                <img src="~/Image/sk-oriflame-katalog.png" style="width:58px;height:15px" alt="Oriflame aktuálny katalóg">
+                                Oriflame katalóg 8/2024
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a class="w3-hover-white" href="https://www.mozilla.org/sk/firefox/70.0a2/whatsnew/all/?oldversion=69.0https://www.mozilla.org/sk/firefox/new/" target="_blank" title="kvalitný webový prehliadač">
+                                <img src="~/Image/Layer 0.png" style="width:58px;height:15px" alt="Firefox Mozilla • Fights for family privacy •Technology"> Získajte Firefox Mozilla
+                            </a>
+                        </li>
 
-                    <li class="active">
-                        <a class="w3-hover-white " href="https://www.krizovkarskyslovnik.sk/" target="_blank" title="Krížovkársky slovník • Slovník krížovkára • Krížovka • Krížovky • Krížovkár">
-                            <img src="https://www.krizovkarskyslovnik.sk/gfx/ikona.png" style="width:58px;height:15px" alt="Krížovkársky slovník • Slovník krížovkára • Krížovka • Krížovky • Krížovkár">
-                            Slovník krížovkára
-                        </a>
-                    </li>
-                    <!--li class="active"> <a class="w3-hover-white" href="https://www.zinzino.com/2007167194/SK/sk-SK/products/Health/Premier-Offers" target="_blank" title="Zinzino-Začnite svoju cestu za zdravím už dnes • ZinzinoProducts •"><img src="./Image/screencapture-zinzino-logo.png" style="width:58px;height:15px" alt="ZinzinoProductsDeals"> Zinzino</a></li-->
-                    <li>
+                        <li class="active">
+                            <a class="w3-hover-white " href="https://www.krizovkarskyslovnik.sk/" target="_blank" title="Krížovkársky slovník • Slovník krížovkára • Krížovka • Krížovky • Krížovkár">
+                                <img src="https://www.krizovkarskyslovnik.sk/gfx/ikona.png" style="width:58px;height:15px" alt="Krížovkársky slovník • Slovník krížovkára • Krížovka • Krížovky • Krížovkár">
+                                Slovník krížovkára
+                            </a>
 
 
-                        <!--li class="active"><a class=" w3-text-white w3-hover-yellow " href="https://mobil.bazos.sk/inzerat/113680396/apple-se-64-gb.php" target="_blank" title="• Inzerát na predaj telefon"><img src="./Image/LWSlogo.jpg" style="width:58px;height:15px" alt="Me"> Apple SE 64 GB </a></li-->
-                        <!--li-->
-                        <!-- li>
+
+                            <!--li class="active"><a class=" w3-text-white w3-hover-yellow " href="https://mobil.bazos.sk/inzerat/113680396/apple-se-64-gb.php" target="_blank" title="• Inzerát na predaj telefon"><img src="./Image/LWSlogo.jpg" style="width:58px;height:15px" alt="Me"> Apple SE 64 GB </a></li-->
+                            <!--li-->
+                            <!-- li>
                     <li class="active"><a href="https://jolana1.github.io/ladoweb/#Domov" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow" target="_blank" title="Ukážka môjho webu V.K • Vytvorenie funkčnej webovej stránky"><img src="./Image/jolana1.github.io-%C2%A9ladoweb.png" style="width:58px;height:15px" alt="Me"> Ukážka webu V.K.</a></li>
                 <li class="active"><a href="" target="_blank" title="Tanzanite-Gems-Cultural-Tourism • Walking cultural tourism • Your all welcome to make a dreams • We do hiking mountain Kilimanjaro  ">
                         <img src="../WebServis/Image/tanzania/IMG_4116.JPG" style="width:58px;height:15px" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow img-rounded" alt=""> Tanzanite-Gems-CT</a></li -->
 
 
-                </ul>
-            </li>
-            
-        </ul>
+                    </ul>
+                </li>
+                @*<li class="nav-item">
+            <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Memberinfo", "Home")" title="Profil registrovaného člena">UserName</a>
+        </li>*@
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-envelope" href="@Url.Action("Contact", "Home")" title="formulár">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark glyphicon glyphicon-earphone" href="#footer" title="Volajte +421917952432 alebo 0907151293 only Slovakia">Phone</a>
+                </li>
+            </ul>
 
 
-        
 
-           
-                  
 
-    </div>
-</nav>
+
+
+
+        </div>
+    </nav>
     <!-- Indicators -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -327,54 +356,54 @@
     </div>
 
 
-    
-        
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
 
             @*<nav>
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Onás", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Kontakt", "Home", "Kontakt", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </nav>*@
+                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("About", "About", "Onás", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Kontakt", "Home", "Kontakt", new { area = "" }, new { @class = "nav-link" })</li>
+                        </ul>
+                    </div>
+                </nav>*@
             <br>
             <div class="container-fluid" id="footer">
 
 
-               
-                    <i class='fa fa-heart'><q>Your satisfaction is our priority.</q></i><br>
-                    @*<div class="fb-like" data-href="https://ladowebservis.sk" data-width="" data-layout="standard" data-action="like" data-size="medium" data-share="true"></div>
-                <div id="fb-root"></div>
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/sk_SK/sdk.js#xfbml=1&version=v15.0&appId=455914461524971&autoLogAppEvents=1" nonce="siSYyuX8"></script>*@
-                    <a href="https://twitter.com/ladow11" target="_blank">
-                        <i class="fa fa-twitter w3-hover-text-white w3-large"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/vladim%C3%ADr-kseni%C4%8D/" target="_blank">
-                        <i class="fa fa-linkedin w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
-                    </a>
-                    @*<a href="https://jolana1.github.io/ladoweb/" target="_blank">
+
+                <i class='fa fa-heart'><q>Your satisfaction is our priority.</q></i><br>
+                @*<div class="fb-like" data-href="https://ladowebservis.sk" data-width="" data-layout="standard" data-action="like" data-size="medium" data-share="true"></div>
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/sk_SK/sdk.js#xfbml=1&version=v15.0&appId=455914461524971&autoLogAppEvents=1" nonce="siSYyuX8"></script>*@
+                <a href="https://twitter.com/ladow11" target="_blank">
+                    <i class="fa fa-twitter w3-hover-text-white w3-large"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/vladim%C3%ADr-kseni%C4%8D/" target="_blank">
+                    <i class="fa fa-linkedin w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
+                </a>
+                @*<a href="https://jolana1.github.io/ladoweb/" target="_blank">
                         <i class="fa fa-github w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
                     </a>*@
-                    <a href="https://www.youtube.com/" target="_blank">
-                        <i class="fa fa-youtube w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
-                    </a>
-                    <a href="https://soundcloud.com/lado-8" target="_blank">
-                        <i class="fa fa-soundcloud w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
-                    </a>
-                    <a class="fa fa-facebook-official w3-hover-text-white w3-large" href="https://www.facebook.com/vladimir.ksenic" target="_blank"></a>&nbsp;&nbsp;
+                <a href="https://www.youtube.com/" target="_blank">
+                    <i class="fa fa-youtube w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
+                </a>
+                <a href="https://soundcloud.com/lado-8" target="_blank">
+                    <i class="fa fa-soundcloud w3-hover-text-white w3-large"></i>&nbsp;&nbsp;
+                </a>
+                <a class="fa fa-facebook-official w3-hover-text-white w3-large" href="https://www.facebook.com/vladimir.ksenic" target="_blank"></a>&nbsp;&nbsp;
             </div>
 
 
             <!--End footer section-->
             <!--a href="#" class="scrollToTop show"><i class="fa fa-arrow-up" data-toggle="tooltip" title="Presunúť sa hore"></i></a-->
             <address>
-                
+
                 <img src="~/Image/sk.png" alt="sk" style="width:22px;height:20px; padding: .1em;">
                 <p style="font-size: 18px;color:white;">
                     Postupimska ulica 31<br />
@@ -404,8 +433,8 @@
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
 </body>
 
 
