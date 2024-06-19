@@ -17,12 +17,12 @@ namespace LadowebservisMVC.Controllers
         {
             return View();
         }
-        public ActionResult Login(MemberModel model)
+        public ActionResult Login(LoginModel model)
         {
 
             if (ModelState.IsValid)
             {
-                if (model.Email == "Email" && model.Password == "Heslo")
+                if (model.Email == "UserName" && model.Heslo == "Heslo")
                 {
                     return RedirectToAction("Member", "Home");
                 }

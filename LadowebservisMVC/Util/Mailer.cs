@@ -1,4 +1,5 @@
-﻿using LadowebservisMVC.Controllers.Models;
+﻿//using LadowebservisMVC.Controllers.;
+using LadowebservisMVC.Controllers;
 using LadowebservisMVC.Models;
 using System.Collections.Generic;
 using System.Net;
@@ -17,7 +18,7 @@ namespace LadowebservisMVC.Util
 
     public class Mailer
     {
-        public void OdoslanieEmailu(OdoslanieSpravyModel model)
+        public void OdoslanieSpravy(ContactModel model)
         {
             MailMessage mail = new MailMessage
             {
@@ -31,12 +32,12 @@ namespace LadowebservisMVC.Util
             mail.Body = model.Email;
 
             mail.Body = string.Format("\r\n Ďakujeme,že ste nás kontaktovali.\r\n Váš email: {0} ,\r\n Vaše meno: {1} ,\r\n Potvrdenie mailu: {2}," +
-                "\r\n Vaše heslo: {3}" +
+                "\r\n Vaš Telefon: {3}" +
                 "\r\n Vaša správa:\r\n {4}" + "\r\n\r\n Ďakujeme za prejavenú dôveru a správu. \r\n\r\n S pozdravom.",
                 model.Email,
-                model.Meno,
+                model.Name,
                 model.Captcha,
-                model.Password,
+                model.Phone,
                 model.Sprava);
 
             mail.To.Add(model.Email);
@@ -53,7 +54,7 @@ namespace LadowebservisMVC.Util
             client.Send(mail);
         }
 
-        public void OdoslanieEmailu(OdoslanieRegModel model)
+        public void OdoslanieEmailu(RegisterModel model)
         {
             MailMessage mail = new MailMessage
             {

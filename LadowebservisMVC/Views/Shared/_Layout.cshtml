@@ -1,61 +1,29 @@
 ﻿<!DOCTYPE html>
+<html>
 <head>
+    <!-- Google Tag Manager -->
     <script>
-@*<!-- Invoke your consent function when a user interacts with your banner-->*@
-
-    
-    <button onclick="allConsentGranted()">Yes</button>
-    
-        //window.dataLayer = window.dataLayer || [];
-        //function gtag() { dataLayer.push(arguments); }
-        //gtag('consent', 'default', {
-        //    'ad_user_data': 'denied',
-        //    'ad_personalization': 'denied',
-        //    'ad_storage': 'denied',
-        //    'analytics_storage': 'denied',
-        //    'wait_for_update': 500,
-        //});
-        //gtag('js', new Date());
-        //gtag('config', 'G-3PFBTR5XXW');
-
-
-    /*<!-- Google tag (gtag.js) -->*/
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-T46FXNQ');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
     @*<script async src="https://www.googletagmanager.com/gtag/js?id=G-3PFBTR5XXW"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', 'G-3PFBTR5XXW');
-        </script>*@
-
-    grantButton.addEventListener("click", function() {
-    localStorage.setItem("consentGranted", "true");
-    function gtag() { dataLayer.push(arguments); }
-
-    gtag('consent', 'update', {
-    ad_user_data: 'granted',
-    ad_personalization: 'granted',
-    ad_storage: 'granted',
-    analytics_storage: 'granted'
-    });
-    });
-
-    // Load gtag.js script.
-    var gtagScript = document.createElement('script');
-    gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3PFBTR5XXW';
-
-    var firstScript = document.getElementsByTagName('script')[0];
-        firstScript.parentNode.insertBefore(gtagScript, firstScript);
-
-    </script>
-
+    <script>
+        window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-3PFBTR5XXW');
+    </script>*@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
     <title>@ViewBag.PageTitle</title>
-    <link href="@Url.Content("~/styles/BootstrapStyleSheet.css?v1")" rel="stylesheet">
+    <link href="@Url.Content("~/styles/BootstrapStyleSheet.css?v4")" rel="stylesheet">
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet">
     @*<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet">*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -79,7 +47,7 @@
     <meta name="copyright" content="©LWS - Ladowebservis" />
     <meta name="description" content="V rámci webových služieb ponúkame dizajn webov,návrh až po vytvorenie plne funkčnej webovej stránky,mesačný hosting vášho webu na mesiac zdarma potom za mesačný poplatok, ponúkame zostavenie a opravy pc-komponentov,výpočtovej techniky,odporučenie softvérov a celkové vyladenie vašich pc zostáv..">
     <meta name="content-language" content="sk" />
-    <meta property="og:image" content="~/Image/pagePiling-plugin.png">
+    <meta property="og:image" content="~/Image/LWSlogo.jpg">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
     <meta property="og:title" content="Ladowebservis">
@@ -120,19 +88,18 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 </head>
-@*<script>
-    function allConsentGranted() {
-        gtag('consent', 'update', {
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted',
-            'ad_storage': 'granted',
-            'analytics_storage': 'granted'
-        });
-    }
-</script>*@
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light page-body navbar-fixed-top">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T46FXNQ"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light navbar-fixed-top">
+
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -141,6 +108,7 @@
         <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
 
+
                 <li class="nav-item">
                     <a class="nav-link text-dark glyphicon glyphicon-home" href="@Url.Action("Index", "Home")" title="Ponuka">Home</a>
                 </li>
@@ -148,18 +116,19 @@
                     <a class="nav-link text-dark glyphicon glyphicon-heart" href="@Url.Action("About", "Home")" title="Ponuka služieb">Offer services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Login", "Home")" title="Prihlásenie do členskej sekcie">Login</a>
+                    <a class="nav-link text-dark glyphicon glyphicon-log-in" href="@Url.Action("Member", "Home")" title="Prihlásenie do členskej sekcie">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark glyphicon glyphicon-log-out" href="@Url.Action("Member", "Home")" title="Odhlásenie">Logout</a>
+                    <a class="nav-link text-dark glyphicon glyphicon-briefcase" href="@Url.Action("Registracia", "Home")" title="Odhlásenie">Registration</a>
                 </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link text-dark glyphicon glyphicon-music" href="@Url.Action("Hudba", "Home")" title="Youtube Hudba">Music</a>
                 </li>
-            
 
-                
+
+
 
             </ul>
         </div>
@@ -203,7 +172,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#Partners" title="Naši partnery"><span class="glyphicon glyphicon-briefcase"></span>Oriflame and Partners</a>
                     <ul class="dropdown-menu">
                         <!--li>
-            </li-->
+                        </li-->
                         <li class="active"><a class="w3-hover-white" href="https://www.ashampoo.com/de-de" target="_blank" title="Ashampoo antivirus and best safety software Deals • Poradíme správny postup &amp;  doporučíme softvér  vo  vašej oblasti •Mame nahradu za drahý a komplikovaný  MS Office ©LWS - Partner spoločnosti Ashampoo"><img src="~/Image/ashampoo.com-AshampooSoftwareDeals.png" style="width:58px;height:15px" alt="AshampooSoftwareDeals"> Ashampoo Software</a></li>
                         <li>
                         </li>
@@ -214,9 +183,9 @@
                             </a>
                         </li>
                         <li class="active">
-                            <a class="w3-hover-white" href="https://www.letakomat.sk/oriflame/katalog-8-2024-od-utorka-28-05-2024-65589/" target="_blank" title="•Oriflame aktuálny katalóg">
+                            <a class="w3-hover-white" href="https://www.letakomat.sk/oriflame/katalog-9-2024-od-utorka-18-06-2024-65592/" target="_blank" title="•Oriflame aktuálny katalóg">
                                 <img src="~/Image/sk-oriflame-katalog.png" style="width:58px;height:15px" alt="Oriflame aktuálny katalóg">
-                                Oriflame katalóg 8/2024
+                                Oriflame katalóg 9/2024
                             </a>
                         </li>
                         <li class="active">
@@ -236,19 +205,19 @@
                             <!--li class="active"><a class=" w3-text-white w3-hover-yellow " href="https://mobil.bazos.sk/inzerat/113680396/apple-se-64-gb.php" target="_blank" title="• Inzerát na predaj telefon"><img src="./Image/LWSlogo.jpg" style="width:58px;height:15px" alt="Me"> Apple SE 64 GB </a></li-->
                             <!--li-->
                             <!-- li>
-                    <li class="active"><a href="https://jolana1.github.io/ladoweb/#Domov" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow" target="_blank" title="Ukážka môjho webu V.K • Vytvorenie funkčnej webovej stránky"><img src="./Image/jolana1.github.io-%C2%A9ladoweb.png" style="width:58px;height:15px" alt="Me"> Ukážka webu V.K.</a></li>
-                <li class="active"><a href="" target="_blank" title="Tanzanite-Gems-Cultural-Tourism • Walking cultural tourism • Your all welcome to make a dreams • We do hiking mountain Kilimanjaro  ">
-                        <img src="../WebServis/Image/tanzania/IMG_4116.JPG" style="width:58px;height:15px" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow img-rounded" alt=""> Tanzanite-Gems-CT</a></li -->
+                                <li class="active"><a href="https://jolana1.github.io/ladoweb/#Domov" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow" target="_blank" title="Ukážka môjho webu V.K • Vytvorenie funkčnej webovej stránky"><img src="./Image/jolana1.github.io-%C2%A9ladoweb.png" style="width:58px;height:15px" alt="Me"> Ukážka webu V.K.</a></li>
+                            <li class="active"><a href="" target="_blank" title="Tanzanite-Gems-Cultural-Tourism • Walking cultural tourism • Your all welcome to make a dreams • We do hiking mountain Kilimanjaro  ">
+                                    <img src="../WebServis/Image/tanzania/IMG_4116.JPG" style="width:58px;height:15px" class="w3-padding-xsmall  w3-text-light-blue w3-hover-yellow img-rounded" alt=""> Tanzanite-Gems-CT</a></li -->
 
 
                     </ul>
                 </li>
                 @*<li class="nav-item">
-            <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Memberinfo", "Home")" title="Profil registrovaného člena">UserName</a>
-        </li>*@
-                <li class="nav-item">
-                    <a class="nav-link text-dark glyphicon glyphicon-envelope" href="@Url.Action("Contact", "Home")" title="formulár">Contact</a>
-                </li>
+                        <a class="nav-link text-dark glyphicon glyphicon-user" href="@Url.Action("Memberinfo", "Home")" title="Profil registrovaného člena">UserName</a>
+                    </li>*@
+                @*<li class="nav-item">
+                        <a class="nav-link text-dark glyphicon glyphicon-envelope" href="@Url.Action("Kontakt", "Home")" title="formulár">Contact</a>
+                    </li>*@
                 <li class="nav-item">
                     <a class="nav-link text-dark glyphicon glyphicon-earphone" href="#footer" title="Volajte +421917952432 alebo 0907151293 only Slovakia">Phone</a>
                 </li>
@@ -425,7 +394,7 @@
                 <img alt="logo" src="~/Image/LWSlogo.jpg" style="width:105px;height:42px; padding: .1em;">@*&nbsp;&nbsp;&copy;Allrights reserved @DateTime.Now.Year</p><hr />*@
                 <hr />
                 <div class="text-center">
-                    <a href="#" class="w3-button w3-white w3-padding-large w3-hover-blue"><i class="fa fa-arrow-up" data-toggle="tooltip" title="Presunúť sa hore"></i>Presunúť späť</a>
+                    <a href="#" class="w3-button w3-white w3-padding-large w3-hover-blue"><i class="fa fa-arrow-up" data-toggle="tooltip" title="Presunúť sa hore"></i>Späť</a>
                 </div>
                 <hr />
                 Copyright &#169; Ladowebservis @DateTime.Today.Year Allrights reserved.
@@ -436,5 +405,6 @@
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)*@
 </body>
+</html>
 
 

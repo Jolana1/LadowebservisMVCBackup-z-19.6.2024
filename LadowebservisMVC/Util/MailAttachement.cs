@@ -1,5 +1,7 @@
-﻿using System.Web;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace LadowebservisMVC.Util
 {
@@ -25,8 +27,6 @@ namespace LadowebservisMVC.Util
 
             return fileFullName;
         }
-       
-        }
     }
-
+}
     

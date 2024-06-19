@@ -5,40 +5,41 @@
     ViewBag.Title = "Member";
 }
 
-
-
-
-
 <div class="form-horizontal w3-text-white pt-4">
-    <h2 class="section-heading text-uppercase">Pre vstup do členskej sekcie sa musíte najprv prihlásiť a potom registrovať ako nový člen!</h2>
+    <h2 class="section-heading text-uppercase"> Hello Dear User ! <br /></h2>
+
+
+    <a class="active btn-primary glyphicon glyphicon-user btn-lg tlacitko-moje" href="@Url.Action("Memberinfo", "Home")" title="Profil užívatela"> UserName profile</a>
+    @*<a class="btn btn-primary glyphicon glyphicon-envelope btn-lg tlacitko-moje" href="@Url.Action("Kontakt", "Home")" title="Kontaktujte nás"> Contact us</a>*@
+    <a class="active btn-primary glyphicon glyphicon-envelope btn-lg tlacitko-moje" href="@Url.Action("Registracia", "Home")" title="Registrácia"> Contact us and Registration</a>
+    <a class="active btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Objednávka"> Order</a>
+    @*<a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Zľavy"> Discounts</a>
+        <a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Vernostný program"> Loyalty program</a>*@
+    @*<a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="@Url.Action("ZberUdajov", "Home")" title="ZberUdajov"> ZberUdajov</a>*@
+
+    @*<a class="dropdown-toggle glyphicon glyphicon-heart" data-toggle="dropdown" href="#" title="Ponúkame Vám pc služby a potravinové produkty"> Offer services and products of Zinzino</a>*@
+    <br>
+    <a class="active btn btn-primary glyphicon glyphicon-star btn-lg tlacitko-moje" href="https://www.zinzino.tv/videos/4d9ed8b71c1debc8c4/balance-concept-video-sk" target="_blank" title="BalanceOil+">
+        Zinzino BalanceOil-video</>
+    </a>
+    <a class="active btn btn-primary glyphicon glyphicon-download btn-lg tlacitko-moje" href="https://docs.google.com/forms/d/1imNDx3emIENN5_jOi0x6eI-IxlRc-9O9FoVavgoEb90/edit?pli=1" target="_blank" title="Trápia Vás alergie?"> Zinzino-webinar</a>
+
+
+    <div class="form-section">
+        <br>Welcome to our advertising website ©LWS.pc-components, computing, software recommendations to tune your pc sets. Your satisfaction is our priority, you choose from our products or services or you still want advicewrite. Do not throw, fix! This saves the environment and your wallet. Thank you very much for your interest.
+        <br><br>
+
+    </div>
+
+
 
     @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
     {
-        <div class="form-item">
-            @Html.LabelFor(x => x.Email)
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail slúži ako prihlasovacie meno" })
-            @Html.ValidationMessageFor(m => m.Email)
-        </div>
-
-        <div class="form-item">
-            @Html.LabelFor(x => x.Password)
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše heslo" })
-            @Html.ValidationMessageFor(m => m.Password)
+        <div class="row submit">
+            <div class="col-md-12">
+                <a href="" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje"> Odhlásiť</a>
+                <input type="submit" id="submitButton" class="hidden" />
             </div>
-            
-       
-        
-        @Html.ValidationSummary(true)
-<div class="form-section">
-    <a href="@Url.Action("Member","Home")" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Prihlásenie</a>
-    <input type="submit" id="submitButton" class="hidden" />
-    <p class="text-right"><a href="@Url.Action("Login","Home")"onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Registrovať?</a></p>
-</div>
-
+        </div>
     }
 </div>
-
-
-
-
-

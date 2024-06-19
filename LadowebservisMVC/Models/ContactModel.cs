@@ -1,26 +1,35 @@
 ﻿using LadowebservisMVC.Util;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static LadowebservisMVC.Models.NumberAttribute;
 
 
-namespace LadowebservisMVC.Controllers.Models
+namespace LadowebservisMVC.Controllers
 {
     public class ContactModel
     {
-        public string Meno { get; set; }
-        public string Priezvisko { get; set; }
-        public string Phone { get; set; }
-        public string Adresa { get; set; }
 
+        [Required(ErrorMessage = "Meno a Priezvisko musí byť zadané")]
+        [Display(Name = "Meno a Priezvisko:")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Email musí byť zadaný:")]
+        [Display(Name = "Email")]
+        [Email(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
         public string Email { get; set; }
 
-        public string UserName { get; set; }
+        [Required(ErrorMessage = "Telefón musí byť zadaný")]
+        [Display(Name = "Telefón")]
+        public string Phone { get; set; }
 
-        public string Password { get; set; }
+        [Required(ErrorMessage = "Text musi byť zadaný")]
+        [Display(Name = "Text správy:")]
+        public string Sprava { get; set; }
 
-        public string Text{ get; set; }
-
-
+        [Display(Name = "Captcha")]
+        [Required(ErrorMessage = "Zopakujte ešte raz emailovú adresu kvôli kontrole")]
+        [Captcha(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
+        public string Captcha { get; set; }
     }
 }
 

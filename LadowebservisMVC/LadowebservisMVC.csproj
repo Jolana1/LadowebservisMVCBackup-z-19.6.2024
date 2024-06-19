@@ -104,7 +104,6 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -161,31 +160,32 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Captcha\DufeksoftRecaptcha.cs" />
     <Compile Include="Models\Captcha\GoogleRecaptcha.cs" />
     <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Models\MemberinfoModel.cs" />
+    <Compile Include="Models\Hudba.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\ModelUtil.cs" />
     <Compile Include="Models\OdoslanieRegModel.cs" />
     <Compile Include="Models\OdoslanieSpravyModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\MemberinfoModel.cs" />
     <Compile Include="Models\ValidationModel.cs" />
     <Compile Include="Models\ZberUdajovModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\MailAttachement.cs" />
     <Compile Include="Util\Mailer.cs" />
+    <Compile Include="Util\MailProvider.cs" />
     <Compile Include="Util\TextTemplate.cs" />
     <Compile Include="Util\TextTemplateParam.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MailTemplates\ContactSendSuccess_Sk.html" />
     <Content Include="App_Data\MailTemplates\EmailOne_Sk.html" />
-    <Content Include="App_Data\MailTemplates\LostPassword_Sk.html" />
-    <Content Include="App_Data\MailTemplates\NewRegistration_Sk.html" />
     <Content Include="App_Data\_dbEshop.sql" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -483,6 +483,12 @@
     <Content Include="Image\Zinzino.jpg" />
     <Content Include="Image\ZinzinoXtend.jpg" />
     <Content Include="Image\ZinzinoXtend.png" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Image\AUTO_MERGE" />
     <Content Include="Image\Balance oil 2.webp" />
     <Content Include="Image\Balance oil.webp" />
@@ -567,43 +573,9 @@
     <Content Include="Image\ZinzinoXtend 2.webp" />
     <Content Include="Image\ZinzinoXtend.png.webp" />
     <Content Include="Image\ZinzinoXtend .webp" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\cart.js" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Content Include="Content\bootstrap.rtl.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Content\bootstrap-utilities.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.7.1.js" />
-    <Content Include="Scripts\jquery-3.7.1.min.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -631,7 +603,7 @@
     <Content Include="styles\W3css.css" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\OdoslanieReg.cshtml" />
+    <Content Include="Views\Home\RegistraciaOdoslana.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -640,7 +612,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="styles\bootstrap\bootstrap-grid.css.map" />
@@ -650,12 +621,13 @@
     <Content Include="styles\bootstrap\bootstrap.css.map" />
     <Content Include="styles\bootstrap\bootstrap.min.css.map" />
     <Content Include="Views\Home\OdoslanieSpravy.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Hudba.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Member.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\OdoslanieReg.cshtml" />
     <Content Include="Views\Home\Registracia.cshtml" />
     <Content Include="Views\Home\Memberinfo.cshtml" />
+    <Content Include="Views\Home\Kontakt.cshtml" />
     <Content Include="Views\Home\ZberUdajov.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -965,9 +937,32 @@
     <Folder Include="Image\npm\node_modules\wrap-ansi\node_modules\string-width\" />
     <Folder Include="Image\npm\node_modules\write-file-atomic\lib\" />
     <Folder Include="Image\npm\node_modules\yallist\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

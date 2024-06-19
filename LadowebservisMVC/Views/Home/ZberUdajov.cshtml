@@ -5,7 +5,20 @@
     ViewBag.Title = "ZberUdajov";
 }
 
-<div class="hlavicka">
+
+
+
+
+<div>
+    <p>Tu je zber vašich údajov...</p>
+    @*<a class="btn btn-danger" href="@Url.Action(" ZberUdajov","Home", new {Id="tlacitko1" })">Tlacitko 1</a>
+        <a class="btn btn-primary" href="@Url.Action(" ZberUdajov","Home",new {Id="tlacitko2" })">Tlacitko 2</a>*@
+    @*<a class="tlacitko-moje" href="@Url.Action(" ZberUdajov","Home",new {Id="tlacitko3" })">Tlacitko 3</a>*@
+</div>
+<br />
+
+
+<div class="form-horizontal w3-text-white pt-4">
     @using (Html.BeginForm("ZberUdajov", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
     {
         @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
@@ -31,15 +44,10 @@
             </div>
         </div>
     }
+    <p>
+        <a href="@Url.Action("Login","Home",new {area = "Ladowebservis"})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
+    </p>
 </div>
-
-<br>
-<br>
-
-
-<p>
-    <a href="@Url.Action("Member","Home",new {area = "Memberinfo"})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
-</p>
 
 
 

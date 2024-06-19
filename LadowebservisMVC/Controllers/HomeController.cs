@@ -1,4 +1,4 @@
-﻿using LadowebservisMVC.Controllers.Models;
+﻿using LadowebservisMVC.Controllers;
 using LadowebservisMVC.Models;
 using LadowebservisMVC.Util;
 using System.Collections.Generic;
@@ -34,12 +34,12 @@ public ActionResult About()
     {
         return View();
     }
-    public ActionResult Login(MemberModel model)
+    public ActionResult Login(LoginModel model)
     {
 
         if (!ModelState.IsValid)
         {
-            if (model.Email == "Email" && model.Password == "Heslo")
+                if (model.Email == "Name" && model.Heslo == "Heslo")
             {   
 
                 return RedirectToAction("Member", "Home");
@@ -52,22 +52,24 @@ public ActionResult About()
         return View(model);
 
     }
-        public ActionResult Contact()
+        public ActionResult Kontakt()
         {
-            ViewBag.PageTitle = "Contact";
-            OdoslanieSpravyModel model= new OdoslanieSpravyModel();
+            ViewBag.PageTitle = "Kontakt";
+            ContactModel model = new ContactModel();
+
+
             return View(model);
         }
-        public ActionResult OdoslanieSpravy(OdoslanieSpravyModel model)
+        public ActionResult OdoslanieSpravy(ContactModel model)
         {
             ViewBag.PageTitle = "Odoslanie správy";
             if (!ModelState.IsValid)
             {
-                return View("Contact", model);
+                return View("Odoslanie správy", model);
             }
 
             Mailer mailer = new Mailer();
-           mailer.OdoslanieEmailu(model);
+            mailer.OdoslanieSpravy(model);
 
 
             return View();
@@ -79,7 +81,7 @@ public ActionResult About()
             RegisterModel model = new RegisterModel();  
             return View(model);
         }
-        public ActionResult OdoslanieReg(RegisterModel model,OdoslanieRegModel model1)
+        public ActionResult OdoslanieReg(RegisterModel model)
         {
             ViewBag.PageTitle = "OdoslanieReg";
             if (!ModelState.IsValid)
@@ -87,17 +89,47 @@ public ActionResult About()
                 return View("Registracia", model);
             }
             Mailer mailer = new Mailer();
-            mailer.OdoslanieEmailu(model1);
+            mailer.OdoslanieEmailu(model);
 
             return View();
             
         }
-        
-        //public ActionResult Galeria()
-        //{
-        //    ViewBag.PageTitle = "Galeria";
-        //    return View();
-        //}
+       public ActionResult ZberUdajov(ZberUdajovModel model)
+        {
+            ViewBag.PageTitle = "Zber údajov";
+
+            ZberUdajovModel Model = new ZberUdajovModel();
+            if (ModelState.IsValid)
+            {
+                int cislo = int.Parse(model.Vstup2);
+                if (cislo < 10)
+                {
+                    ModelState.AddModelError("", "Zadajte čislo 10 a viac");
+                }
+            }
+
+            if (!ModelState.IsValid) //toto sa rovna zapisu (ModelState.IsValid == false),alebo skr. zapis(ModelState.IsValid)je rovny== true
+            {
+                return View("ZberUdajov", model);
+            }
+            model.Url = Request.Url.ToString();
+            model.Params = Request.Params.ToString();
+            model.ParamList = Request.Params;
+
+            //Model.Id = Request.Params["id"];
+            //Model.Vstup1 = Request.Params["vstup1"];
+            //Model.Vstup2 = Request.Params["vstup2"];
+
+            //Model.Id = id;
+            //Model.Vstup1 = vstup1;
+            //Model.Vstup2 = vstup2;
+            //int a = 1;
+            //int b = 2;
+            //int vysledok = DajSucet(a, b);
+
+
+            return View(model);
+        }
         //public ActionResult Video()
         //{
         //    ViewBag.PageTitle = "Video";
@@ -112,11 +144,11 @@ public ActionResult About()
         public ActionResult Memberinfo()
         {
             ViewBag.PageTitle = "Memberinfo";
-            MemberinfoModel model = new MemberinfoModel();
-            return View(model);
+
+            return View();
         }
-        
-        
+
+
 
 
 

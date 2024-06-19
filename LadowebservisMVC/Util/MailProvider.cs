@@ -232,8 +232,8 @@ namespace LadowebservisMVC.Util
                     }
                 }
 
-            mail.Headers["X-Mailer"] = this.MailerID;// "madosoft.sk mailer system";
-            mail.Subject = mailSubject;
+                mail.Headers["X-Mailer"] = MailerID;// "madosoft.sk mailer system";
+                mail.Subject = mailSubject;
                 mail.IsBodyHtml = this.IsBodyHtml;
                 mail.SubjectEncoding = Encoding.UTF8;
                 mail.BodyEncoding = Encoding.UTF8;
@@ -429,7 +429,7 @@ namespace LadowebservisMVC.Util
                 string str = email.Replace(",", ";");
                 string[] items = str.Split(';');
 
-            return items[0].Trim();
+                return items[0].Trim();
             }
         }
 

@@ -1,0 +1,56 @@
+﻿@using LadowebservisMVC.Models
+@model LadowebservisMVC.Controllers.ContactModel
+
+@{
+    ViewBag.Title = "Kontakt";
+}
+
+<!-- Kontakt -->
+
+<div class="form-horizontal w3-text-white pt-4" id="Kontakt">
+    <h3 class="section-subheading text-white">Máte otázku? Neváhajte nám napísať v tomto kontaktnom formulári!</h3>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+            {
+                @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.AntiForgeryToken()
+                        <div class="form-item">
+                            <label for="Meno">Meno</label>
+                            <input type="text" id="Meno" name="Meno" class="form-control" />
+                            @Html.ValidationMessage("Meno")
+                        </div>
+                        <div class="form-item">
+                            <label for="Telefon">Telefón</label>
+                            <input type="text" id="Telefon" name="Telefon" class="form-control" />
+                            @Html.ValidationMessage("Telefon")
+                        </div>
+                        <div class="form-item">
+                            <label for="Sprava">Sprava</label>
+                            <textarea id="Sprava" name="Sprava" class="form-control" style="height:150px"></textarea>
+                            @Html.ValidationMessage("Sprava")
+                        </div>
+                        @*<div class="form-item">
+                            <label for="Email">Email</label>
+                            <input type="text" id="Email" name="Email" class="form-control" />
+                            @Html.ValidationMessage("Email")
+                        </div>*@
+                        <div class="form-item">
+                            <label for="Captcha">UserName</label>
+                            <input type="text" id="Captcha" name="Captcha" class="form-control" />
+                            @Html.ValidationMessage("Captcha")
+                        </div>
+                    </div>
+                </div>
+                <div class="row submit">
+                    <div class="col-md-12">
+                        <a href="#navbar" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Odoslať správu</a>
+                        <input type="submit" id="submitButton" class="hidden" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

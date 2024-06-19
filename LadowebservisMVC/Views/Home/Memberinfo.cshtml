@@ -1,50 +1,88 @@
-﻿
-
+﻿@*@using LadowebservisMVC.Models*@
+@*@model MemberinfoModel*@
 
 
 @{
     ViewBag.Title = "Memberinfo";
 }
-<div class="form-horizontal w3-text-white w3-center pt-4" id="">
- <h2 class="section-heading text-uppercase">Členská sekcia</h2>
- <h3 class="section-subheading text-white">
-     Členská sekcia sa pripravuje.
-     Tu nájdete neskôr všetky podstatné informácie o vašom účte.
+<p><q>Táto sekcia sa momentálne pripravuje</q></p>
+<p><q>Ďakujeme za pochopenie.</q></p>
 
- </h3>
-    <br>
-    <p><q>Ďakujeme za pochopenie.</q></p><br>
-  <br><br>
+<!-- Member clenska sekcia -->
+@*@{
+
+        var myUser = Membership.GetUser();
+        if (myUser != null)
+
+        {
+            <p>
+                @myUser.UserName
+            </p>
+            <p>
+                @myUser.Email
+            </p>
+            <p>
+                @myUser.IsApproved
+            </p>
+            <p>
+                @myUser.IsOnline
+            </p>
+            <p>
+                @myUser.CreationDate
+            </p>
+            <p>
+                @myUser.LastLoginDate
+            </p>
+            <p>
+                @myUser.LastActivityDate
+            </p>
+            <p>
+                @myUser.LastPasswordChangedDate
+            </p>
+            <p>
+                @myUser.LastLockoutDate
+            </p>
+            <p>
+                @myUser.IsLockedOut
+            </p>
+            <p>
+                @myUser.Comment
+            </p>
+            <p>
+                    @myUser.ProviderUserKey
+                </p>
+            <p>
+                @myUser.ResetPassword()
+            </p>
+            <p>
+
+                @myUser.ChangePassword("oldPassword", "newPassword");
 
 
+        }
+    }
+
+            </p>*@
 <p>
-        <a href="@Url.Action("Member","Home",new {area = "Memberinfo"})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
-    </p>
-
-
-</div>
+    <a href="@Url.Action("Member","Home",new {area = "Ladowebservis"})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
+</p>
 
 
 
 
+@*//az ked bude s databazou a umbracom prepojene,treba Repositary a membership a dalsie podla UmbracoEshop*@
+@*@{
+        var myUser = System.Web.Security.Membership.GetUser();
+        if (myUser != null)
 
+        {
+            <p>
+                @myUser.Email
+            </p>
 
+            <p>
+                <a href="@Url.Action("Login","Home",new {area = "OsobnaStranka"})" class="btn btn-primary btn-lg">Odhlásiť</a>
+            </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
+    }*@

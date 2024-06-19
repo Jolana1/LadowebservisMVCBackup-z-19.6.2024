@@ -23,7 +23,7 @@ namespace UmbracoEshop.lib.Controllers
             get
             {
 
-                return this.HttpContext.Server.MapPath("~/Styles/Image");
+                return this.HttpContext.Server.MapPath("~/Styles/Images");
             }
         }
 

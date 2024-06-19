@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-//using static LadowebservisMVC.Models.NumberAttribute;
+
 
 
 
 
 namespace LadowebservisMVC.Models
 {
-   
-        public class OdoslanieSpravyModel
-        {
+
+    public class OdoslanieSpravyModel
+    {
 
         [Required(ErrorMessage = "Meno a Priezvisko musí byť zadané")]
         [Display(Name = "Meno a Priezvisko:")]
@@ -30,10 +29,10 @@ namespace LadowebservisMVC.Models
         [Display(Name = "Text správy:")]
         public string Sprava { get; set; }
 
-        [Display(Name = "Captcha-Potvrdenie emailu")]
+        [Display(Name = "Captcha")]
 
         [Required(ErrorMessage = "Emaily sa nezhodujú")]
-        [System.ComponentModel.DataAnnotations.Compare("Email", ErrorMessage = "Emaily sa nezhodujú")]
+        [Compare("Email", ErrorMessage = "Emaily sa nezhodujú")]
 
 
         public string Captcha { get; set; }
