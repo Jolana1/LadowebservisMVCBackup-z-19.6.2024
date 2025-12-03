@@ -14,28 +14,7 @@ namespace UmbracoEshop.lib.Models
 {
     public class OdoslanieSpravyModel
     {
-        //[RequiredCurrentLang("Models/OdoslanieSpravyModel", "Meno a priezvisko musia byť zadané")]
-        //[DisplayCurrentLang("Models/OdoslanieSpravyModel", "Meno a priezvisko")]
-        //public string Name { get; set; }
-
-        //[EmailCurrentLang("Models/OdoslanieSpravyModel", "Neplatný email")]
-        //[RequiredCurrentLang("Models/OdoslanieSpravyModel", "E-mail musí byť zadaný")]
-        //[DisplayCurrentLang("Models/OdoslanieSpravyModel", "E-mail")]
-        //public string Email { get; set; }
-
-        //[RequiredCurrentLang("Models/OdoslanieSpravyModel", "Text správy musí byť zadaný")]
-        //[DisplayCurrentLang("Models/OdoslanieSpravyModel", "Text správy")]
-        //public string Text { get; set; }
-
-        //[RequiredCurrentLang("Models/OdoslanieSpravyModel", "Heslo musí byť zadané")]
-        //[DisplayCurrentLang("Models/OdoslanieSpravyModel", "Heslo")]
-
-        //public string Password { get; set; }
-
-
-        //public string ConfirmPassword { get; set; }
-
-        //[DisplayCurrentLang("Models/OdoslanieSpravyModel", "Potvrdenie hesla")]
+        
         [Required(ErrorMessage = "Priezvisko a meno musí byť zadané")]
         [Display(Name = "Priezvisko a meno")]
         public string Name { get; set; }

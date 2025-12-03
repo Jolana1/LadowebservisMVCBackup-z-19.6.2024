@@ -1,35 +1,31 @@
-﻿
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <!-- Music Section -->
+<div class="container card py-4" id="hudba">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 text-center">
+            <h1 class="mb-3" style="font-size:20px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb">Pozrite si toto video o BalanceOil — aký je dôležitý a potrebný pre naše zdravie. Mali by sme zmeniť životosprávu? Určite áno!</h1>
 
-<div class="w3-center pt-4 w3-text-black" id="hudba">
-    <br>
-   
-    <h2 class="w3-text-white">Webinár-Prečo treba mať kompas a nie hodinky?</h2>
-    <iframe src="https://www.youtube.com/embed/9-bcnTGy9S8?autoplay=0" data-toggle="tooltip" title="Webinár" height="200" width="300" frameborder="0" style="border:0" allowfullscreen align="top" scrolling="no" name="Prečo treba mať kompas a nie hodinky?">
-    </iframe>
-    @*<h2 class="w3-text-white">Dj "S" - May 2024 Live Stream</h2>
-    <iframe src="https://www.youtube.com/embed/AErpM1NZ9N0?si=5yiN_dA8Z2Gly5M8?autoplay=0" class="w3-center" height="310" contextmenu="500" title="Hudba"></iframe><br>*@
-   
+            <div class="embed-responsive embed-responsive-16by9 mb-3">
+                <iframe class="embed-responsive-item" src="https://videos.sproutvideo.com/embed/d390d3b31911ecc15a/eeb65011d6e6ae23?autoplay=0" title="Video Zinzino" allowfullscreen frameborder="0" style="border:0;"></iframe>
+            </div>
 
-    <h3 style="font-size:22px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb;"><span class="glyphicon glyphicon-music"></span>Hudba pre relax,tanec a volný čas!</h3>
-    <details>
+            <h3 class="mt-3" style="font-size:20px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb;"><span class="glyphicon glyphicon-music"></span> Hudba pre relax, tanec a voľný čas</h3>
 
+            <details class="mb-3 text-left">
+                <summary class="text-black">Mixy a playlisty</summary>
+                <ul class="list-unstyled mt-2">
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=k5IC0lZqj_Y" class="text-black">Soulful Funky Disco House Mix October 23</a></li>
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=_Itckji9UK4" class="text-black">Dj 'S' - 80s R&amp;B</a></li>
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=ElDPIJjAWfY" class="text-black">Bangin Soulful House Mix</a></li>
+                </ul>
+            </details>
 
-
-        <a data-fancybox href="https://youtube.com/embed/k5IC0lZqj_Y?si=GixIgU_WCKmes_AQ?autoplay=0">
-            #Soulful Funky Disco House Mix October 23
-        </a>
-        <a data-fancybox href="https://youtube.com/embed/_Itckji9UK4?si=M25N2Lc8E-EulerP?autoplay=0">
-            #Dj ''S'' - 80s R&amp;B#
-        </a>
-
-
-        <a data-fancybox href="https://youtube.com/embed/ElDPIJjAWfY?autoplay=0">#Bangin Soulful House Mix#</a>
-    </details>
-
-    <br><br><br>
-
-
-
-
+            <p class="mt-4">
+                <a href="@Url.Action("MemberInfo","Home")" class="btn btn-secondary">Späť do členskej sekcie</a>
+            </p>
+        </div>
+    </div>
 </div>

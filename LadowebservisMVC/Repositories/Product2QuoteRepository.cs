@@ -1,15 +1,15 @@
-﻿using NPoco;
+﻿//using NPoco;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UmbracoEshop.lib.Models;
-using UmbracoEshop.lib.Util;
+using LadowebservisMVC.lib.Repositories;
+using LadowebservisMVC.lib;
 
 namespace UmbracoEshop.lib.Repositories
 {
-    public class Product2QuoteRepository : _BaseRepository
+    public class Product2QuoteRepository : _BaseRepositoryRec
     {
         static readonly object _productOrderLock = new object();
 

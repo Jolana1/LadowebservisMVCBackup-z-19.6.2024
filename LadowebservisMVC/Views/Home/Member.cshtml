@@ -2,44 +2,47 @@
 @model MemberModel
 
 @{
-    ViewBag.Title = "Member";
+    ViewBag.Title = "member";
 }
 
-<div class="form-horizontal w3-text-white pt-4">
-    <h2 class="section-heading text-uppercase"> Hello Dear User ! <br /></h2>
+<div class="container card pt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8">
+            @*<div class="card p-4">*@
+                <h1 class="h4 text-center text-success">VITAJTE, STE PRIHLÁSENÝ!</h1>
 
+                <p class="mt-3">
+                    Pri 1. objednávke a novej registrácii použite kupón <strong>FRIENDS25</strong> a získate 10% zľavu!<br />
+                    Ako zaregistrovaný zákazník získavate aj tieto výhody:
+                </p>
 
-    <a class="active btn-primary glyphicon glyphicon-user btn-lg tlacitko-moje" href="@Url.Action("Memberinfo", "Home")" title="Profil užívatela"> UserName profile</a>
-    @*<a class="btn btn-primary glyphicon glyphicon-envelope btn-lg tlacitko-moje" href="@Url.Action("Kontakt", "Home")" title="Kontaktujte nás"> Contact us</a>*@
-    <a class="active btn-primary glyphicon glyphicon-envelope btn-lg tlacitko-moje" href="@Url.Action("Registracia", "Home")" title="Registrácia"> Contact us and Registration</a>
-    <a class="active btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Objednávka"> Order</a>
-    @*<a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Zľavy"> Discounts</a>
-        <a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="~/Views/Shared/Error.cshtml" title="Vernostný program"> Loyalty program</a>*@
-    @*<a class="btn btn-primary glyphicon glyphicon-shopping-cart btn-lg tlacitko-moje" href="@Url.Action("ZberUdajov", "Home")" title="ZberUdajov"> ZberUdajov</a>*@
+                <ul>
+                    <li>Rýchlejší nákup vďaka vlastnému zoznamu obľúbených položiek.</li>
+                    <li>Možnosť byť informovaný o novinkách a akciách.</li>
+                    <li>Prístup do pripravovaného vernostného a zľavového programu.</li>
+                    <li>Možnosť sledovať históriu objednávok a zľavových kódov.</li>
+                </ul>
 
-    @*<a class="dropdown-toggle glyphicon glyphicon-heart" data-toggle="dropdown" href="#" title="Ponúkame Vám pc služby a potravinové produkty"> Offer services and products of Zinzino</a>*@
-    <br>
-    <a class="active btn btn-primary glyphicon glyphicon-star btn-lg tlacitko-moje" href="https://www.zinzino.tv/videos/4d9ed8b71c1debc8c4/balance-concept-video-sk" target="_blank" title="BalanceOil+">
-        Zinzino BalanceOil-video</>
-    </a>
-    <a class="active btn btn-primary glyphicon glyphicon-download btn-lg tlacitko-moje" href="https://docs.google.com/forms/d/1imNDx3emIENN5_jOi0x6eI-IxlRc-9O9FoVavgoEb90/edit?pli=1" target="_blank" title="Trápia Vás alergie?"> Zinzino-webinar</a>
+                <div class="text-center my-3">
+                    <a class="btn btn-primary btn-md tlacitko-moje" href='@Url.Action("Memberinfo","Home")' title="Profil užívateľa">Vstúpte do profilu</a>
+                </div>
 
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal text-center" }))
+                {
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger">Odhlásiť</button>
+                    </div>
+                }
 
-    <div class="form-section">
-        <br>Welcome to our advertising website ©LWS.pc-components, computing, software recommendations to tune your pc sets. Your satisfaction is our priority, you choose from our products or services or you still want advicewrite. Do not throw, fix! This saves the environment and your wallet. Thank you very much for your interest.
-        <br><br>
-
-    </div>
-
-
-
-    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
-    {
-        <div class="row submit">
-            <div class="col-md-12">
-                <a href="" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje"> Odhlásiť</a>
-                <input type="submit" id="submitButton" class="hidden" />
             </div>
         </div>
-    }
-</div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <p class="mt-4">
+                <a href="@Url.Action("MemberInfo","Home")" class="btn btn-secondary">Späť do členskej sekcie</a>
+            </p>
+        </div>
+    </div>
+@*</div>*@

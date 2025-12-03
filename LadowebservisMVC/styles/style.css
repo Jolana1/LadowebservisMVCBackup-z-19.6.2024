@@ -15,6 +15,11 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 body{
 	font-family: 'Roboto Condensed', sans-serif;
 }
+
+html, body{
+	height:100%;
+	width:100%;
+}
 body{
 	font-size: 1rem;
     font-weight: 400;
@@ -840,3 +845,7 @@ section .container{
 		display:none;
 	}
 }
+
+
+
+

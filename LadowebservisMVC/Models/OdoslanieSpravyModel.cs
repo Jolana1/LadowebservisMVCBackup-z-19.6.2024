@@ -1,5 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+
+
+
 
 
 
@@ -16,8 +23,9 @@ namespace LadowebservisMVC.Models
         public string Meno { get; set; }
 
         
-        [Display(Name = "Email musí byť zadaný: ")]
+        
         [Required(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
+        [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
         public string Email { get; set; }
 

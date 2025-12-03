@@ -1,4 +1,4 @@
-﻿using NPoco;
+﻿using ;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,128 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace UmbracoEshop.lib.Repositories
+namespace LadowebservisMVC.lib.Repositories
 {
     public class FileUploadRepository
-    {  /// <summary>
-       /// Default mail attachement path
-       /// </summary>
-        public static string DefaultPath = "Media\\UmbracoEshopUpload";
-
-        public object UploadFile()
-        {
-            try
-            {
-                HttpPostedFile hpf = HttpContext.Current.Request.Files["file"] as HttpPostedFile;
-                string category = HttpContext.Current.Request.Params["category"];
-                string fileName = HttpContext.Current.Request.Params["fileName"];
-
-                string dirPath = GetPathForCategory(category);
-
-                DirectoryInfo di = Directory.CreateDirectory(dirPath);// If you don't have the folder yet, you need to create.
-                string sentFileName = Path.GetFileName(hpf.FileName); //it can be just a file name or a user local path! it depends on the used browser. So we need to ensure that this var will contain just the file name.
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    // Set desired file name
-                    sentFileName = string.Format("{0}.{1}", fileName, Path.GetExtension(sentFileName).Trim('.'));
-                }
-                string savedFileName = Path.Combine(di.FullName, sentFileName);
-                hpf.SaveAs(savedFileName);
-
-                return new { msg = "File Uploaded", filename = hpf.FileName, url = savedFileName, srvfilename = sentFileName };
-            }
-            catch (Exception e)
-            {
-                //If you want this working with a custom error you need to change in file jquery.uploadfile.js, the name of 
-                //variable customErrorKeyStr in line 85, from jquery-upload-file-error to jquery_upload_file_error 
-                return new { msg = e.Message, jquery_upload_file_error = e.Message };
-            }
-        }
-
-        public List<FileUploadInfo> GetFiles(string category)
-        {
-            // Get list of files
-            string dirPath = GetPathForCategory(category);
-            if (!Directory.Exists(dirPath))
-            {
-                return new List<FileUploadInfo>();
-            }
-
-            FileDescriptionCollection fileDescription = new FileDescriptionCollection(category);
-            string[] files = Directory.GetFiles(dirPath, "*.*", SearchOption.TopDirectoryOnly);
-
-            // sort files by name
-            SortedDictionary<string, FileUploadInfo> sd = new SortedDictionary<string, FileUploadInfo>();
-            string fileName;
-            foreach (string filePath in files)
-            {
-                fileName = GetFileName(filePath);
-                sd.Add(fileName.ToLower(), new FileUploadInfo()
-                {
-                    FileType = "file",
-                    FileName = fileName,
-                    FileUrl = GetFileUrl(category, filePath),
-                    FileDescription = fileDescription.GetFileDescription(fileName)
-                });
-            }
-
-            // Create result list
-            List<FileUploadInfo> result = new List<FileUploadInfo>();
-            foreach (FileUploadInfo fi in sd.Values)
-            {
-                result.Add(fi);
-            }
-
-            return result;
-        }
-
-        public object DeleteFile(string id)
-        {
-            try
-            {
-                string filePath = string.Format("{0}{1}", HttpContext.Current.Server.MapPath(GetRootPath()), id);
-                File.Delete(filePath);
-
-                return new { msg = "File Deleted" };
-            }
-            catch (Exception e)
-            {
-                return new { msg = e.Message };
-            }
-        }
-
-        public void DeleteCategory(string category)
-        {
-            string path = GetPathForCategory(category);
-            if (Directory.Exists(path))
-            {
-                Directory.Delete(path, true);
-            }
-        }
-
-        private string GetPathForCategory(string category)
-        {
-            return string.Format("{0}{1}\\{2}",
-                HttpContext.Current.Server.MapPath(GetRootPath()),
-                FileUploadRepository.DefaultPath, category);
-        }
-
-        private string GetRootPath()
-        {
-            return HttpContext.Current.Request.ApplicationPath;
-        }
-
-        private string GetFileUrl(string category, string filePath)
-        {
-            string categoryPath = string.Format("\\{0}\\{1}\\", FileUploadRepository.DefaultPath, category);
-            int pos = filePath.IndexOf(categoryPath);
-
-            return filePath.Substring(pos).Replace('\\', '/');
-        }
-        private string GetFileName(string filePath)
-        {
-            return Path.GetFileName(filePath);
-        }
+    {
+        // Other methods...
 
         public string SetFileDescription(string category, string fileName, string fileDescription)
         {
@@ -137,7 +20,7 @@ namespace UmbracoEshop.lib.Repositories
             {
                 FileDescriptionRepository rep = new FileDescriptionRepository();
                 FileDescription dataRec = rep.Get(category, fileName);
-                if (dataRec == null || rep.IsNew(dataRec))
+                if (dataRec == null || IsNew(dataRec))
                 {
                     dataRec = new FileDescription()
                     {
@@ -156,27 +39,9 @@ namespace UmbracoEshop.lib.Repositories
             }
         }
 
-        public void RenameCategory(string oldCategory, string newCategory)
+        private bool IsNew(FileDescription dataRec)
         {
-            string oldPath = GetPathForCategory(oldCategory).Replace("/", "\\");
-            string newPath = GetPathForCategory(newCategory).Replace("/", "\\");
-
-            Directory.Move(oldPath, newPath);
-        }
-
-        public void RenameFileInCategory(string category, string oldFileName, string newFileName, bool newFileNameIsRenameMask = false)
-        {
-            string categoryPath = GetPathForCategory(category).TrimEnd('\\');
-            if (newFileNameIsRenameMask)
-            {
-                newFileName = string.Format("{0}{1}", newFileName, Path.GetExtension(oldFileName));
-            }
-
-            string oldFilePath = string.Format("{0}\\{1}", categoryPath, oldFileName);
-            if (File.Exists(oldFilePath))
-            {
-                File.Move(oldFilePath, string.Format("{0}\\{1}", categoryPath, newFileName));
-            }
+            return dataRec.pk == Guid.Empty;
         }
     }
 
@@ -188,7 +53,7 @@ namespace UmbracoEshop.lib.Repositories
         public string FileDescription { get; set; }
     }
 
-    public class FileDescriptionRepository : _BaseRepository
+    public class FileDescriptionRepository : _BaseRepositoryRec
     {
         public List<FileDescription> GetForCategory(string category)
         {
@@ -247,7 +112,7 @@ namespace UmbracoEshop.lib.Repositories
             return DeleteInstance(dataRec);
         }
 
-        Sql GetBaseQuery()
+        var sql GetBaseQuery()
         {
             return new Sql(string.Format("SELECT * FROM {0}", FileDescription.DbTableName));
         }

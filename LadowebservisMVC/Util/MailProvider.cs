@@ -7,9 +7,11 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-namespace LadowebservisMVC.Util
+namespace LadowebservisMVC.Util.TextTemplate
 {
-    public class MailProvider
+   
+
+        public class MailProvider
     {
               /// <summary>
              /// Enables to sendig emails
@@ -597,8 +599,12 @@ namespace LadowebservisMVC.Util
     {
         MailProvider mailProvider = new MailProvider(null, false);
         mailProvider.SendAdminMail(GetFullTitle(mailSubject, mailProvider), mailBody);
-    }
-}
-    }
+                }
+            }
+        }
+    
+    
+
+    
 
 

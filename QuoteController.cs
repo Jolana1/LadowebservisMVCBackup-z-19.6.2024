@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +11,11 @@ using LadowebservisMVC.lib.Repositories;
 namespace LadowebservisMVC.lib.Controllers
 {
     [PluginController("LadowebservisMVC")]
-    public class QuoteController : _BaseController
+    public class QuoteController : Controller
     {
         public ActionResult Basket()
         {
-            BasketModel model = new BasketModel(this.CurrentSessionId);
-
+            BasketModel model = new BasketModel();
             return View(model);
         }
     }

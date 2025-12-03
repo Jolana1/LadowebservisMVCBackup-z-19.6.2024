@@ -1,14 +1,11 @@
-﻿using LadowebservisMVC.Controllers;
-using Newtonsoft.Json.Serialization;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 
 
 namespace LadowebservisMVC.Models
 {
-public class RegisterModel
+    public class RegisterModel
     {
         [Required(ErrorMessage = "Meno musí byť zadané")]
         [Display(Name = "Meno")]

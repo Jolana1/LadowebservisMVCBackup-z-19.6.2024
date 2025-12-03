@@ -1,4 +1,293 @@
+
 /* w31.css-vksenic */
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: gray;
+    padding: 2px;
+    text-align: center;
+    color: ghostwhite;
+}
+
+
+.carousel-inner img {
+    width: 100%;
+    height: max-content;
+}
+
+q {
+    quotes: "“""”""‘""’";
+}
+
+nav,
+em,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: gray;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+    /* Add a gray color to all navbar links */
+    .navbar li a,
+    .navbar .navbar-brand {
+        color: #fff !important;
+        position: relative;
+    }
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover,
+.navbar-nav li.active a {
+    color: #5d33fb !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+    /* Remove border color from the collapsible button */
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle:focus {
+        background-color: #fff !important;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff !important;
+    }
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #e7e7e7;
+}
+
+.container-fluid-right {
+    float: right;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+    .container-fluid-right .navbar-toggle {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+
+
+
+/* On small screens, set height to 'auto' for sidenav and grid*/
+@media screen and (max-width: 600px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .grid {
+        height: auto;
+        padding: 0;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+
+.card {
+    box-sizing: border-box;
+    box-shadow: 0 4px 0px 0 rgba(0, 0, 0, 0.2);
+    max-width: 993px;
+    margin: auto;
+    text-align: center;
+    font-family: Impact;
+}
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 50%;
+        font-size: 12px;
+    }
+
+        .card button:hover {
+            opacity: 0.5;
+        }
+
+.row {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+.col-25 {
+    -ms-flex: 25%;
+    /* IE10 */
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%;
+    /* IE10 */
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%;
+    /* IE10 */
+    flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+
+.container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
+.remove .increase .decrease {
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    width: 5%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+}
+
+.remove:hover {
+    background-color: #5d33fb;
+}
+
+.increase:hover {
+    background-color: #5d33fb;
+}
+
+.decrease:hover {
+    background-color: #5d33fb;
+}
+
+.add-to-cart {
+    list-style-image: url('sqpurple.gif');
+    list-style-position: inside;
+    list-style-type: none;
+    /*float: calc(100% - 10px);*/
+    /*color: white;
+    background-color: black;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;*/
+}
+
+/* Add this CSS to your existing CSS */
+
+.product {
+    border: 1px solid black;
+    padding: 1px;
+    margin: 1px;
+}
+
+    .product img {
+        width: 100%;
+        height: 100%;
+    }
+
+.product-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #5d33fb;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.product button {
+    background-color: #5d33fb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .product button:hover {
+        background-color: #5d33fb;
+    }
+
+    .product button:active {
+        background-color: #5d33fb;
+    }
+
+    .product button:focus {
+        background-color: #5d33fb;
+    }
+
+    .product button:visited {
+        background-color: #5d33fb;
+    }
+
+/*toto sa skryje a zaroven neotravuje a ochrani formular pred robotmi*/
+.api-password-group {
+    display: none;
+}
+
+
+
 html {
     box-sizing: border-box
 }
@@ -41,7 +330,7 @@ audio:not([controls]) {
 
 a {
     background-color: transparent;
-    
+    /*-webkit-text-decoration-skip: objects*/
 }
 
     a:active, a:hover {
@@ -171,11 +460,11 @@ fieldset {
     transition: all 0.2s;
     -webkit-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
     -moz-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
-    
+    /*-ms-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);*/
     box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    
+    /* -ms-border-radius: 50%;*/
     border-radius: 50%;
     -moz-transform: translateY(20px);
     transform: translateY(20px);
@@ -278,11 +567,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     transition: all 0.2s;
     -webkit-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
     -moz-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
-    
+    /*-ms-box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);*/
     box-shadow: 0px 3px 15px rgba(93, 51, 251, 0.25);
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    
+    /* -ms-border-radius: 50%;*/
     border-radius: 50%;
     -moz-transform: translateY(20px);
     -o-transform: translateY(20px);
@@ -320,7 +609,7 @@ a {
 }
 
 user agent stylesheet
-{
+a-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
     text-decoration: underline;
@@ -535,7 +824,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: black;
     text-align: left;
     background-color: #fff;
 }
@@ -2675,4 +2964,142 @@ input[type=checkbox].w3-check, input[type=radio].w3-radio {
 
 .w3-border-text-light-green, .w3-hover-border-text-light-green:hover {
     border-color: #8bc34a !important
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: grey;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 95%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+    .cart-icon img {
+        width: 30px;
+        height: 28px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+
+
+
+
+
+
+.navbar-brand.image-container img {
+    width: 152px;
+    height: 42px;
+    position: relative;
+    left: 12px;
+    top: 0px;
+}
+
+nav .cart-icon img {
+    width: 30px;
+    height: 28px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+nav .cart-icon span .cart-items {
+    position: relative;
+    top: -20px;
+    left: -10px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+
+
+
+#card-element {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px 0;
+}
+
+#card-errors {
+    color: red;
+    margin: 10px 0;
+}
+
+.buy-button-click {
+    background-color: wheat;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+    .buy-button-click:hover {
+        background-color: #5d33fb;
+    }
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .col-25,
+    .col-50,
+    .col-75,
+    input[type=text] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width:800px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-25 {
+        margin-bottom: 10px;
+    }
 }

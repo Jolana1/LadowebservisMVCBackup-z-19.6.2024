@@ -1,66 +1,63 @@
-﻿using System;
+﻿using LadowebservisMVC.Util;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Web;
-using LadowebservisMVC.Controllers.Models;
-using LadowebservisMVC.Util;
+
 
 
 namespace LadowebservisMVC.Controllers.Models
 {
     public class ContactModel_Sk
     {
-/// <summary>
-        /// Name
-        /// </summary>
         [Required(ErrorMessage = ModelUtil.requiredErrMessage_Sk)]
+        [DataType(DataType.Text)]
         [Display(Name = "Name")]
         public string Name { get; set; }
-        /// <summary>
-        /// Email
-        /// </summary>
+
         [Required(ErrorMessage = ModelUtil.requiredErrMessage_Sk)]
-        [EmailAddress(ErrorMessage = ModelUtil.invalidEmailErrMessage_Sk)]
-        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Neplatný formát emailu.")]
+        [Display(Name = "Email")] 
         public string Email { get; set; }
-        /// <summary>
-        /// Phone
-        /// </summary>
+
+        //[Required(ErrorMessage = ModelUtil.invalidPhoneErrMessage_Sk)]
+        //[RegularExpression(ModelUtil.phoneRegex)]
+        //[DataType(DataType.PhoneNumber)]
+        //[Display(Name = "Phone")]
+        //public string Phone { get; set; }
+
+        [DataType(DataType.Upload)]
+        [Display(Name = "File")]
+        public HttpPostedFileBase File { get; set; }
+
+
+
+
         [Required(ErrorMessage = ModelUtil.requiredErrMessage_Sk)]
-        [Display(Name = "Phone")]
-        public string Phone { get; set; }
-        /// <summary>
-        /// Text
-        /// </summary>
-        [Required(ErrorMessage = ModelUtil.requiredErrMessage_Sk)]
+        [DataType(DataType.Text)]
         [Display(Name = "Text")]
         public string Text { get; set; }
-        /// <summary>
-        /// Password
-        /// </summary>
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-        /// <summary>
-        public bool SendContactRequest()
-        {
-            List<TextTemplateParam> paramList = new List<TextTemplateParam> { };
-            paramList.Add(new TextTemplateParam("NAME", this.Name));
-            paramList.Add(new TextTemplateParam("EMAIL", this.Email));
-            paramList.Add(new TextTemplateParam("TEXT", this.Text));
 
-            // Odoslanie uzivatelovi
-            Mailer.SendMailTemplate(
-                "Vaša správa",
-                TextTemplate.GetTemplateText("ContactSendSuccess_Sk", paramList),
-                this.Email, null);
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        public bool TexTemplate()
+        {
+            List<TextTemplateParam> paramList = new List<TextTemplateParam>
+                {
+                    new TextTemplateParam("NAME", this.Name),
+                    new TextTemplateParam("EMAIL", this.Email),
+                    new TextTemplateParam("TEXT", this.Text),
+                   // new TextTemplateParam("PHONE", this.Phone),
+                    new TextTemplateParam("PASSWORD", this.Password)
+                };
+
+            Mailer mailer = new Mailer();
+            // pass null to ensure Mailer still attaches the App_Data/MailAttachment.pdf
+            mailer.OdoslanieSpravy(this, null);
 
             return true;
-
-
-
-
         }
     }
 }

@@ -1,56 +1,89 @@
-﻿@using LadowebservisMVC.Models
-@model LadowebservisMVC.Controllers.ContactModel
+﻿@model LadowebservisMVC.Controllers.Models.ContactModel_Sk
 
-@{
-    ViewBag.Title = "Kontakt";
-}
-
-<!-- Kontakt -->
-
-<div class="form-horizontal w3-text-white pt-4" id="Kontakt">
-    <h3 class="section-subheading text-white">Máte otázku? Neváhajte nám napísať v tomto kontaktnom formulári!</h3>
+<div class="container card pt-4">
     <div class="row">
-        <div class="col-md-12">
-            @using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
-            {
-                @Html.ValidationSummary(true, "Udaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
-                <div class="row">
-                    <div class="col-md-12">
-                        @Html.AntiForgeryToken()
-                        <div class="form-item">
-                            <label for="Meno">Meno</label>
-                            <input type="text" id="Meno" name="Meno" class="form-control" />
-                            @Html.ValidationMessage("Meno")
-                        </div>
-                        <div class="form-item">
-                            <label for="Telefon">Telefón</label>
-                            <input type="text" id="Telefon" name="Telefon" class="form-control" />
-                            @Html.ValidationMessage("Telefon")
-                        </div>
-                        <div class="form-item">
-                            <label for="Sprava">Sprava</label>
-                            <textarea id="Sprava" name="Sprava" class="form-control" style="height:150px"></textarea>
-                            @Html.ValidationMessage("Sprava")
-                        </div>
-                        @*<div class="form-item">
-                            <label for="Email">Email</label>
-                            <input type="text" id="Email" name="Email" class="form-control" />
-                            @Html.ValidationMessage("Email")
-                        </div>*@
-                        <div class="form-item">
-                            <label for="Captcha">UserName</label>
-                            <input type="text" id="Captcha" name="Captcha" class="form-control" />
-                            @Html.ValidationMessage("Captcha")
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <p class="contact-items">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span>info@ladowebservis.sk</span>
+                    <br />
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                    <span>+421907151293</span>
+                </p>
+
+                <h2 class="visible-xs-block visible-sm-block" style="font-size:20px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb;text-align:center">
+                    PREČO TO FUNGUJE ?<br />Nie je to len test – je to systém pre vaše zdravie.
+                </h2>
+                <h2 class="hidden-xs hidden-sm" style="font-size:26px;color:#ffffff;text-shadow:1px 1px 4px #5d33fb;text-align:center">
+                    „Získajte e-book zdarma:<br /> Päť prirodzených ciest k väčšej energii“
+                </h2>
+
+                <div class="">
+                    <img src="~/Image/TestZinzino 2.jpg" class="img-responsive center-block" alt="TestZinzino" style="max-width:100%;height:auto;" title="Lepšie zdravie sa začína lepšou rovnováhou.">
+                </div>
+
+                <details class="w3-center mt-2 text-center">
+                    „Všetko prebieha anonymne, bezpečne a v pohodlí domova."
+                    <br />
+                    🧩 1. Otestujte sa doma – jednoduchý krvný test (1 kvapka) odošlete do laboratória.
+                    <br />📊 2. Získajte výsledky online – detailná správa s pomerom Omega-3 a Omega-6.
+                    <br />💊 3. Upravte výživu – doplnky Zinzino pomáhajú dostať telo do rovnováhy.
+                    <br />🔄 4. Sledujte pokrok – opakujte test po 120 dňoch a sledujte zmeny.
+                    <br />🎓 5. Bezplatná konzultácia – ak si nie ste istí, čo potrebujete získajte od nás e-book zdarma:
+                    <br />👉 Päť prirodzených ciest k väčšej energii.
+                </details>
+
+                <hr />
+
+               
+
+                @using (Html.BeginForm("OdoslanieSpravy", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "Údaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8 col-md-offset-2">
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Vaše meno", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Zadajte email", tabindex = 1 })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Text, new { @class = "control-label" })
+                                @Html.TextAreaFor(m => m.Text, new { @class = "form-control", placeholder = "Sem napíšte krátku správu alebo otázku.„Získajte e-book zdarma: 5 prirodzených ciest k väčšej energii“\r\nE‑book bude dostupný v prílohe po vyplnení a odoslaný na váš email.", style = "height:150px", tabindex = 4 })
+                                @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="api-password-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                          
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-lg tlacitko-moje" tabindex="6">Odoslať správu</button>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="row submit">
-                    <div class="col-md-12">
-                        <a href="#navbar" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Odoslať správu</a>
-                        <input type="submit" id="submitButton" class="hidden" />
-                    </div>
-                </div>
-            }
+                }
+
         </div>
     </div>
 </div>
+
+<p class="text-center mt-3">
+    <a href="@Url.Action("Zdravie","Home",new {area = "Ladowebservis"})" class="btn btn-secondary">Späť na úvod</a>
+</p>

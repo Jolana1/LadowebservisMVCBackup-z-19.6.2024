@@ -1,4 +1,8 @@
 ﻿using LadowebservisMVC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 using System.Web.Mvc;
 
@@ -22,30 +26,22 @@ namespace LadowebservisMVC.Controllers
 
             if (ModelState.IsValid)
             {
-                if (model.Email == "UserName" && model.Heslo == "Heslo")
+                if (model.Email == "UserName" && model.Heslo == "Password")
                 {
                     return RedirectToAction("Member", "Home");
                 }
-                
+
             }
             return View(model);
-                }
+        }
         public ActionResult Register(RegisterModel model)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Registracia", "Home");
+                return RedirectToAction("Registration", "Home");
 
             }
-            else
-            {
-                
-                ModelState.AddModelError("", "Nesprávne meno alebo heslo");
-                return RedirectToAction("Member", "Home");
-
-            }
-
-
+            return View(model);
         }
     }
 }

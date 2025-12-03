@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using static LadowebservisMVC.Models.NumberAttribute;
 
 
+
 namespace LadowebservisMVC.Controllers
 {
-    public class ContactModel
+    public class ContactModel 
     {
-
         [Required(ErrorMessage = "Meno a Priezvisko musí byť zadané")]
         [Display(Name = "Meno a Priezvisko:")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Email musí byť zadaný:")]
+        [Required(ErrorMessage = "Email musí byť zadaný")]
         [Display(Name = "Email")]
-        [Email(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
+        [EmailAddress(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Telefón musí byť zadaný")]
@@ -28,7 +28,7 @@ namespace LadowebservisMVC.Controllers
 
         [Display(Name = "Captcha")]
         [Required(ErrorMessage = "Zopakujte ešte raz emailovú adresu kvôli kontrole")]
-        [Captcha(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
+        [EmailAddress(ErrorMessage = "Nezadali ste platnú emailovú adresu")]
         public string Captcha { get; set; }
     }
 }

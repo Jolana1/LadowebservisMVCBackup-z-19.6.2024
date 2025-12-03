@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UmbracoEshop.lib.Util
+namespace LadowebservisMVC.Util
 {
     public class PriceUtil
     {

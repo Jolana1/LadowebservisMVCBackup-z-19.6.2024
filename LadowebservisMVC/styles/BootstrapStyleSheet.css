@@ -1,44 +1,39 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-
+﻿@import url('https://fonts.googleapis.com/css2?family=Langar&family=Montserrat:wght@300;400;500;600;700&display=swap');
 p, h1, h2, h3, h4 {
-    color: white;
+    color: black;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     /*font-family: 'Langar', cursive;*/
     font-size: 18px;
 }
 
+/* .badge-badge-danger {
+    background-color: #5d33fb;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 3px;
+} */
+
 .form-item {
     color: white;
     text-decoration: none;
 }
-
-/*.pozadie {
-    background-image: url("/Images/2ombztoh/coyote-cascade-coyote-gulch-utah.jpg");
-}*/
-
-/*.hlavicka, p.pozadie {
-    border: 2px solid blue;
-    background-color: #4aacf4;
-}*/
-
-
 .navbar-default {
     border: none;
 }
 
-.navbar-default .navbar-header
-    img {
-        max-height: 25px;
-        background-color: #7db9ff;
-        float: left;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 3px 10px 0 0;
-        transition: all .3s ease;
-    }
+.navbar-default .navbar-header img {
+    max-height: 25px;
+    background-color: #7db9ff;
+    float: left;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 3px 10px 0 0;
+    transition: all .3s ease;
+}
 
 .page-body {
     padding-top: 60px;
@@ -91,8 +86,7 @@ p, h1, h2, h3, h4 {
         z-index: -1;
     }
 
-
-/*povodne .tlacitko-moje {
+    /*povodne .tlacitko-moje {
     padding: 10px;
     color: white;
     border: 1px solid black;
@@ -100,15 +94,15 @@ p, h1, h2, h3, h4 {
     display: inline-block;
 }*/
 
-.tlacitko-moje:hover {
-    color: white;
-    background-color: black;
-    text-decoration: none;
-}
+    .tlacitko-moje:hover {
+        color: white;
+        background-color: black;
+        text-decoration: none;
+    }
 
 .moj-formular .row {
-    padding: 10px 0 10px 0px;
-    color: white;
+    padding: 10px 0;
+    border-left-color: black;
 }
 
 .field-validation-error {
@@ -129,12 +123,12 @@ p, h1, h2, h3, h4 {
     margin: 0 10px 10px 0;
     transition: all .3s ease;
 }
-/*toto sa skryje a zaroven neotravuje a ochrani formular pred robotmi*/
+/* toto sa skryje a zaroven neotravuje a ochrani formular pred robotmi */
 .api-password-group {
     display: none;
 }
 
-Photo gallery2
+/* Photo gallery styles */
 .gallery-list .gallery-folder {
     margin-bottom: 50px;
 }
@@ -177,7 +171,7 @@ Photo gallery2
         display: block;
     }
 
-Photo gallery1
+/* Photo slider styles */
 .photo-slider {
     padding: 20px 20px 50px 20px;
 }
@@ -236,7 +230,7 @@ Photo gallery1
     padding-top: 0;
 }
 
-Course video
+/* Course video */
 .course-video {
     margin: 0 20px 50px 20px;
 }
@@ -265,10 +259,6 @@ Course video
     }
 
 
-
-
-
-/* Add a background color and some padding to the footer */
 footer {
     background-color: #726539;
     padding: 2px;
@@ -276,14 +266,13 @@ footer {
     color: white;
 }
 
-
 .carousel-inner img {
     width: 100%;
     height: max-content;
 }
 
 q {
-    quotes: "“""”""‘""’";
+    quotes: "“" "”" "‘" "’";
 }
 
 nav,
@@ -355,8 +344,6 @@ h6 {
         margin-right: 0;
         margin-left: 0;
     }
-
-
 
 
 /* On small screens, set height to 'auto' for sidenav and grid*/
@@ -499,106 +486,29 @@ label {
 /* Add this CSS to your existing CSS */
 
 .product {
-    border: 1px solid black;
+    border: 1px solid grey;
     padding: 1px;
     margin: 1px;
 }
 
-/*.add-to-cart {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 0px;
-            cursor: pointer;
-        }*/
- /*.cart-items {
-            position: relative;
-            top: 0;
-            right:0;
-            color: black;
-            padding: 5px 10px;
-            background-color: turquoise;
-
-            padding: 1px;
-            margin: 1px;
-        }*/
-
-.cart-items nav .cart-icon  {
-            list-style-type: none;
-            padding: 5px;
-            color: white;
-
-        }
-.navbar-brand.image-container img {
-    width: 152px;
-    height: 42px;
-    position: relative;
-    left: 12px;
-    top: 0px;
-}
-
-nav .cart-icon img {
-    width: 30px;
-    height: 28px;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    color: white;
-}
-
-nav .cart-icon span .cart-items {
-    position: relative;
-    top: -20px;
-    left: -10px;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 50%;
-    font-size: 14px;
-}
-
-
-
-
-#card-element {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 3px;
-    margin: 10px 0;
-}
-
-#card-errors {
-    color: red;
-    margin: 10px 0;
-}
-
-.buy-button-click {
-    background-color: wheat;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-    .buy-button-click:hover {
-        background-color: #5d33fb;
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .col-25,
+    .col-50,
+    .col-75,
+    input[type=text] {
+        width: 100%;
+        margin-top: 0;
     }
-
-
-
-
-
+}
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width:800px) {
+    .row {
+        flex-direction: column;
+    }
 
-.row {
-    flex-direction: column;
+    .col-25 {
+        margin-bottom: 10px;
+    }
 }
-
-.col-25 {
-    margin-bottom: 10px;
-}
-

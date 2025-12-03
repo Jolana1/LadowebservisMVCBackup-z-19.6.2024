@@ -1,77 +1,87 @@
 ﻿@using LadowebservisMVC.Models
 @model RegisterModel
 
-<div class="">
-    <p class="contact-items">
-        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span>info@ladowebservis.sk</span><br />
-        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span><span>+421......</span>
-    </p>
-    <br />
+<div class="container card pt-4">
+    <div class="row justify-content-center">
+        @*<div class="col-12 col-sm-10 col-md-8 col-lg-6">*@
+            <div class="card p-3">
+                <p class="contact-items">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span>info@ladowebservis.sk</span>
+                </p>
 
-    <h3 class="section-subheading text-white">
-        Neváhajte sa u nás registrovať a odoslať vašu správu cez tento registračný formulár:<br />
-        Vašou registráciou získavate:<br />výhodnejšie nákupy a rôzne zľavy produktov,takže neváhajte!
-    </h3>
+                <h1 class="h5 text-center" style="color:#ffffff;text-shadow:1px 1px 4px #5d33fb">
+                    Neváhajte sa u nás zaregistrovať.
+                    <br />Registráciou získavate oveľa výhodnejšie nákupy a väčšie zľavy Zinzino produktov!
+                </h1>
 
-    @using (Html.BeginForm("OdoslanieReg", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
-    {
-        @Html.ValidationSummary(true, "Údaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+                @using (Html.BeginForm("OdoslanieReg", "Home", FormMethod.Post, new { @class = "form-horizontal moj-formular" }))
+                {
+                    @Html.ValidationSummary(true, "Údaje boli neúspešné. Prosím opravte chyby a skúste to znovu.")
+                    @Html.AntiForgeryToken()
 
-        @Html.AntiForgeryToken()
-        <div class="form-item">
-            @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Vaše krstné meno" })
-            @Html.ValidationMessageFor(m => m.Name)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Priezvisko)
-            @Html.TextBoxFor(m => m.Priezvisko, new { @class = "form-control", placeholder = "Vaše priezvisko" })
-            @Html.ValidationMessageFor(m => m.Priezvisko)
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Vaše krstné meno" })
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                    </div>
 
-        <div class="form-item">
-            @Html.LabelFor(m => m.Phone)
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Vaše telefónne číslo potrebné pre rýchlejšiu komunikáciu" })
-            @Html.ValidationMessageFor(m => m.Phone)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Adresa)
-            @Html.TextBoxFor(m => m.Adresa, new { @class = "form-control", placeholder = "Vaša ulica a číslo" })
-            @Html.ValidationMessageFor(m => m.Adresa)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vaše heslo" })
-            @Html.ValidationMessageFor(m => m.Password)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.City)
-            @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Vaše mesto alebo obec" })
-            @Html.ValidationMessageFor(m => m.City)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail" })
-            @Html.ValidationMessageFor(m => m.Email)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Captcha)
-            @Html.TextBoxFor(m => m.Captcha, new { @class = "form-control", placeholder = "Potvrďte email" })
-            @Html.ValidationMessageFor(m => m.Captcha)
-        </div>
-        <div class="form-item">
-            @Html.LabelFor(m => m.Text)
-            @Html.TextAreaFor(m => m.Text, new { @class = "form-control", placeholder = "Vaša správa" })
-            @Html.ValidationMessageFor(m => m.Text)
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Priezvisko, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Priezvisko, new { @class = "form-control", placeholder = "Vaše priezvisko" })
+                        @Html.ValidationMessageFor(m => m.Priezvisko, "", new { @class = "text-danger" })
+                    </div>
 
-        @Html.ValidationSummary(true)
-        <div class="form-section">
-            <a href="#" onclick="document.getElementById('submitButton').click(); return false;" class="btn btn-primary btn-lg tlacitko-moje">Odoslať</a>
-            <input type="submit" id="submitButton" class="hidden" />
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Vaše telefónne číslo" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Adresa, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Adresa, new { @class = "form-control", placeholder = "Vaša ulica a číslo" })
+                        @Html.ValidationMessageFor(m => m.Adresa, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            @Html.LabelFor(m => m.City, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Vaše mesto alebo obec" })
+                            @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-12 col-md-6">
+                            @Html.LabelFor(m => m.Captcha, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Captcha, new { @class = "form-control", placeholder = "Potvrďte email" })
+                            @Html.ValidationMessageFor(m => m.Captcha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Váš e-mail" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Vytvorte si heslo" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Text, new { @class = "control-label" })
+                        @Html.TextAreaFor(m => m.Text, new { @class = "form-control", placeholder = "Sem napíšte správu alebo požiadavku", style = "height:100px" })
+                        @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between align-items-center">
+                        <button type="submit" class="btn btn-primary tlacitko-moje">Odoslať</button>
+                        <a href="@Url.Action("Login","Home")" class="btn btn-secondary">Späť na prihlásenie</a>
+                    </div>
+                }
+            </div>
         </div>
-        <p>
-            <a href="@Url.Action("Login","Home",new {area = ""})" class="btn btn-primary btn-lg tlacitko-moje">Odhlásiť</a>
-        </p>
-    }
-</div>
+    </div>
+@*</div>*@

@@ -1,13 +1,13 @@
-﻿using NPoco;
+﻿//using NPoco;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UmbracoEshop.lib.Repositories
+namespace LadowebservisMVC.lib.Repositories
 {
-    public class VyrobokRepository : _BaseRepository
+    public class VyrobokRepository : _BaseRepositoryRec
     {
         public Page<Vyrobok> GetPage(long page, long itemsPerPage, string sortBy = "nazovVyrobku", string sortDir = "ASC", VyrobokFilter filter = null)
         {
@@ -90,21 +90,14 @@ namespace UmbracoEshop.lib.Repositories
         public string KodVyrobku { get; set; }
         public string NazovVyrobku { get; set; }
         public decimal CenaVyrobku { get; set; }
-
         public string PopisVyrobku { get; set; }
-
         public string ProductImg { get; set; }
-
         public int ProductOrder { get; set; } = 0;
 
         public static string GetFileUploadCategory(Guid productKey)
         {
             return string.Format(@"Product/{0}", productKey);
         }
-
-
-        //public string ProducerDescription { get; set; }
-        //public string ProducerWeb { get; set; }
     }
 
     public class VyrobokFilter
