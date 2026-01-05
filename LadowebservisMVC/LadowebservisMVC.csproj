@@ -671,6 +671,7 @@
     <Content Include="Image\BalanceOil.png" />
     <Content Include="Image\Balanceoilaqua.png" />
     <Content Include="Image\BalanceTest.png" />
+    <Content Include="Image\Balzam.png" />
     <Content Include="Image\basic%281%29.css" />
     <Content Include="Image\Basic.jpg" />
     <Content Include="Image\be8ad217f286a5754c09fddd71b4fd7c.jpg" />
@@ -693,6 +694,7 @@
     <Content Include="Image\cycles.js" />
     <Content Include="Image\dashboard2018experiencegained 2.png" />
     <Content Include="Image\dashboard2018experiencegained.png" />
+    <Content Include="Image\Davkovacie pohare.png" />
     <Content Include="Image\dom-elements.js" />
     <Content Include="Image\dom-events.js" />
     <Content Include="Image\edit.genial.ly-Editor.png" />
@@ -782,8 +784,6 @@
     <Content Include="Image\pagePiling-plugin 2.png" />
     <Content Include="Image\pagePiling-plugin.gif" />
     <Content Include="Image\pagePiling-plugin.png" />
-    <Content Include="Image\pf2019 2.png" />
-    <Content Include="Image\pf2019.png" />
     <Content Include="Image\photo-1461722936851-13a79b294a5d 2.jpeg" />
     <Content Include="Image\photo-1461722936851-13a79b294a5d 2.jpg" />
     <Content Include="Image\photo-1461722936851-13a79b294a5d.jpeg" />
@@ -794,6 +794,7 @@
     <Content Include="Image\Pikatec.png" />
     <Content Include="Image\polyfill.min.js" />
     <Content Include="Image\Postup platby.png" />
+    <Content Include="Image\Prianie26.png" />
     <Content Include="Image\profile-pic 2.jpg" />
     <Content Include="Image\profile-pic.jpg" />
     <Content Include="Image\puzzle-3223941_1920 2.jpg" />
@@ -1049,7 +1050,7 @@
     <Content Include="Views\Home\Objednavky.cshtml" />
     <Content Include="Views\Home\Produkty.cshtml" />
     <Content Include="Views\Home\Kosik.cshtml" />
-    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\HTTP 404.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\OrderPlaced.cshtml" />
     <Content Include="Views\Home\Favorites.cshtml" />

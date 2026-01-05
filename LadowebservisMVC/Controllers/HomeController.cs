@@ -378,13 +378,16 @@ namespace LadowebservisMVC.Controllers
             ViewBag.PageTitle = "Obchodné Podmienky";
             return View();
         }
-        public ActionResult Error()
+        public ActionResult HTTP404()
         {
-            ViewBag.PageTitle = "Oops";
-            return View();
+            ViewBag.PageTitle = "HTTP 404 - Stránka sa nenašla";
+            Response.StatusCode = 404;
+            Response.TrySkipIisCustomErrors = true;
+            return View("HTTP 404");
         }
     }
 }
+
 
 
 
