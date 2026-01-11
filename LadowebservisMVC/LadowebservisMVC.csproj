@@ -580,6 +580,7 @@
     <Compile Include="Models\OdoslanieRegModel.cs" />
     <Compile Include="Models\PlaceOrderModel.cs" />
     <Compile Include="Models\QuoteModel.cs" />
+    <Compile Include="Models\DownloadEbookModel.cs" />
     <Compile Include="Models\TextTemplateModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\MemberInfoModel.cs" />
@@ -744,6 +745,7 @@
     <Content Include="Image\logo.gif" />
     <Content Include="Image\lptrading-favicon.png" />
     <Content Include="Image\LWS-web and eshop.png" />
+    <Content Include="Image\LWSGEN Logo.png" />
     <Content Include="Image\LWSlogo 2.jpg" />
     <Content Include="Image\LWSlogo.jpg" />
     <Content Include="Image\maincv.jpg" />
@@ -1056,6 +1058,7 @@
     <Content Include="Views\Home\Favorites.cshtml" />
     <Content Include="Views\Home\ReturnPolicy.cshtml" />
     <Content Include="Views\Home\Gdpr.cshtml" />
+    <Content Include="Views\Home\DownloadEbook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\corepack\dist\lib\" />
@@ -1365,7 +1368,6 @@
     <Folder Include="Image\npm\node_modules\write-file-atomic\lib\" />
     <Folder Include="Image\npm\node_modules\yallist\" />
     <Folder Include="Repositories\UmbracoCmsContent\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

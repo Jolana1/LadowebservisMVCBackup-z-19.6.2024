@@ -345,7 +345,7 @@
                     }
                 }
             }
-            favNote.textContent = 'Ak máte označené aj obľúbené produkty môžte si ich ešte sem pridať.Zoznam nájdete v sekcii Obľúbené produkty alebo aj tu nižšie.';
+            favNote.textContent = 'Nezabudnite si pri platbe cez Stripe vložiť propagačný kód👉NOVYROK26👉aby ste mali 10% zľavu.Kód je možné uplatniť len pre: Balanceoil+ 300ml, BalanceTest, Vitamin D test alebo kombinaciu.';
         } else if (favNote && favNote.parentNode) {
             favNote.parentNode.removeChild(favNote);
         }
