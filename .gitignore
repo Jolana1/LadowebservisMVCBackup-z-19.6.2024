@@ -1,5 +1,8 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+# Visual Studio
+# Ignore user-specific files and build results
 
-/.vs/CopilotSnapshots
+## Visual Studio cache/options directory
+.vs/
+
+## Copilot snapshots
+.vs/CopilotSnapshots/

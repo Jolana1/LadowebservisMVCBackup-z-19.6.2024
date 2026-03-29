@@ -1,0 +1,1456 @@
+﻿@{
+    ViewBag.Title = "Zdravie v rovnováhe - Začnite svoj reštart zdravia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Sales Page Styles */
+    body {
+        background: #f8f9fa;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        padding: 80px 20px;
+        text-align: center;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+
+    .hero-subtitle {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        opacity: 0.95;
+    }
+
+    .hero-tagline {
+        font-size: 18px;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    .hero-offer-highlight {
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 20px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 20px auto;
+        display: inline-block;
+        max-width: 500px;
+        backdrop-filter: blur(10px);
+    }
+
+    .urgency-timer {
+        display: inline-block;
+        background: rgba(255, 107, 107, 0.9);
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 10px;
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+    }
+
+    .cta-primary {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: #fff !important;
+        padding: 18px 50px;
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 8px 20px rgba(40,167,69,0.4);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(40,167,69,0.5);
+            color: #fff !important;
+        }
+
+    .cta-secondary {
+        background: #ff9800;
+        color: #fff !important;
+        padding: 14px 40px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 6px 18px rgba(255, 152, 0, 0.4);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+        .cta-secondary:hover {
+            background: #ff7c00;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.5);
+            color: #fff !important;
+        }
+
+    .section-title {
+        color: #5d33fb;
+        font-weight: 700;
+        margin-bottom: 30px;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .benefit-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+        transition: transform 0.3s ease;
+        border-top: 4px solid #5d33fb;
+    }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+    .benefit-icon {
+        font-size: 48px;
+        color: #5d33fb;
+        margin-bottom: 15px;
+    }
+
+    .problem-card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+        .problem-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+    .problem-icon {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .testimonial-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #5d33fb;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+    .price-badge {
+        background: #ffcc00;
+        color: #2c3e50;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: 700;
+        display: inline-block;
+        margin: 10px 0;
+    }
+
+    .urgency-banner {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        color: #fff;
+        padding: 25px;
+        text-align: center;
+        border-radius: 8px;
+        margin: 30px 0;
+        font-weight: 600;
+        font-size: 18px;
+        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: slideDown 0.5s ease;
+    }
+
+    @@keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .urgency-banner strong {
+        font-size: 20px;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .urgency-subtext {
+        font-size: 14px;
+        opacity: 0.95;
+    }
+
+    .special-offer-box {
+        background: linear-gradient(135deg, #fff5e6 0%, #ffe0b2 100%);
+        border: 3px solid #ff9800;
+        border-radius: 12px;
+        padding: 50px;
+        box-shadow: 0 15px 40px rgba(255, 152, 0, 0.25);
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .special-offer-box::before {
+            content: '🎁';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.08;
+            right: -30px;
+            top: -30px;
+            transform: rotate(-15deg);
+        }
+
+        .special-offer-box * {
+            position: relative;
+            z-index: 1;
+        }
+
+    .offer-header {
+        color: #ff9800;
+        font-weight: 700;
+        margin-bottom: 30px;
+        font-size: 28px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .offer-subtitle {
+        color: #d97706;
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .product-feature-list {
+        font-size: 18px;
+        color: #2c3e50;
+        line-height: 2;
+    }
+
+        .product-feature-list li {
+            margin-bottom: 12px;
+        }
+
+    .stats-row {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 40px 0;
+        gap: 20px;
+    }
+
+    .stat-item {
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: #5d33fb;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+        color: #666;
+    }
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+    }
+
+    .step-item {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        border-top: 4px solid #5d33fb;
+        transition: all 0.3s ease;
+    }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .step-item strong {
+            color: #5d33fb;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    .guarantee-box {
+        background: linear-gradient(135deg, #e7f3ff 0%, #f0e6ff 100%);
+        border: 3px solid #5d33fb;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .faq-item {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        border-left: 4px solid #5d33fb;
+    }
+
+        .faq-item h4 {
+            color: #5d33fb;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #666;
+            margin: 0;
+        }
+
+    .trust-badges {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: #999;
+        font-size: 14px;
+    }
+
+    /* Match layout sizing behavior with Produkty page */
+    .zdravie-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    @@media (max-width: 1200px) {
+        .special-offer-box {
+            padding: 35px;
+        }
+
+        .hero-section {
+            padding: 60px 20px;
+        }
+
+            .hero-section h1 {
+                font-size: 40px;
+            }
+
+        .offer-header {
+            font-size: 24px;
+        }
+    }
+
+    @@media (max-width: 992px) {
+        .special-offer-box {
+            padding: 30px;
+        }
+
+        .offer-header {
+            font-size: 22px;
+        }
+
+        .product-feature-list {
+            font-size: 15px;
+            text-align: left;
+        }
+
+            .product-feature-list li {
+                margin-bottom: 8px;
+            }
+
+        .section-title {
+            font-size: 28px;
+        }
+
+        .cta-primary {
+            padding: 16px 40px;
+            font-size: 16px;
+        }
+
+        .cta-secondary {
+            padding: 12px 30px;
+            font-size: 15px;
+            margin-left: 5px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hero-section {
+            padding: 50px 15px;
+            margin-bottom: 30px;
+        }
+
+            .hero-section h1 {
+                font-size: 26px;
+                margin-bottom: 15px;
+            }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero-offer-highlight {
+            padding: 15px 20px;
+            font-size: 14px;
+            margin: 15px auto;
+        }
+
+        .cta-primary {
+            padding: 14px 30px;
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .cta-secondary {
+            padding: 12px 25px;
+            font-size: 13px;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+        }
+
+        .special-offer-box {
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .offer-header {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .offer-subtitle {
+            font-size: 14px;
+        }
+
+        .product-feature-list {
+            font-size: 14px;
+            text-align: left;
+        }
+
+            .product-feature-list li {
+                margin-bottom: 6px;
+            }
+
+        .benefit-card {
+            padding: 20px;
+        }
+
+        .benefit-icon {
+            font-size: 36px;
+        }
+
+        .stats-row {
+            flex-direction: column;
+        }
+
+        .stat-item {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 40px;
+        }
+
+        .urgency-banner {
+            font-size: 14px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+            .urgency-banner strong {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+        .urgency-subtext {
+            font-size: 12px;
+        }
+
+        .process-steps {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .step-item {
+            padding: 20px;
+        }
+
+        .guarantee-box {
+            padding: 25px;
+        }
+
+        .problem-card {
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .problem-icon {
+            font-size: 36px;
+        }
+
+        .faq-item {
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        .trust-badges {
+            padding: 15px;
+            font-size: 12px;
+        }
+
+        .urgency-timer {
+            font-size: 12px;
+            padding: 8px 15px;
+            margin-top: 8px;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .hero-section {
+            padding: 35px 12px;
+            margin-bottom: 20px;
+        }
+
+            .hero-section h1 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+        .hero-subtitle {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .hero-tagline {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .hero-offer-highlight {
+            padding: 12px 15px;
+            font-size: 12px;
+            margin: 12px auto;
+        }
+
+        .section-title {
+            font-size: 20px;
+        }
+
+        .cta-primary {
+            font-size: 13px;
+            padding: 12px 20px;
+            margin-bottom: 8px;
+        }
+
+        .cta-secondary {
+            font-size: 12px;
+            padding: 10px 18px;
+        }
+
+        .special-offer-box {
+            padding: 20px;
+            border-width: 2px;
+            margin-bottom: 20px;
+        }
+
+        .offer-header {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .offer-subtitle {
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .product-feature-list {
+            font-size: 13px;
+        }
+
+            .product-feature-list li {
+                margin-bottom: 5px;
+            }
+
+        .benefit-card {
+            padding: 15px;
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+        }
+
+        .problem-card {
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .problem-icon {
+            font-size: 32px;
+        }
+
+        .step-item {
+            padding: 15px;
+        }
+
+            .step-item strong {
+                font-size: 15px;
+            }
+
+            .step-item p {
+                font-size: 13px;
+            }
+
+        .faq-item {
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+            .faq-item h4 {
+                font-size: 14px;
+            }
+
+            .faq-item p {
+                font-size: 12px;
+            }
+
+        .guarantee-box {
+            padding: 20px;
+        }
+
+            .guarantee-box h3 {
+                font-size: 16px;
+            }
+
+            .guarantee-box p {
+                font-size: 14px;
+            }
+
+        .trust-badges {
+            padding: 12px;
+            font-size: 11px;
+        }
+
+        .urgency-banner {
+            font-size: 12px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+            .urgency-banner strong {
+                font-size: 14px;
+            }
+
+            .urgency-banner > div {
+                font-size: 13px;
+            }
+
+        .urgency-timer {
+            font-size: 11px;
+            padding: 6px 12px;
+            margin-top: 6px;
+        }
+
+        h3 {
+            font-size: 16px;
+        }
+
+        .zdravie-container {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-top: 20px;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .hero-section {
+            padding: 30px 10px;
+        }
+
+            .hero-section h1 {
+                font-size: 20px;
+                line-height: 1.3;
+            }
+
+        .hero-subtitle {
+            font-size: 14px;
+        }
+
+        .hero-tagline {
+            font-size: 12px;
+        }
+
+        .hero-offer-highlight {
+            padding: 10px 12px;
+            font-size: 11px;
+            margin: 10px auto;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .cta-primary {
+            font-size: 12px;
+            padding: 10px 15px;
+        }
+
+        .cta-secondary {
+            font-size: 11px;
+            padding: 8px 15px;
+        }
+
+        .special-offer-box {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .offer-header {
+            font-size: 16px;
+        }
+
+        .price-badge {
+            font-size: 14px;
+            padding: 6px 15px;
+        }
+
+        .urgency-banner {
+            font-size: 11px;
+            padding: 10px;
+        }
+
+        .zdravie-container {
+            padding-left: 8px;
+            padding-right: 8px;
+            margin-top: 15px;
+        }
+    }
+</style>
+
+<div class="zdravie-container">
+    <!-- ===== HERO SECTION ===== -->
+    <div class="hero-section mb-5">
+        <h1>🚀 Inspire Change in Life - Zdravie Vo Vašich Rukách</h1>
+        <p class="hero-subtitle">Vedecky Overené Riešenie s 95% Úspešnosťou</p>
+        <p class="hero-tagline">"Obnovte Prirodzenú Rovnováhu Vášho Tela Bez Chémie"</p>
+
+        <div class="hero-offer-highlight">
+            ✨ <strong>BALANCE BALÍK</strong> - Komplexné 120-dňové riešenie pre zdravie
+        </div>
+
+        <div>
+            <a href="@Url.Action("Produkty","Home")" class="cta-primary">
+                <i class="fa fa-shopping-cart"></i> ZAČNITE TERAZ - 10% ZĽAVA
+            </a>
+            <a href="#special-offer" class="cta-secondary">
+                <i class="fa fa-info-circle"></i> Zásady Ponuky
+            </a>
+        </div>
+
+        <div class="urgency-timer">
+            ⏱️ Ponuka platná: do 30.4.2026 alebo do vyčerpania zásob
+        </div>
+    </div>
+
+    <!-- ===== URGENCY BANNER ===== -->
+    <div class="urgency-banner">
+        <strong>⚠️ LIMITOVANÁ PONUKA!</strong>
+        <div style="font-size: 16px; margin: 10px 0;">
+            Iba prvých 50 zákazníkov dostane:
+            <br>✅ 10% ZĽAVU na Balance balík
+            <br>✅ BALZAM ZDARMA
+            <br>✅ DOPRAVU ZDARMA
+        </div>
+        <div class="urgency-subtext">
+            Stav zásob: <strong id="stockCounter">48 balíkov</strong> - Rýchlo sa vypredáva! ⚡
+        </div>
+    </div>
+
+    <!-- ===== MAIN OFFER ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="special-offer-box" id="special-offer">
+                <h2 class="offer-header text-center">
+                    🎁 BALANCE BALÍK - KOMPLEXNÉ RIEŠENIE PRE ZDRAVIE
+                </h2>
+                <p class="offer-subtitle text-center">
+                    ✅ Všetko čo potrebujete na 120 dní komplexnej starostlivosti o zdravie
+                </p>
+
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center mb-4 mb-md-0">
+                        <div style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="~/Image/BalanceOil.png" alt="Balance Oil" class="img-fluid" style="max-width: 200px; border-radius: 8px; margin-bottom: 15px;">
+                            <h4 style="color: #ff9800; font-weight: 700;">Balance Oil + Zinobiotic + ZinzinoXtend + CollagenBoozt</h4>
+                            <p style="color: #d97706; font-size: 14px; font-weight: 600;">Limitovaná edícia - Platnosť do 30.4.2026</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="product-feature-list" style="text-align: left;">
+                            <li>✅ <strong>Balance Oil 300ml</strong> - Omega 3 (Pôvodná hodnota: 61€)</li>
+                            <li>✅ <strong>Zinobiotic</strong> - Probiotiká (Pôvodná hodnota: 40€)</li>
+                            <li>✅ <strong>ZinzinoXtend</strong> - Imunita + výživa (Pôvodná hodnota: 44€)</li>
+                            <li>✅ <strong>CollagenBoozt</strong> - Pleť + kĺby (Pôvodná hodnota: 65€)</li>
+                            <li style="color: #28a745; font-weight: 700; font-size: 16px;">🎁 <strong>BONUS: Balzam ZDARMA</strong> (Hodnota: 3€)</li>
+                            <li style="color: #28a745; font-weight: 700;">🚚 <strong>Doprava ZDARMA</strong> v SR</li>
+                            <li style="color: #5d33fb; font-weight: 700;">👤 <strong>Zarábajte Body za Nákupy</strong> Každý úspešný nákup = Body do Vášho reg.konta!Príklad: Pri nákupe za 210€ získate 21€ v bodoch</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4" style="padding: 30px; background: rgba(255,255,255,0.6); border-radius: 8px;">
+                    <div style="margin-bottom: 20px;">
+                        <span class="price-badge">PROMO KÓD: NOVYROK26 = 10% ZĽAVA</span>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #ff9800; margin: 15px 0; font-weight: 700;">
+                            CELKOVÁ HODNOTA BALÍKA: <span style="font-size: 28px;">213€</span>
+                        </h3>
+                        <p style="color: #d97706; font-size: 16px; font-weight: 600;">
+                            Vaša cena: <span style="font-size: 24px; color: #28a745;">210€</span> (Ušetríte 3€)
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 25px; padding: 15px; background: rgba(40, 167, 69, 0.1); border-radius: 6px; border: 2px dashed #28a745;">
+                        <p style="color: #28a745; font-weight: 700; margin: 0; font-size: 16px;">
+                            ✅ Plus 10% ZĽAVA kódom <strong>NOVYROK26</strong> = Ušetríte dodatočne 21,00€!<br>
+                            <strong style="font-size: 18px; color: #ff6b6b;">Finálna cena: 189,00€</strong>
+                        </p>
+                    </div>
+
+
+
+                    <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
+                        <i class="fa fa-credit-card"></i>🚀 ÁNO! CHCEM BALANCE BALÍK S BONUSOM - KÚPIŤ TERAZ
+                    </a>
+                    <p style="color: #666; font-size: 13px; margin-top: 15px;">
+                        ✅ 30-dňová záruka vrátenia peňazí | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FEATURED PRODUCT: ZinzinoXtend ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">💪 Imunita & Výživa: ZinzinoXtend</h2>
+        </div>
+        <div class="col-12">
+            <div class="special-offer-box" style="background: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%); border-color: #28a745;">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-6 text-center mb-4 mb-md-0">
+                        <img src="~/Image/ZinzinoXtend.png" alt="ZinzinoXtend" class="img-fluid" style="max-width: 250px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+                    </div>
+                    <div class="col-lg-7 col-md-6">
+                        <h3 style="color: #28a745; font-weight: 700;">💊 ZinzinoXtend</h3>
+                        <p style="font-size: 18px; color: #2c3e50; margin-bottom: 20px;">
+                            Kompletný imunitný a výživový doplnok s <strong>23 vitamínmi a minerálmi</strong> pre silnú imunitu a zdravie.
+                        </p>
+                        <ul style="font-size: 16px; color: #2c3e50; line-height: 1.8; list-style: none; padding-left: 0;">
+                            <li>🛡️ <strong>23 Vitamínov & Minerálov</strong> pre silnú imunitu</li>
+                            <li>🌿 <strong>Prírodné Ingrediencie</strong> z organických zdrojov</li>
+                            <li>⚡ <strong>Energia & Vitalita</strong> po celý deň</li>
+                            <li>🧠 <strong>Kognitívna Funkcia</strong> - podpora mozgu</li>
+                            <li>🦴 <strong>Silné Kosti</strong> - vápnik a vitamín D</li>
+                        </ul>
+                        <div class="mt-4">
+                            <p style="font-size: 20px; margin-bottom: 10px;">
+                                <span style="text-decoration: line-through; color: #999;">Pôvodná cena: 44,00€</span>
+                            </p>
+                            <p style="font-size: 28px; color: #28a745; font-weight: 700; margin-bottom: 15px;">
+                                Akciová cena s kódom NOVYROK26: 39,60€ <span style="font-size: 18px; color: #ff9800;">(ušetríte 4,40€)</span>
+                            </p>
+                            <a href='@Url.Action("Produkty","Home", new { q = "xtend" })' class="cta-primary" style="background: #28a745;">
+                                🛒 Chcem ZinzinoXtend
+                            </a>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-top: 15px;">
+                            ✅ 30-dňová záruka vrátenia | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FEATURED PRODUCT: CollagenBoozt ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">💎 Naša Novinka: CollagenBoozt</h2>
+        </div>
+        <div class="col-12">
+            <div class="special-offer-box" style="background: linear-gradient(135deg, #fff5e6 0%, #ffe0b2 100%);border-color: #ff9800;">
+                <div class="row align-items-center">
+                    <div class="col-md-5 text-center mb-4 mb-md-0">
+                        <img src="~/Image/CollagenBoozt.png" alt="CollagenBoozt" class="img-fluid" style="max-width: 250px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+                    </div>
+                    <div class="col-md-7">
+                        <h3 style="color: #ff9800; font-weight: 700;">✨ CollagenBoozt</h3>
+                        <p style="font-size: 18px; color: #2c3e50; margin-bottom: 20px;">
+                            Prémiový kolagénový nápoj s vitamínmi a minerálmi pre zdravú pleť, silné vlasy a pružné kĺby.
+                        </p>
+                        <ul style="font-size: 16px; color: #2c3e50; line-height: 1.8; list-style: none; padding-left: 0;">
+                            <li>💎 <strong>5000mg morského kolagénu</strong> na porciu</li>
+                            <li>🌟 <strong>Vitamín C + Zinok</strong> pre tvorbu kolagénu</li>
+                            <li>🧬 <strong>Hyalurónová kyselina</strong> pre hydratáciu</li>
+                            <li>⚡ <strong>Biotín + Selén</strong> pre vlasy a nechty</li>
+                            <li>🦴 <strong>Podpora kĺbov</strong> a pohyblivosti</li>
+                        </ul>
+                        <div class="mt-4">
+                            <p style="font-size: 20px; margin-bottom: 10px;">
+                                <span style="text-decoration: line-through; color: #999;">Pôvodná cena: 65,00€</span>
+                            </p>
+                            <p style="font-size: 28px; color: #28a745; font-weight: 700; margin-bottom: 15px;">
+                                Akciová cena: 58,50€ <span style="font-size: 18px;color:#ff9800;">(ušetríte 6,50€)</span>
+                            </p>
+                            <a href='@Url.Action("Produkty","Home", new { q = "collagen" })' class="cta-primary" style="background: #ff9800;">
+                                🛒 Chcem iba CollagenBoozt
+                            </a>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-top: 15px;">
+                            ✅ 30-dňová záruka vrátenia | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PROBLEM SECTION ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">🤔 Cítite Sa Takto?</h2>
+            <p class="text-center lead" style="color: #666; margin-bottom: 30px;">Nie ste sami - 85% Slovákov trpí podobnými problémami</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-3 col-sm-6 col-12 mb-3">
+            <div class="problem-card">
+                <div class="problem-icon">😴</div>
+                <h4 style="color: #5d33fb; font-weight: 700;">Únava</h4>
+                <p style="color: #666;">Neustále vyčerpaní, aj po spánku</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12 mb-3">
+            <div class="problem-card">
+                <div class="problem-icon">🤒</div>
+                <h4 style="color: #5d33fb; font-weight: 700;">Slabá Imunita</h4>
+                <p style="color: #666;">Časté prechladnutia a choroby</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12 mb-3">
+            <div class="problem-card">
+                <div class="problem-icon">🧠</div>
+                <h4 style="color: #5d33fb; font-weight: 700;">Brain Fog</h4>
+                <p style="color: #666;">Problémy s koncentráciou</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12 mb-3">
+            <div class="problem-card">
+                <div class="problem-icon">❤️</div>
+                <h4 style="color: #5d33fb; font-weight: 700;">Zápal</h4>
+                <p style="color: #666;">Chronické bolesti kĺbov</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SOLUTION SECTION ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">✅ Vedecké Riešenie</h2>
+        </div>
+    </div>
+
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color: #28a745; font-weight: 700; margin-bottom: 20px;">🧪 BalanceTest odhalí pravdu</h3>
+            <p style="font-size: 18px; color: #2c3e50; line-height: 1.8;">
+                Jednoduchý krvný test (1 kvapka z prsta) odhalí presný pomer Omega-3 a Omega-6 v Vašom tele.
+            </p>
+            <p style="font-size: 18px; color: #2c3e50; line-height: 1.8; margin-top: 15px;">
+                <strong>Priemerný človek má pomer 15:1</strong> (zlý)<br>
+                <strong>Ideálny je 3:1</strong> (zdravý)
+            </p>
+            <p style="font-size: 18px; color: #28a745; font-weight: 700; margin-top: 15px;">
+                ✅ 95% zákazníkov vidí viditeľné zlepšenie
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="~/Image/TestZinzino 2.jpg" alt="BalanceTest" class="img-fluid" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        </div>
+    </div>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">🔬 Ako To Funguje? (4 kroky)</h2>
+        </div>
+    </div>
+
+    <div class="process-steps mb-5">
+        <div class="step-item">
+            <strong>1️⃣ Objednajte Test Kit</strong>
+            <p>Pošleme Vám kompletný BalanceTest kit domov.</p>
+        </div>
+        <div class="step-item">
+            <strong>2️⃣ Urobte Analýzu</strong>
+            <p>Odošlite 1 kvapku krvi z prsta do certifikovaného nórskeho laboratória.</p>
+        </div>
+        <div class="step-item">
+            <strong>3️⃣ Dostanete Výsledky</strong>
+            <p>Presný pomer Omega-3/6 a personalizované odporúčania.</p>
+        </div>
+        <div class="step-item">
+            <strong>4️⃣ Začnite Liečbu</strong>
+            <p>Užívajte Balance Oil a sledujte zlepšenie po 120 dňoch.</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <img src="~/Image/Snímka obrazovky 2023-06-10 161035.png" alt="3 kroky k zdraviu" class="img-fluid" style="max-width: 100%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+        </div>
+    </div>
+
+    <!-- ===== BENEFITS ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">💪 Čo Získate?</h2>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h4>Viac Energie</h4>
+                <p>Počas celého dňa bez vyčerpanosti a únavy.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">😴</div>
+                <h4>Lepší Spánok</h4>
+                <p>Kvalitnejšia regenerácia a odpočinok v noci.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h4>Silnejšia Imunita</h4>
+                <p>Menej chorôb a rýchlejšia regenerácia.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">🧠</div>
+                <h4>Jasná Myseľ</h4>
+                <p>Lepšia koncentrácia a mentálna ostrosť.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">❤️</div>
+                <h4>Zdravé Srdce</h4>
+                <p>Podpora kardiovaskulárneho zdravia.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="benefit-card">
+                <div class="benefit-icon">✨</div>
+                <h4>Krásna Pleť</h4>
+                <p>Zdravé vlasy, nechty a mladšia pokožka.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">📺 Pozrite Si Video</h2>
+            <p class="text-center lead" style="color: #666; margin-bottom: 30px;">Ako si zlepšiť zdravie so Zinzinom</p>
+        </div>
+        <div class="col-12">
+            <div style="max-width: 800px; margin: 0 auto; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                <iframe style="width: 100%; height: 500px;" src="https://videos.sproutvideo.com/embed/d390d3b31911ecc15a/eeb65011d6e6ae23?autoplay=0" title="Video Zinzino" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SOCIAL PROOF ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">💬 Čo Hovoria Naši Zákazníci</h2>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="testimonial-card">
+                <p><strong>Jana K., Trnava ⭐⭐⭐⭐⭐</strong></p>
+                <p>"Po 60 dňoch s BalanceOil som mala VIAC ENERGIE a lepší spánok. Test to potvrdil - môj pomer sa zlepšil z 15:1 na 4:1!"</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="testimonial-card">
+                <p><strong>Juraj J., Košice ⭐⭐⭐⭐⭐</strong></p>
+                <p>"Konečne viem, čo môjmu telu chýbalo. Kĺbové bolesti zmizli a cítim sa o 10 rokov mladší!"</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="testimonial-card">
+                <p><strong>Peter M., Bratislava ⭐⭐⭐⭐⭐</strong></p>
+                <p>"Skeptický som bol, ale výsledky ma presvedčili. Už žiadne zimné choroby a energiu mám ako za mladých čias."</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="testimonial-card">
+                <p><strong>Martina S., Žilina ⭐⭐⭐⭐⭐</strong></p>
+                <p>"Najlepšia investícia do môjho zdravia. Test mi ukázal presne, kde mám problém a Balance Oil to vyriešil."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FAQ ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="section-title">❓ Často Kladené Otázky</h2>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="faq-item">
+                <h4>Je to bezpečné?</h4>
+                <p>Áno! Balance Oil je certifikovaný, chránený patentmi a klinicky testovaný. Viac ako 1 milión spokojných zákazníkov.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="faq-item">
+                <h4>Ako dlho trvá, kým uvidím výsledky?</h4>
+                <p>Väčšina zákazníkov cíti zlepšenie po 30-60 dňach. Test po 120 dňoch ukáže presné výsledky.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="faq-item">
+                <h4>Je to pre mňa?</h4>
+                <p>Ak máte únavu, slabú imunitu, kĺbové bolesti alebo chcete zlepšiť zdravie - určite áno!</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="faq-item">
+                <h4>Ako funguje doprava?</h4>
+                <p>ZDARMA pri objednávke nad 50€ v rámci SR. Doručíme do 3-7 pracovných dní.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== GUARANTEE ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="guarantee-box">
+                <h3 style="color: #5d33fb; font-weight: 700; margin-bottom: 20px;">🛡️ 100% Záruka Spokojnosti</h3>
+                <p style="font-size: 18px; margin-bottom: 20px;">
+                    Ak nebudete spokojní s výsledkami do 120 dní,<br>
+                    <strong>vrátime Vám peniaze. Bez otázok.</strong>
+                </p>
+                <div style="font-size: 16px; color: #666;">
+                    ✓ Bezpečná platba cez Stripe<br>
+                    ✓ Certifikované laboratórium v Nórsku<br>
+                    ✓ Vedecky overený produkt
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FINAL CTA ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="hero-section">
+                <h1>🌿 Zmeňte Svoje Zdravie Dnes</h1>
+                <p class="lead">
+                    Objavte, čo Vášmu telu chýba a obnovte prirodzenú rovnováhu<br>
+                    s našimi vedecky overenými produktami
+                </p>
+                <p style="font-size: 16px; opacity: 0.9; margin-bottom: 25px;">
+                    ⏰ Ponuka platná: do 30.4.2026 alebo do vyčerpania zásob
+                </p>
+                <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" target="_blank" class="cta-primary">
+                    🛒 ÁNO, CHCEM BALANCE BALÍK TERAZ!
+                </a>
+                <p style="margin-top: 20px; font-size: 16px;">
+                    Alebo <a href='@Url.Action("Kontakt","Home")' style="color: #fff; text-decoration: underline;">si vyžiadajte bezplatný e-book "5 prirodzených ciest k väčšej energii"</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TRUST BADGES ===== -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="trust-badges">
+                <p>
+                    🔒 Bezpečná platba Stripe | 🚚 Doprava ZDARMA | 💳 100% záruka vrátenia | 🏆 Oficiálny partner Zinzino
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Stock counter animation - simulates real-time stock depletion
+    (function() {
+        var initialStock = 50;
+        var currentStock = 48;
+        var stockCounter = document.getElementById('stockCounter');
+
+        // Simulate stock depletion every few minutes
+        function updateStock() {
+            if (currentStock > 5) {
+                currentStock = Math.max(5, currentStock - Math.floor(Math.random() * 3));
+                if (stockCounter) {
+                    stockCounter.textContent = currentStock + ' balíkov';
+
+                    // Add urgency if stock is low
+                    if (currentStock <= 10) {
+                        stockCounter.style.color = '#ff6b6b';
+                        stockCounter.style.fontWeight = '700';
+                    }
+                }
+            }
+        }
+
+        // Update stock every 5-10 minutes
+        setInterval(updateStock, Math.random() * 300000 + 300000);
+
+        // Animate hero buttons on page load
+        window.addEventListener('load', function() {
+            var buttons = document.querySelectorAll('.cta-primary, .cta-secondary');
+            buttons.forEach(function(btn, index) {
+                setTimeout(function() {
+                    btn.style.animation = 'slideDown 0.5s ease';
+                }, index * 200);
+            });
+        });
+
+        // Smooth scroll to offer section
+        var offerLink = document.querySelector('a[href="#special-offer"]');
+        if (offerLink) {
+            offerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.getElementById('special-offer');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

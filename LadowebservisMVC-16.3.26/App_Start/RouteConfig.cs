@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Script.Serialization;
+
+namespace LadowebservisMVC
+{
+   
+        public class RouteConfig
+        {
+            public static void RegisterRoutes(RouteCollection routes)
+            {
+                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            
+            routes.MapRoute("zdravie", "zdravie", new { controller = "Home", action = "Zdravie" });
+            routes.MapRoute("Produkty", "Produkty", new { controller = "Home", action = "Produkty" });
+            routes.MapRoute("itservis", "itservis", new { controller = "Home", action = "ITservis" });
+            routes.MapRoute("kontakt", "kontakt", new { controller = "Home", action = "Contact" });
+            routes.MapRoute("odoslanie-spravy", "odoslanie-spravy", new { controller = "Home", action = "Kontakt" });
+            routes.MapRoute("login", "login", new { controller = "Home", action = "Login" });
+            routes.MapRoute("member", "member", new { controller = "Home", action = "Member" });
+            routes.MapRoute("memberinfo", "memberinfo", new { controller = "Home", action = "MemberInfo" });
+            routes.MapRoute("registracia-uzivatela", "registracia-uzivatela", new { controller = "Home", action = "Registracia" });
+            routes.MapRoute("kosik", "kosik", new { controller = "Home", action = "Kosik" });
+            routes.MapRoute("objednavka", "objednavka", new { controller = "Home", action = "PlacedOrder" });
+            routes.MapRoute("hudba", "hudba", new { controller = "Home", action = "Hudba" });
+            routes.MapRoute("Obľúbené produkty", "Obľúbené produkty", new { controller = "Home", action = "Favorites" });
+            routes.MapRoute("odhlasenie", "odhlasenie", new { controller = "Home", action = "Logout" });
+            routes.MapRoute("search", "search", new { controller = "Home", action = "Search" });
+            routes.MapRoute("return-policy", "return-policy", new { controller = "Home", action = "ReturnPolicy" });
+            routes.MapRoute("Obchodné podmienky", "Obchodné podmienky", new { controller = "Home", action = "ObchodnePodmienky" });
+            routes.MapRoute("Error", "Error", new { controller = "Home", action = "HTTP404" });
+            routes.MapRoute("DownloadEbook", "DownloadEbook", new { controller = "Home", action = "DownloadEbook" });
+
+
+
+
+
+            routes.MapRoute(
+                    name: "Default",
+                    url: "{controller}/{action}/{id}",
+                    defaults: new { controller = "Home", action = "Zdravie", id = UrlParameter.Optional }
+                );
+            }
+        }
+    }
+        
+    
+

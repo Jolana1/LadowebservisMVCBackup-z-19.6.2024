@@ -1,0 +1,6 @@
+# Visual Studio
+# Ignore user-specific files and build results
+
+## Visual Studio cache/options directory
+.vs/
+
