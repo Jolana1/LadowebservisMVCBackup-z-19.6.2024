@@ -8,7 +8,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -78,6 +78,12 @@
             window.__lws_products = map;
         })();
     </script>
+
+    <!-- Packeta/Zásielkovňa widget config -->
+    <script>
+        window.__packetaApiKey = '@System.Configuration.ConfigurationManager.AppSettings["Packeta:ApiKey"]';
+    </script>
+    <script src="https://widget.packeta.com/v6/www/js/library.js" async></script>
 
     <script type="text/javascript" src="@Url.Content("~/Scripts/cart.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/checkout.js")"></script>
@@ -1882,14 +1888,14 @@
                         <li class="active">
                             <a class="w3-hover-white" href="https://sk.oriflame.com/products/digital-catalogue-current?store=SK-vladimirksenic&PageNumber=1" target="_blank" title="Oriflame katalóg">
                                 <img src="~/Image/sk-oriflame-katalog.png" style="width:58px;height:15px" alt="Oriflame aktuálny katalóg">
-                                Oriflame Katalóg 5/26
+                                Oriflame Katalóg 6/26
                             </a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="image-container img-rounded fa fa-money" href="/Home/Kosik" title="Výber produktov a postup platby">Výber produktov</a>
+                    <a class="image-container img-rounded fa fa-shopping-cart" href="/Home/Kosik" title="Výber produktov,doprava,objednávka a postup platby">Položky v košíku</a>
                 </li>
 
                 <li class="nav-item">
@@ -1898,6 +1904,7 @@
                 <li class="nav-item">
                     <a class="image-container img-rounded glyphicon glyphicon-briefcase" href="/DownloadEbook" title="Ebook zdarma">Ebook zdarma</a>
                 </li>
+               
             </ul>
         </div>
 
@@ -1933,12 +1940,41 @@
                     €<span id="total-amount">0.00</span>
                 </div>
                 <div id="total-discount" style="font-size: 12px; color: #5d33fb; margin-top: 6px;"></div>
+
+                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eaeaea;">
+                    <div style="display:flex; justify-content:space-between; font-size: 12px; color:#555;">
+                        <span>🚚 Doprava</span>
+                        <span>€<span id="shipping-amount">0.00</span></span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size: 13px; font-weight:800; margin-top: 6px;">
+                        <span>Spolu</span>
+                        <span>€<span id="grand-total-amount">0.00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping / pickup location (side cart) -->
+            <div class="card" style="border:1px solid #e6e6e6; border-radius:8px; padding:12px; margin-bottom:12px;">
+                <div style="font-weight:800; color:#5d33fb; margin-bottom: 8px; font-size: 13px;">🚚 Doprava a objednávka</div>
+
+                <div class="form-group" style="margin-bottom:10px;">
+                    <select class="form-control" onchange="window.lwsSetShippingMethod(this.value)">
+                        <option value="">Vyberte dopravu…</option>
+                        <option value="zasielkovna">Zásielkovňa / Packeta (výdajné miesto)</option>
+                    </select>
+                    <small class="text-muted">Cena dopravy sa prepočíta podľa košíka.</small>
+                </div>
+
+                @*<button id="sidecart-pickup-btn" type="button" class="btn btn-info" style="width:100%; font-weight:700;" onclick="window.lwsOpenPacketaWidget()">
+                    Vybrať výdajné miesto
+                </button>*@
+                <div id="shipping-pickup-summary" style="margin-top:8px; font-size:12px; color:#555;"></div>
             </div>
 
             <!-- Action Buttons -->
             <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-direction: column;">
                 <a class="btn btn-outline-primary" href="/Home/Kosik?checkout=1" style="padding: 10px; font-size: 13px; font-weight: 600; border-color: #5d33fb; color: #5d33fb; text-align: center;">
-                    ✓ Skontrolovať Vozík
+                    ✓ Skontrolovať a dokončiť objednávku
                 </a>
                 <a class="btn btn-outline-secondary" href='@Url.Action("Produkty","Home")' style="padding: 10px; font-size: 13px; font-weight: 600; border-color: #17a2b8; color: #17a2b8; text-align: center;">
                     🔍 Pozrieť Všetky Produkty

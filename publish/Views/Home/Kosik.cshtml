@@ -374,6 +374,7 @@
 </style>
 
 <div class="kosik-container">
+ 
     <!-- Hero Header -->
     <div class="kosik-hero">
         <h2>
@@ -382,15 +383,10 @@
         </h2>
 
         <div class="discount-notice">
-            🎉 Nezabudnite! Pri platbe použite kód <code>NOVYROK26</code> a získajte 10% zľavu na produkty nad 50€
+            🎉 Nezabudnite! Pri platbe použite kód <code>NOVYROK26</code> a získajte 10% zľavu na vybrané produkty
         </div>
 
-        <!-- Stripe Buy Button -->
-        <div class="text-center my-3">
-            <stripe-buy-button buy-button-id="buy_btn_1SgujHHrPMzQ1ua8771vUUL4"
-                               publishable-key="pk_live_51P80kcHrPMzQ1ua8JUHSe4iUQ9sLHonQMmFzwyRKnq2xTpB6mhuJVc4OdBKa04BJzpsjjliSrBoNnftkBxwntFF300mePdWSx3">
-            </stripe-buy-button>
-        </div>
+        
 
         <!-- Navigation Buttons -->
         <div class="text-center mt-4">
@@ -419,13 +415,13 @@
                 <span class="input-group-text" style="background: #5d33fb; border: none;">
                     <i class="fa fa-search" style="color: #fff;"></i>
                 </span>
-                <input type="text" id="productSearch" class="form-control" placeholder="Hľadať produkt podľa názvu..." 
+                <input type="text" id="productSearch" class="form-control" placeholder="Hľadať produkt podľa názvu..."
                        style="border-left: none; border-color: #5d33fb;">
             </div>
         </div>
 
         <p style="color: #666; margin-bottom: 25px;">
-            <i class="fa fa-lightbulb" style="color: #ff9800;"></i> 
+            <i class="fa fa-lightbulb" style="color: #ff9800;"></i>
             <strong>Tip:</strong> Produkty s <span style="color: #28a745; font-weight: 700;">zeleným rámom</span> sú už v Vašom košíku. Kliknite na <strong>+</strong> alebo <strong>-</strong> pre zmenu množstva.
         </p>
         <div class="row" id="productsContainer">
@@ -436,7 +432,7 @@
     <!-- Cart Review Section -->
     <div class="kosik-card">
         <h3>🛍️ Položky v košíku</h3>
-        
+
         <div id="cartReviewList" class="mb-4">
             <!-- items rendered by JS -->
         </div>
@@ -461,6 +457,111 @@
             <button id="clear-cart-btn" class="btn btn-danger btn-lg">
                 <i class="fa fa-trash"></i> Vyprázdniť košík
             </button>
+
+        </div>
+
+        <!-- Shipping + Order (bank transfer) -->
+        <div class="alert alert-info mt-4" style="border-color:#17a2b8;">
+            <h4><i class="fa fa-truck"></i> Doprava a objednávka</h4>
+            <p class="mb-3">Vyberte spôsob dopravy a odošlite objednávku (bankový prevod). Po odoslaní dostanete e-mail so súhrnom.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="lwsShippingMethodPage">Doprava</label>
+                        <select id="lwsShippingMethodPage" class="form-control">
+                            <option value="zasielkovna">Zasielkovna (výdajné miesto)</option>
+                            <option value="courier">Kuriér (doručenie na adresu)</option>
+                        </select>
+                    </div>
+                    <div id="lwsZasielkovnaPickupWrapPage" class="form-group" style="display:none;">
+                        <label for="lwsZasielkovnaPickupPointPage">Výdajné miesto (Zasielkovna)</label>
+                        <button id="lwsPickZasielkovnaBtnPage" type="button" class="btn btn-info" style="width:100%; font-weight:700; margin-bottom: 10px;">
+                            Vybrať výdajné miesto (Zasielkovna)
+                        </button>
+                        <input id="lwsZasielkovnaPickupPointPage" type="text" class="form-control" placeholder="Kód výdajného miesta" style="margin-bottom: 8px;" />
+                        <input id="lwsZasielkovnaPickupPointNamePage" type="text" class="form-control" placeholder="Názov / adresa výdajného miesta" />
+                        <small class="text-muted">Vyplní sa po výbere vo widgete; dočasne môžete zadať kód a názov ručne.</small>
+                    </div>
+
+                    <div id="lwsCourierAddressWrapPage" class="form-group" style="display:none;">
+                        <label>Doručovacia adresa (kuriér)</label>
+                        <input id="lwsShipAddr1Page" type="text" class="form-control" placeholder="Ulica a číslo" style="margin-bottom: 8px;" />
+                        <input id="lwsShipAddr2Page" type="text" class="form-control" placeholder="Byt / poschodie / poznámka (voliteľné)" style="margin-bottom: 8px;" />
+                        <div class="row">
+                            <div class="col-md-7" style="margin-bottom: 8px;">
+                                <input id="lwsShipCityPage" type="text" class="form-control" placeholder="Mesto" />
+                            </div>
+                            <div class="col-md-5" style="margin-bottom: 8px;">
+                                <input id="lwsShipZipPage" type="text" class="form-control" placeholder="PSČ" />
+                            </div>
+                        </div>
+                        <input id="lwsShipCountryPage" type="text" class="form-control" placeholder="Krajina (napr. Slovensko)" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    @using (Html.BeginForm("PlaceOrder", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="CartJson" id="cartJsonInputPlaceOrder" value="" />
+                        <input type="hidden" name="PaymentMethod" value="bank" />
+                        <input type="hidden" name="ShippingMethod" id="shippingMethodInput" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPoint" id="zasielkovnaPickupInput" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPointName" id="zasielkovnaPickupNameInput" value="" />
+                        <input type="hidden" name="PickupPointDetailsJson" id="pickupPointDetailsJsonInput" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPointJson" id="zasielkovnaPickupJsonInput" value="" />
+
+                         <input type="hidden" name="ShippingAddressLine1" id="shippingAddressLine1Input" value="" />
+                         <input type="hidden" name="ShippingAddressLine2" id="shippingAddressLine2Input" value="" />
+                         <input type="hidden" name="ShippingCity" id="shippingCityInput" value="" />
+                         <input type="hidden" name="ShippingZip" id="shippingZipInput" value="" />
+                         <input type="hidden" name="ShippingCountry" id="shippingCountryInput" value="" />
+
+                        <div class="form-group">
+                            <label for="name_placeorder">Meno</label>
+                            <input id="name_placeorder" name="Name" type="text" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email_placeorder">Email</label>
+                            <input id="email_placeorder" name="Email" type="email" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+                            <i class="fa fa-envelope"></i> Odoslať objednávku
+                        </button>
+                    }
+
+                    @using (Html.BeginForm("StartStripeCheckout", "Home", FormMethod.Post, new { style = "margin-top:10px;" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="CartJson" id="cartJsonInputStripeCheckout" value="" />
+                        <input type="hidden" name="Name" id="name_stripe_checkout" value="" />
+                        <input type="hidden" name="Email" id="email_stripe_checkout" value="" />
+                        <input type="hidden" name="PaymentMethod" value="stripe" />
+                        <input type="hidden" name="ShippingMethod" id="shippingMethodInputStripe" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPoint" id="zasielkovnaPickupInputStripe" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPointName" id="zasielkovnaPickupNameInputStripe" value="" />
+                        <input type="hidden" name="PickupPointDetailsJson" id="pickupPointDetailsJsonInputStripe" value="" />
+                        <input type="hidden" name="ZasielkovnaPickupPointJson" id="zasielkovnaPickupJsonInputStripe" value="" />
+
+                        <input type="hidden" name="ShippingAddressLine1" id="shippingAddressLine1InputStripe" value="" />
+                        <input type="hidden" name="ShippingAddressLine2" id="shippingAddressLine2InputStripe" value="" />
+                        <input type="hidden" name="ShippingCity" id="shippingCityInputStripe" value="" />
+                        <input type="hidden" name="ShippingZip" id="shippingZipInputStripe" value="" />
+                        <input type="hidden" name="ShippingCountry" id="shippingCountryInputStripe" value="" />
+                        <!-- Stripe Buy Button -->
+                        <div class="text-center my-3">
+                            <stripe-buy-button buy-button-id="buy_btn_1SgujHHrPMzQ1ua8771vUUL4"
+                                               publishable-key="pk_live_51P80kcHrPMzQ1ua8JUHSe4iUQ9sLHonQMmFzwyRKnq2xTpB6mhuJVc4OdBKa04BJzpsjjliSrBoNnftkBxwntFF300mePdWSx3">
+                            </stripe-buy-button>
+                        </div>
+                        @*<button type="submit" class="btn btn-success btn-lg" style="width:100%; font-weight:800;">
+                <i class="fa fa-credit-card"></i> Prejsť k platbe cez Stripe
+            </button>*@
+                        <small class="text-muted">Po kliknutí odošleme e‑mail s rýchlym platobným linkom cez Stripe a zobrazíme potvrdenie objednávky.</small>
+                    }
+                </div>
+            </div>
         </div>
 
         <!-- Payment Instructions -->
@@ -506,7 +607,7 @@
             </div>
 
             <p class="mb-0" style="color: #555; font-size: 14px;">
-                <i class="fa fa-info-circle" style="color: #28a745;"></i> 
+                <i class="fa fa-info-circle" style="color: #28a745;"></i>
                 Body sa počítajú automaticky po úspešnom zaplatení Vašej objednávky. Bez dodatočných krokov, bez registrácie kódu – všetko prebieha automaticky! 🚀
             </p>
         </div>
@@ -615,7 +716,17 @@
                     }
                 });
                 var total = subtotal - discount;
-                return { subtotal: subtotal, total: total, discount: discount, totalQty: totalQty };
+
+                // Shipping (client-side preview; server applies authoritative pricing)
+                var shippingFee = 0;
+                try {
+                    var ship = JSON.parse(localStorage.getItem('lws_shipping_v1') || '{}') || {};
+                    if (ship && ship.method === 'zasielkovna') {
+                        shippingFee = (total >= 55) ? 0 : 0;
+                    }
+                } catch (e) { }
+
+                return { subtotal: subtotal, total: total, discount: discount, totalQty: totalQty, shippingFee: shippingFee, grandTotal: total + shippingFee };
             }
 
             function changeQuantity(id, delta) {
@@ -909,7 +1020,7 @@
                 if (hasItems) {
                     totalsSection.style.display = 'block';
                     subtotalEl.textContent = '€' + totals.subtotal.toFixed(2);
-                    totalEl.textContent = '€' + totals.total.toFixed(2);
+                    totalEl.textContent = '€' + totals.grandTotal.toFixed(2);
 
                     if (totals.discount > 0) {
                         discountRow.style.display = 'flex';
@@ -939,6 +1050,171 @@
             // Initial render
             renderProducts();
             renderCartReview();
+
+            // Populate hidden order fields from localStorage
+            function hydrateOrderFormFromStorage() {
+                try {
+                    var cartJson = localStorage.getItem(STORAGE_KEY) || '{}';
+                    var cartEl = document.getElementById('cartJsonInputPlaceOrder');
+                    if (cartEl) cartEl.value = cartJson;
+
+                    var shipJson = localStorage.getItem('lws_shipping_v1') || '{}';
+                    var ship = {};
+                    try { ship = JSON.parse(shipJson) || {}; } catch (e) { ship = {}; }
+
+                    var shipMethod = ship.method || '';
+                    var pickup = ship.pickupPoint || '';
+
+                    var shipMethodEl = document.getElementById('shippingMethodInput');
+                    var pickupEl = document.getElementById('zasielkovnaPickupInput');
+                    if (shipMethodEl) shipMethodEl.value = shipMethod;
+                    if (pickupEl) pickupEl.value = pickup;
+                } catch (e) { }
+            }
+
+            hydrateOrderFormFromStorage();
+
+            // Also hydrate Stripe checkout hidden inputs (re-using the same cart + shipping)
+            (function hydrateStripeCheckoutForm() {
+                try {
+                    var cartJson = localStorage.getItem(STORAGE_KEY) || '{}';
+                    var cartEl = document.getElementById('cartJsonInputStripeCheckout');
+                    if (cartEl) cartEl.value = cartJson;
+
+                    var nameVal = (document.getElementById('name_placeorder') && document.getElementById('name_placeorder').value) ? document.getElementById('name_placeorder').value : '';
+                    var emailVal = (document.getElementById('email_placeorder') && document.getElementById('email_placeorder').value) ? document.getElementById('email_placeorder').value : '';
+                    var nameEl = document.getElementById('name_stripe_checkout');
+                    var emailEl = document.getElementById('email_stripe_checkout');
+                    if (nameEl) nameEl.value = nameVal;
+                    if (emailEl) emailEl.value = emailVal;
+
+                    var shipJson = localStorage.getItem('lws_shipping_v1') || '{}';
+                    var ship = {};
+                    try { ship = JSON.parse(shipJson) || {}; } catch (e) { ship = {}; }
+
+                    var sm = ship.method || '';
+                    var pp = ship.pickupPoint || '';
+                    var ppName = ship.pickupPointName || '';
+                    var ppJson = ship.pickupPointJson || '';
+
+                    var smEl = document.getElementById('shippingMethodInputStripe');
+                    var ppEl = document.getElementById('zasielkovnaPickupInputStripe');
+                    var ppNameEl = document.getElementById('zasielkovnaPickupNameInputStripe');
+                    var ppJsonEl = document.getElementById('zasielkovnaPickupJsonInputStripe');
+                    if (smEl) smEl.value = sm;
+                    if (ppEl) ppEl.value = pp;
+                    if (ppNameEl) ppNameEl.value = ppName;
+                    if (ppJsonEl) ppJsonEl.value = ppJson;
+
+                    // keep in sync with user typing
+                    var nameInput = document.getElementById('name_placeorder');
+                    var emailInput = document.getElementById('email_placeorder');
+                    function syncCustomer() {
+                        var n = nameInput ? (nameInput.value || '') : '';
+                        var e = emailInput ? (emailInput.value || '') : '';
+                        if (nameEl) nameEl.value = n;
+                        if (emailEl) emailEl.value = e;
+                    }
+                    if (nameInput) nameInput.addEventListener('input', syncCustomer);
+                    if (emailInput) emailInput.addEventListener('input', syncCustomer);
+                } catch (e) { }
+            })();
+
+            // Shipping / pickup selection (Packeta widget)
+            (function initShippingUi() {
+                var methodSel = document.getElementById('lwsShippingMethodPage');
+                var pickupWrap = document.getElementById('lwsZasielkovnaPickupWrapPage');
+                var pickBtn = document.getElementById('lwsPickZasielkovnaBtnPage');
+                var pickupCode = document.getElementById('lwsZasielkovnaPickupPointPage');
+                var pickupName = document.getElementById('lwsZasielkovnaPickupPointNamePage');
+
+                if (!methodSel) return;
+
+                function loadShip() {
+                    try { return JSON.parse(localStorage.getItem('lws_shipping_v1') || '{}') || {}; } catch (e) { return {}; }
+                }
+                function saveShip(s) {
+                    try { localStorage.setItem('lws_shipping_v1', JSON.stringify(s || {})); } catch (e) { }
+                }
+
+                function applyToHiddenFields(ship) {
+                    try {
+                        var shipMethodEl = document.getElementById('shippingMethodInput');
+                        var pickupEl = document.getElementById('zasielkovnaPickupInput');
+                        var pickupNameEl = document.getElementById('zasielkovnaPickupNameInput');
+                        var pickupJsonEl = document.getElementById('zasielkovnaPickupJsonInput');
+                        if (shipMethodEl) shipMethodEl.value = ship.method || '';
+                        if (pickupEl) pickupEl.value = ship.pickupPoint || '';
+                        if (pickupNameEl) pickupNameEl.value = ship.pickupPointName || '';
+                        if (pickupJsonEl) pickupJsonEl.value = ship.pickupPointJson || '';
+                    } catch (e) { }
+                }
+
+                function syncUiFromStorage() {
+                    var ship = loadShip();
+                    if (ship && ship.method) methodSel.value = ship.method;
+                    if (pickupWrap) pickupWrap.style.display = (ship && ship.method === 'zasielkovna') ? '' : 'none';
+                    if (pickupCode) pickupCode.value = (ship && ship.pickupPoint) ? ship.pickupPoint : '';
+                    if (pickupName) pickupName.value = (ship && ship.pickupPointName) ? ship.pickupPointName : '';
+                    applyToHiddenFields(ship);
+                }
+
+                methodSel.addEventListener('change', function () {
+                    var ship = loadShip();
+                    ship.method = methodSel.value || '';
+                    if (ship.method !== 'zasielkovna') {
+                        ship.pickupPoint = '';
+                        ship.pickupPointName = '';
+                        ship.pickupPointJson = '';
+                    }
+                    saveShip(ship);
+                    syncUiFromStorage();
+                    if (window.lwsRenderCartHeader) window.lwsRenderCartHeader();
+                });
+
+                if (pickBtn) {
+                    pickBtn.addEventListener('click', function () {
+                        var apiKey = (window.__packetaApiKey || '').toString();
+                        if (!apiKey || !window.Packeta || !window.Packeta.Widget) {
+                            alert('Widget dopravy nie je načítaný.');
+                            return;
+                        }
+                        window.Packeta.Widget.pick(apiKey, function (point) {
+                            if (!point) return;
+                            var ship = loadShip();
+                            ship.method = 'zasielkovna';
+                            ship.pickupPoint = point.id || point.place || point.code || '';
+                            ship.pickupPointName = point.name || point.place || point.city || '';
+                            ship.pickupPointJson = JSON.stringify(point);
+                            saveShip(ship);
+                            syncUiFromStorage();
+                            if (window.lwsRenderCartHeader) window.lwsRenderCartHeader();
+                        });
+                    });
+                }
+
+                if (pickupCode) {
+                    pickupCode.addEventListener('input', function () {
+                        var ship = loadShip();
+                        ship.method = ship.method || 'zasielkovna';
+                        ship.pickupPoint = pickupCode.value || '';
+                        saveShip(ship);
+                        applyToHiddenFields(ship);
+                    });
+                }
+                if (pickupName) {
+                    pickupName.addEventListener('input', function () {
+                        var ship = loadShip();
+                        ship.method = ship.method || 'zasielkovna';
+                        ship.pickupPointName = pickupName.value || '';
+                        saveShip(ship);
+                        applyToHiddenFields(ship);
+                    });
+                }
+
+                // initial
+                syncUiFromStorage();
+            })();
 
             // Search functionality - match products by name and ID
             var searchInput = document.getElementById('productSearch');

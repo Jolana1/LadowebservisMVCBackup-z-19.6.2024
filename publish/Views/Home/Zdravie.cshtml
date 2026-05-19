@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Zdravie v rovnováhe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,6 +7,95 @@
     /* Sales Page Styles */
     body {
         background: #f8f9fa;
+    }
+
+    .cta-tertiary {
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+        color: #fff !important;
+        padding: 14px 40px;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 6px 18px rgba(23, 162, 184, 0.35);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+        .cta-tertiary:hover {
+            background: linear-gradient(135deg, #138496 0%, #0f6674 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(23, 162, 184, 0.45);
+            color: #fff !important;
+        }
+
+    .it-callout {
+        background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
+        border-radius: 12px;
+        padding: 35px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        border-left: 5px solid #17a2b8;
+        margin: 35px 0 45px 0;
+    }
+
+    .it-callout h2 {
+        margin-top: 0;
+        color: #17a2b8;
+        font-weight: 800;
+        font-size: 28px;
+    }
+
+    .it-callout p {
+        color: #555;
+        margin: 10px 0 0 0;
+        line-height: 1.7;
+        font-size: 15px;
+    }
+
+    .it-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .it-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        border-top: 4px solid #17a2b8;
+        transition: all 0.25s ease;
+        height: 100%;
+    }
+
+        .it-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(23, 162, 184, 0.18);
+        }
+
+    .it-card h4 {
+        margin-top: 0;
+        color: #2c3e50;
+        font-weight: 800;
+        font-size: 16px;
+    }
+
+    .it-card .it-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+        display: inline-block;
+        color: #17a2b8;
+    }
+
+    .it-actions {
+        margin-top: 22px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
     }
 
     .hero-section {
@@ -513,6 +602,13 @@
             margin-left: 0;
         }
 
+        .cta-tertiary {
+            padding: 12px 25px;
+            font-size: 13px;
+            width: 100%;
+            margin-left: 0;
+        }
+
         .section-title {
             font-size: 24px;
         }
@@ -658,6 +754,11 @@
         }
 
         .cta-secondary {
+            font-size: 12px;
+            padding: 10px 18px;
+        }
+
+        .cta-tertiary {
             font-size: 12px;
             padding: 10px 18px;
         }
@@ -849,9 +950,9 @@
 <div class="zdravie-container">
     <!-- ===== HERO SECTION ===== -->
     <div class="hero-section mb-5">
-        <h1>🚀 Inspire Change in Life - Zdravie Vo Vašich Rukách</h1>
-        <p class="hero-subtitle">Vedecky Overené Riešenie s 95% Úspešnosťou</p>
-        <p class="hero-tagline">"Obnovte Prirodzenú Rovnováhu Vášho Tela Bez Chémie"</p>
+        <h1>🚀 Zdravie vo Vašich rukách</h1>
+        <p class="hero-subtitle">Vedecky Overené Riešenie s 90% Úspešnosťou</p>
+        <p class="hero-tagline">"Obnovte Prirodzenú Rovnováhu Vášho Tela Bez Nebezpečnej Chémie"</p>
 
         <div class="hero-offer-highlight">
             ✨ <strong>BALANCE BALÍK</strong> - Komplexné 120-dňové riešenie pre zdravie
@@ -864,10 +965,45 @@
             <a href="#special-offer" class="cta-secondary">
                 <i class="fa fa-info-circle"></i> Zásady Ponuky
             </a>
+            <a href="@Url.Action("ITservis","Home")" class="cta-tertiary">
+                <i class="fa fa-laptop"></i> IT služby
+            </a>
         </div>
 
         <div class="urgency-timer">
-            ⏱️ Ponuka platná: do 30.4.2026 alebo do vyčerpania zásob
+            ⏱️ Ponuka platná: do 30.5.2026 alebo do vyčerpania zásob
+        </div>
+    </div>
+
+    <!-- ===== IT SERVICES CALLOUT ===== -->
+    <div class="it-callout">
+        <h2>💻 Potrebujete aj IT služby?</h2>
+        <p>
+            Okrem produktov pre zdravie poskytujeme aj praktické IT služby – web, e‑shop, opravy a poradenstvo.
+            Vyberte si, čo potrebujete, a ozvite sa nám.
+        </p>
+
+        <div class="it-cards">
+            <div class="it-card">
+                <div class="it-icon"><i class="fa fa-globe"></i></div>
+                <h4>Webstránky a e‑shopy</h4>
+                <p>Moderný web, úpravy, rýchlosť, SEO základ, bezpečnosť, nasadenie.</p>
+            </div>
+            <div class="it-card">
+                <div class="it-icon"><i class="fa fa-shield"></i></div>
+                <h4>Bezpečnosť a údržba</h4>
+                <p>Zálohy, aktualizácie, monitoring, odstránenie problémov a incidentov.</p>
+            </div>
+            <div class="it-card">
+                <div class="it-icon"><i class="fa fa-wrench"></i></div>
+                <h4>Servis a poradenstvo</h4>
+                <p>Diagnostika, opravy, nastavenia a odporúčania pre efektívnejší chod.</p>
+            </div>
+        </div>
+
+        <div class="it-actions">
+            <a class="btn btn-primary" href="@Url.Action("ITservis", "Home")">Pozrieť IT služby</a>
+            <a class="btn btn-default" href="@Url.Action("Kontakt", "Home")">Napíšte nám</a>
         </div>
     </div>
 
@@ -878,10 +1014,10 @@
             Iba prvých 50 zákazníkov dostane:
             <br>✅ 10% ZĽAVU na Balance balík
             <br>✅ BALZAM ZDARMA
-            <br>✅ DOPRAVU ZDARMA
+            <br>✅ DOPRAVU CEZ PACKETA ZDARMA v SR IBA NA BALANCE BALÍK
         </div>
         <div class="urgency-subtext">
-            Stav zásob: <strong id="stockCounter">42 balíkov</strong> - Rýchlo sa vypredáva! ⚡
+            Stav zásob: <strong id="stockCounter">12 balíkov</strong> - Rýchlo sa vypredáva! ⚡
         </div>
     </div>
 
@@ -901,7 +1037,7 @@
                         <div style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                             <img src="~/Image/BalanceOil.png" alt="Balance Oil" class="img-fluid" style="max-width: 200px; border-radius: 8px; margin-bottom: 15px;">
                             <h4 style="color: #ff9800; font-weight: 700;">Balance Oil + Zinobiotic + ZinzinoXtend + CollagenBoozt</h4>
-                            <p style="color: #d97706; font-size: 14px; font-weight: 600;">Limitovaná edícia - Platnosť do 30.4.2026</p>
+                            <p style="color: #d97706; font-size: 14px; font-weight: 600;">Limitovaná edícia - Platnosť do 30.5.2026</p>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -911,7 +1047,7 @@
                             <li>✅ <strong>ZinzinoXtend</strong> - Imunita + výživa (Pôvodná hodnota: 44€ teraz 39,60€)</li>
                             <li>✅ <strong>CollagenBoozt</strong> - Pleť + kĺby (Pôvodná hodnota: 65€ teraz 58,50€)</li>
                             <li style="color: #28a745; font-weight: 700; font-size: 16px;">🎁 <strong>BONUS: Balzam ZDARMA</strong> (Hodnota: 3€)</li>
-                            <li style="color: #28a745; font-weight: 700;">🚚 <strong>Doprava ZDARMA</strong> v SR</li>
+                            <li style="color: #28a745; font-weight: 700;">🚚 <strong>Doprava CEZ PACKETA ZDARMA</strong> v SR IBA NA BALANCE BALÍK</li>
                             <li style="color: #5d33fb; font-weight: 700;">👤 <strong>Zarábajte body za</strong> každý úspešný nákup = Body do Vášho reg.konta!Príklad: Pri nákupe za 210€ získate 21€ v bodoch</li>
 
                         </ul>
@@ -945,7 +1081,7 @@
                         <i class="fa fa-credit-card"></i>🚀 ÁNO! CHCEM BALANCE BALÍK S BONUSOM - KÚPIŤ TERAZ
                     </a>
                     <p style="color: #666; font-size: 13px; margin-top: 15px;">
-                        ✅ 30-dňová záruka vrátenia peňazí | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                        ✅ 30-dňová záruka vrátenia peňazí | 🚚 Doprava cez Packeta | 📧 Osobná podpora
                     </p>
                 </div>
             </div>
@@ -987,7 +1123,7 @@
                             </a>
                         </div>
                         <p style="font-size: 13px; color: #666; margin-top: 15px;">
-                            ✅ 30-dňová záruka vrátenia | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                            ✅ 30-dňová záruka vrátenia | 🚚 Doprava cez Packeta | 📧 Osobná podpora
                         </p>
                     </div>
                 </div>
@@ -1030,7 +1166,7 @@
                             </a>
                         </div>
                         <p style="font-size: 13px; color: #666; margin-top: 15px;">
-                            ✅ 30-dňová záruka vrátenia | 🚚 Bezplatná doprava | 📧 Osobná podpora
+                            ✅ 30-dňová záruka vrátenia | 🚚 Doprava cez Packeta | 📧 Osobná podpora
                         </p>
                     </div>
                 </div>
@@ -1199,7 +1335,6 @@
             </div>
         </div>
     </div>-->
-
     <!-- ===== SOCIAL PROOF ===== -->
     <div class="row mb-5">
         <div class="col-12">
@@ -1263,7 +1398,7 @@
         <div class="col-md-6 mb-3">
             <div class="faq-item">
                 <h4>Ako funguje doprava?</h4>
-                <p>ZDARMA pri objednávke nad 50€ v rámci SR. Doručíme do 3-7 pracovných dní.</p>
+                <p>Cez Packeta v rámci SR. Doručíme do 3-7 pracovných dní.</p>
             </div>
         </div>
     </div>
@@ -1296,14 +1431,14 @@
                     s našimi vedecky overenými produktami
                 </p>
                 <p style="font-size: 16px; opacity: 0.9; margin-bottom: 25px;">
-                    ⏰ Ponuka platná: do 30.4.2026 alebo do vyčerpania zásob
+                    ⏰ Ponuka platná: do 30.5.2026 alebo do vyčerpania zásob
                 </p>
                 <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" target="_blank" class="cta-primary">
                     🛒 ÁNO, CHCEM BALANCE BALÍK TERAZ!
                 </a>
-                <p style="margin-top: 20px; font-size: 16px;">
-                    Alebo <a href='@Url.Action("DownloadEbook","Home")' style="color: #fff; text-decoration: underline;">si vyžiadajte bezplatný e-book "5 prirodzených ciest k väčšej energii"</a>
-                </p>
+                <a href="@Url.Action("ITservis","Home")" class="cta-tertiary">
+                    💻 Potrebujete aj IT služby?
+                </a>
             </div>
         </div>
     </div>
@@ -1313,7 +1448,7 @@
         <div class="col-12">
             <div class="trust-badges">
                 <p>
-                    🔒 Bezpečná platba Stripe | 🚚 Doprava ZDARMA | 💳 100% záruka vrátenia | 🏆 Oficiálny partner Zinzino
+                    🔒 Bezpečná platba Stripe | 🚚 Doprava cez Packeta | 💳 100% záruka vrátenia | 🏆 Oficiálny partner Zinzino
                 </p>
             </div>
         </div>
@@ -1322,7 +1457,7 @@
 
 <script>
     // Stock counter animation - simulates real-time stock depletion
-    (function() {
+    (function () {
         var initialStock = 50;
         var currentStock = 48;
         var stockCounter = document.getElementById('stockCounter');
@@ -1347,10 +1482,10 @@
         setInterval(updateStock, Math.random() * 300000 + 300000);
 
         // Animate hero buttons on page load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var buttons = document.querySelectorAll('.cta-primary, .cta-secondary');
-            buttons.forEach(function(btn, index) {
-                setTimeout(function() {
+            buttons.forEach(function (btn, index) {
+                setTimeout(function () {
                     btn.style.animation = 'slideDown 0.5s ease';
                 }, index * 200);
             });
@@ -1359,7 +1494,7 @@
         // Smooth scroll to offer section
         var offerLink = document.querySelector('a[href="#special-offer"]');
         if (offerLink) {
-            offerLink.addEventListener('click', function(e) {
+            offerLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 var target = document.getElementById('special-offer');
                 if (target) {
@@ -1369,58 +1504,6 @@
         }
     })();
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
