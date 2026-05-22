@@ -3,10 +3,11 @@
 
     
 
-    var msg = (ViewBag.OrderSentMessage as string) ?? "✅ Objednávka bola odoslaná.";
+    var msg = (ViewBag.OrderSentMessage as string) ?? "✅ Objednávka bola prijatá.";
     var name = (ViewBag.OrderSentName as string) ?? "";
     var email = (ViewBag.OrderSentEmail as string) ?? "";
     var total = (ViewBag.OrderSentGrandTotal as string) ?? "";
+    var hasSummary = !string.IsNullOrWhiteSpace(name) || !string.IsNullOrWhiteSpace(email) || !string.IsNullOrWhiteSpace(total);
 }
 
 <style>
@@ -138,21 +139,33 @@
 <div class="success-container">
     <div class="success-box">
         <div class="success-icon">✅</div>
-        <h2>Objednávka bola odoslaná</h2>
+        <h2>Objednávka bola prijatá</h2>
         <p class="success-subtitle">@msg</p>
 
         <div class="success-message">
-            <h4>Čo sa stane ďalej?</h4>
-            <p><strong>1.</strong> Skontrolujte e‑mail (aj SPAM). Poslali sme vám údaje k platbe.</p>
-            <p><strong>2.</strong> Môžete zaplatiť bankovým prevodom alebo (ak je dostupné) cez rýchly platobný link Stripe.</p>
-            <p><strong>3.</strong> Po pripísaní platby objednávku spracujeme a odošleme.</p>
+            <h4>Ďalšie kroky</h4>
+            <p><strong>1.</strong> Skontrolujte e‑mail (aj SPAM). Poslali sme vám súhrn objednávky a platobné údaje.</p>
+            <p><strong>2.</strong> Zaplaťte podľa inštrukcií v e‑maile (bankovým prevodom alebo platobným linkom, ak je dostupný).</p>
+            <p><strong>3.</strong> Po prijatí platby objednávku spracujeme a odošleme.</p>
 
-            @if (!string.IsNullOrWhiteSpace(name) || !string.IsNullOrWhiteSpace(email) || !string.IsNullOrWhiteSpace(total))
+            @if (hasSummary)
             {
-                <p style="margin-top:15px;"><strong>Súhrn:</strong></p>
-                if (!string.IsNullOrWhiteSpace(name)) { <p>Meno: <strong>@name</strong></p> }
-                if (!string.IsNullOrWhiteSpace(email)) { <p>Email: <strong>@email</strong></p> }
-                if (!string.IsNullOrWhiteSpace(total)) { <p>Suma na úhradu: <strong>€@total</strong></p> }
+                <hr style="border:0;border-top:1px solid #e6e6e6;margin:18px 0;" />
+                <h4 style="margin:0 0 10px 0;">Súhrn</h4>
+                <div style="display:grid;grid-template-columns: 1fr;gap:6px;">
+                    @if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        <p style="margin:0;">Meno: <strong>@name</strong></p>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(email))
+                    {
+                        <p style="margin:0;">E‑mail: <strong>@email</strong></p>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(total))
+                    {
+                        <p style="margin:0;">Suma na úhradu: <strong>€@total</strong></p>
+                    }
+                </div>
             }
         </div>
 

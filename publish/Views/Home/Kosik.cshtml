@@ -374,7 +374,7 @@
 </style>
 
 <div class="kosik-container">
- 
+
     <!-- Hero Header -->
     <div class="kosik-hero">
         <h2>
@@ -386,7 +386,7 @@
             🎉 Nezabudnite! Pri platbe použite kód <code>NOVYROK26</code> a získajte 10% zľavu na vybrané produkty
         </div>
 
-        
+
 
         <!-- Navigation Buttons -->
         <div class="text-center mt-4">
@@ -404,31 +404,6 @@
             </button>
         </div>
     </div>
-
-    <!-- Available Products Section -->
-    <div class="kosik-card">
-        <h3>📦 Dostupné produkty <span id="productCount" style="color: #999; font-weight: 400; font-size: 16px;">(0 produktov)</span></h3>
-
-        <!-- Search Products -->
-        <div style="margin-bottom: 25px;">
-            <div class="input-group">
-                <span class="input-group-text" style="background: #5d33fb; border: none;">
-                    <i class="fa fa-search" style="color: #fff;"></i>
-                </span>
-                <input type="text" id="productSearch" class="form-control" placeholder="Hľadať produkt podľa názvu..."
-                       style="border-left: none; border-color: #5d33fb;">
-            </div>
-        </div>
-
-        <p style="color: #666; margin-bottom: 25px;">
-            <i class="fa fa-lightbulb" style="color: #ff9800;"></i>
-            <strong>Tip:</strong> Produkty s <span style="color: #28a745; font-weight: 700;">zeleným rámom</span> sú už v Vašom košíku. Kliknite na <strong>+</strong> alebo <strong>-</strong> pre zmenu množstva.
-        </p>
-        <div class="row" id="productsContainer">
-            <!-- Products will be rendered here -->
-        </div>
-    </div>
-
     <!-- Cart Review Section -->
     <div class="kosik-card">
         <h3>🛍️ Položky v košíku</h3>
@@ -512,11 +487,11 @@
                         <input type="hidden" name="PickupPointDetailsJson" id="pickupPointDetailsJsonInput" value="" />
                         <input type="hidden" name="ZasielkovnaPickupPointJson" id="zasielkovnaPickupJsonInput" value="" />
 
-                         <input type="hidden" name="ShippingAddressLine1" id="shippingAddressLine1Input" value="" />
-                         <input type="hidden" name="ShippingAddressLine2" id="shippingAddressLine2Input" value="" />
-                         <input type="hidden" name="ShippingCity" id="shippingCityInput" value="" />
-                         <input type="hidden" name="ShippingZip" id="shippingZipInput" value="" />
-                         <input type="hidden" name="ShippingCountry" id="shippingCountryInput" value="" />
+                        <input type="hidden" name="ShippingAddressLine1" id="shippingAddressLine1Input" value="" />
+                        <input type="hidden" name="ShippingAddressLine2" id="shippingAddressLine2Input" value="" />
+                        <input type="hidden" name="ShippingCity" id="shippingCityInput" value="" />
+                        <input type="hidden" name="ShippingZip" id="shippingZipInput" value="" />
+                        <input type="hidden" name="ShippingCountry" id="shippingCountryInput" value="" />
 
                         <div class="form-group">
                             <label for="name_placeorder">Meno</label>
@@ -556,8 +531,8 @@
                             </stripe-buy-button>
                         </div>
                         @*<button type="submit" class="btn btn-success btn-lg" style="width:100%; font-weight:800;">
-                <i class="fa fa-credit-card"></i> Prejsť k platbe cez Stripe
-            </button>*@
+                                <i class="fa fa-credit-card"></i> Prejsť k platbe cez Stripe
+                            </button>*@
                         <small class="text-muted">Po kliknutí odošleme e‑mail s rýchlym platobným linkom cez Stripe a zobrazíme potvrdenie objednávky.</small>
                     }
                 </div>
@@ -636,6 +611,31 @@
             </a>
         </div>
     </div>
+    <!-- Available Products Section -->
+    <div class="kosik-card">
+        <h3>📦 Dostupné produkty <span id="productCount" style="color: #999; font-weight: 400; font-size: 16px;">(0 produktov)</span></h3>
+
+        <!-- Search Products -->
+        <div style="margin-bottom: 25px;">
+            <div class="input-group">
+                <span class="input-group-text" style="background: #5d33fb; border: none;">
+                    <i class="fa fa-search" style="color: #fff;"></i>
+                </span>
+                <input type="text" id="productSearch" class="form-control" placeholder="Hľadať produkt podľa názvu..."
+                       style="border-left: none; border-color: #5d33fb;">
+            </div>
+        </div>
+
+        <p style="color: #666; margin-bottom: 25px;">
+            <i class="fa fa-lightbulb" style="color: #ff9800;"></i>
+            <strong>Tip:</strong> Produkty s <span style="color: #28a745; font-weight: 700;">zeleným rámom</span> sú už v Vašom košíku. Kliknite na <strong>+</strong> alebo <strong>-</strong> pre zmenu množstva.
+        </p>
+        <div class="row" id="productsContainer">
+            <!-- Products will be rendered here -->
+        </div>
+    </div>
+
+
 
     <!-- Footer Section with Action Buttons -->
     <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 40px 20px; border-radius: 12px; text-align: center; margin-top: 40px;">
