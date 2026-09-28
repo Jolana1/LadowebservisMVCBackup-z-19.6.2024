@@ -464,11 +464,30 @@
             transform: scale(0.94);
             transform-origin: center top;
         }
+
+        /* Responsive payment buttons */
+        #placeOrderSubmitBtn,
+        #stripeCheckoutSubmitBtn {
+            width: 100% !important;
+            padding: 14px 20px !important;
+            font-size: 14px !important;
+        }
+
+        .alert-info .row .col-md-6 {
+            margin-bottom: 15px !important;
+        }
     }
 
     @@media (max-width: 420px) {
         .stripe-checkout-wrap {
             transform: scale(0.86);
+        }
+
+        /* Extra small screens - even more compact buttons */
+        #placeOrderSubmitBtn,
+        #stripeCheckoutSubmitBtn {
+            padding: 12px 16px !important;
+            font-size: 13px !important;
         }
     }
 
@@ -554,7 +573,7 @@
         </h2>
 
         <div class="discount-notice">
-            🎉 V tomto košíku je celkova suma už automaticky odrátaná o 10% zľavu. Ďakujeme za Vašu objednávku! Pri platbe cez Stripe použite kód <code>LETOJETU26</code> a získajte 10% zľavu na vybrané produkty
+            🎉 V tomto košíku je celkova suma už automaticky odrátaná o 10% zľavu. Ďakujeme za Vašu objednávku! Pri platbe cez Stripe použite kód <code>Jesenjetu26</code> a získajte 10% zľavu na vybrané produkty
         </div>
 
 
@@ -641,13 +660,13 @@
                         <small id="shippingMethodPriceNote" class="text-muted" style="display:block; margin-top:6px;">Cena dopravy sa prepočíta podľa zvolenej služby a hodnoty košíka.</small>
                     </div>
                     <div id="lwsZasielkovnaPickupWrapPage" class="form-group" style="display:none;">
-                        <label for="lwsZasielkovnaPickupPointPage" id="pickupPointLabelPage">Odberne miesto / box (volitelne)</label>
+                        <label for="lwsZasielkovnaPickupPointPage" id="pickupPointLabelPage">Odberné miesto / box (voliteľné)</label>
                         <select id="lwsDpdPickupSuggestionsPage" class="form-control" style="margin-bottom: 8px; display:none;">
-                            <option value="">Vyberte ulozene odberne miesto...</option>
+                            <option value="">Vyberte uložené odberné miesto...</option>
                         </select>
-                        <input id="lwsZasielkovnaPickupPointPage" type="text" class="form-control" placeholder="Kod odberneho miesta (volitelne)" style="margin-bottom: 8px;" />
-                        <input id="lwsZasielkovnaPickupPointNamePage" type="text" class="form-control" placeholder="Nazov / adresa odberneho miesta (volitelne)" />
-                        <small id="pickupPointHelpPage" class="text-muted">Zadajte kod a nazov odberneho miesta alebo boxu rucne. Platne udaje najdete na webe zvoleneho dopravcu.</small>
+                        <input id="lwsZasielkovnaPickupPointPage" type="text" class="form-control" placeholder="Kód odberného miesta (voliteľné)" style="margin-bottom: 8px;" />
+                        <input id="lwsZasielkovnaPickupPointNamePage" type="text" class="form-control" placeholder="Názov / adresa odberného miesta (voliteľné)" />
+                        <small id="pickupPointHelpPage" class="text-muted">Zadajte kód a názov odberného miesta alebo boxu ručne. Platné údaje nájdete na webe zvoleného dopravcu.</small>
                     </div>
 
                     <div id="lwsCourierAddressWrapPage" class="form-group" style="display:none;">
@@ -693,11 +712,11 @@
                             <input id="email_placeorder" name="Email" type="email" class="form-control" required />
                         </div>
                         <button id="placeOrderSubmitBtn" type="submit" class="btn btn-primary btn-lg" style="width:100%;">
-                            <i class="fa fa-envelope"></i> Dokončiť objednávku pre (bankový prevod)
+                            <i class="fa fa-envelope"></i> Odoslať e-mail pre (bankový prevod)
                         </button>
                         <div id="placeOrderHelp" class="text-muted" style="margin-top:10px; font-size: 13px; line-height: 1.45;">
-                            Bankovy prevod pouzije rovnaku dopravu a cenu ako kosik. Po odoslani objednavky posleme e-mail so suhrnom, cislom objednavky a udajmi k platbe.
-                            Skontrolujte aj priecinok SPAM.
+                            Bankový prevod použije rovnakú dopravu a cenu ako košík. Po odoslaní objednávky pošleme e-mail so súhrnom, číslom objednávky a údajmi k platbe.
+                            Skontrolujte aj priečinok SPAM.
                         </div>
                         <div id="placeOrderStatus" class="alert alert-info" style="display:none; margin-top:12px;">
                             Objednávku odosielame… Prosím počkajte.
@@ -753,16 +772,16 @@
                 </div>
                 <div class="col-md-6" style="margin-bottom:15px;">
                     <div style="background:#fff;border:1px solid #cfe8ff;border-radius:10px;padding:16px;height:100%;">
-                        <h5 style="margin-top:0;"><i class="fa fa-university"></i> Bankovy prevod</h5>
+                        <h5 style="margin-top:0;"><i class="fa fa-university"></i> Bankový prevod</h5>
                         <ul style="padding-left:18px; margin-bottom:0;">
-                            <li>objednavku odošlete hned z tejto stranky</li>
-                            <li>do e-mailu pride suhrn a udaje k prevodu</li>
-                            <li>doprava a poplatky sa preberu z aktualneho kosika</li>
+                            <li>objednávku odošlete hneď z tejto stránky</li>
+                            <li>do e-mailu príde súhrn a údaje k prevodu</li>
+                            <li>doprava a poplatky sa preberú z aktuálneho košíka</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <p class="mb-0"><strong>Doprava sa vzdy prepocita podla zvolenej sluzby a aktualnej hodnoty kosika.</strong></p>
+            <p class="mb-0"><strong>Doprava sa vždy prepočíta podľa zvolenej služby a aktuálnej hodnoty košíka.</strong></p>
         </div>
         <!-- Payment Help Image -->
         <div class="text-center">
@@ -1700,44 +1719,44 @@
                 function getPickupMethodMeta(method) {
                     if (method === 'dpd-pickup') {
                         return {
-                            label: 'Odberne miesto (DPD Pickup, potrebne zadat)',
-                            help: 'DPD funguje iba ako rucne zadanie odberneho miesta. Platne udaje najdete v <a href="https://www.dpd.com/sk/sk/odberne-miesta/" target="_blank" rel="noopener">zozname DPD odbernych miest</a>. Zadajte kod z DPD a nazov alebo adresu konkretneho miesta.',
-                            placeholderOption: 'Vyberte ulozene DPD odberne miesto...'
+                            label: 'Odberné miesto (DPD Pickup, potrebné zadať)',
+                            help: 'DPD funguje iba ako ručne zadanie odberného miesta. Platné údaje nájdete v <a href="https://www.dpd.com/sk/sk/odberne-miesta/" target="_blank" rel="noopener">zozname DPD odborných miest</a>. Zadajte kód z DPD a názov alebo adresu konkrétneho miesta.',
+                            placeholderOption: 'Vyberte uložené DPD odberné miesto...'
                         };
                     }
                     if (method === 'gls-parcelshop') {
                         return {
-                            label: 'Odberne miesto (GLS ParcelShop)',
-                            help: 'GLS ParcelShop funguje ako rucne zadanie odberneho miesta. Platne udaje najdete na <a href="https://gls-group.com/SK/sk/depa-a-parcel-shopy/" target="_blank" rel="noopener">stranke GLS Slovensko</a>. Zadajte kod a nazov parcelshopu.',
-                            placeholderOption: 'Vyberte ulozene GLS ParcelShop miesto...'
+                            label: 'Odberné miesto (GLS ParcelShop)',
+                            help: 'GLS ParcelShop funguje ako ručne zadanie odberného miesta. Platné údaje nájdete na <a href="https://gls-group.com/SK/sk/depa-a-parcel-shopy/" target="_blank" rel="noopener">stránke GLS Slovensko</a>. Zadajte kód a názov parcelshopu.',
+                            placeholderOption: 'Vyberte uložené GLS ParcelShop miesto...'
                         };
                     }
                     if (method === 'gls-box') {
                         return {
                             label: 'Box (GLS Box)',
-                            help: 'GLS Box funguje ako rucne zadanie boxu. Platne udaje najdete na <a href="https://gls-group.com/SK/sk/depa-a-parcel-shopy/" target="_blank" rel="noopener">stranke GLS Slovensko</a>. Zadajte kod a nazov GLS Boxu.',
-                            placeholderOption: 'Vyberte ulozeny GLS Box...'
+                            help: 'GLS Box funguje ako ručne zadanie boxu. Platné údaje nájdete na <a href="https://gls-group.com/SK/sk/depa-a-parcel-shopy/" target="_blank" rel="noopener">stránke GLS Slovensko</a>. Zadajte kód a názov GLS Boxu.',
+                            placeholderOption: 'Vyberte uložený GLS Box...'
                         };
                     }
                     if (method === 'alzabox') {
                         return {
                             label: 'Box (AlzaBox)',
-                            help: 'AlzaBox funguje ako rucne zadanie boxu. Platne udaje najdete na <a href="https://www.alza.sk/alzaboxy" target="_blank" rel="noopener">stranke AlzaBox</a>. Zadajte kod alebo nazov AlzaBoxu.',
-                            placeholderOption: 'Vyberte ulozeny AlzaBox...'
+                            help: 'AlzaBox funguje ako ručne zadanie boxu. Platné údaje nájdete na <a href="https://www.alza.sk/alzaboxy" target="_blank" rel="noopener">stránke AlzaBox</a>. Zadajte kód alebo názov AlzaBoxu.',
+                            placeholderOption: 'Vyberte uložený AlzaBox...'
                         };
                     }
                     if (method === 'packeta-zbox' || method === 'packeta' || method === 'zasielkovna') {
                         return {
-                            label: 'Box / odberne miesto (Packeta Z-BOX)',
-                            help: 'Packeta Z-BOX funguje ako rucne zadanie boxu alebo vydajneho miesta. Platne udaje najdete na <a href="https://www.packeta.sk/pobocky" target="_blank" rel="noopener">stranke Packeta Slovensko</a>. Zadajte kod a nazov Z-BOXu alebo vydajneho miesta.',
-                            placeholderOption: 'Vyberte ulozeny Packeta Z-BOX...'
+                            label: 'Box / odberné miesto (Packeta Z-BOX)',
+                            help: 'Packeta Z-BOX funguje ako ručne zadanie boxu alebo výdajného miesta. Platné údaje nájdete na <a href="https://www.packeta.sk/pobocky" target="_blank" rel="noopener">stránke Packeta Slovensko</a>. Zadajte kód a názov Z-BOXu alebo výdajného miesta.',
+                            placeholderOption: 'Vyberte uložený Packeta Z-BOX...'
                         };
                     }
 
                     return {
-                        label: 'Odberne miesto / box (volitelne)',
-                        help: 'Zadajte kod a nazov odberneho miesta alebo boxu rucne. Platne udaje najdete na webe zvoleneho dopravcu.',
-                        placeholderOption: 'Vyberte ulozene odberne miesto...'
+                        label: 'Odberné miesto / box (voliteľné)',
+                        help: 'Zadajte kód a názov odberného miesta alebo boxu ručne. Platné údaje nájdete na webe zvoleného dopravcu.',
+                        placeholderOption: 'Vyberte uložené odberné miesto...'
                     };
                 }
 

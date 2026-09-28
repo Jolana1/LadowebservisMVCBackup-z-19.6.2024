@@ -252,27 +252,81 @@
         color: #fff;
     }
 
-    /* Google Pay like button */
-    .btn-googlepay {
+    .btn-google-pay {
         flex: 1;
-        background: #fff;
-        color: #202124;
-        padding: 12px 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
+        background: #000;
+        color: #fff;
+        padding: 14px 22px;
+        border: 1px solid #1f1f1f;
+        border-radius: 999px;
         font-size: 15px;
-        font-weight: 700;
+        font-weight: 600;
         cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        text-decoration: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
         min-width: 200px;
+        min-height: 48px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+        letter-spacing: 0.01em;
     }
 
-    .btn-googlepay:hover {
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        transform: translateY(-2px);
+    .btn-google-pay:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+        color: #fff;
+        text-decoration: none;
+        background: #111;
+    }
+
+    .btn-google-pay:focus {
+        color: #fff;
+        text-decoration: none;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.35), 0 8px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-google-pay .gpay-mark {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1px;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 1;
+        font-family: Arial, sans-serif;
+        letter-spacing: 0;
+    }
+
+    .btn-google-pay .gpay-g-blue { color: #4285f4; }
+    .btn-google-pay .gpay-o-red { color: #ea4335; }
+    .btn-google-pay .gpay-o-yellow { color: #fbbc05; }
+    .btn-google-pay .gpay-g-green { color: #34a853; }
+    .btn-google-pay .gpay-g-blue2 { color: #4285f4; }
+    .btn-google-pay .gpay-lt { color: #fff; font-weight: 500; }
+
+    .btn-google-pay .gpay-prep {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 2px 7px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.9);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.4;
+    }
+
+    .btn-google-pay small {
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        opacity: 0.82;
+        line-height: 1.2;
     }
 
     /* ========== PRODUCT IMAGE ========== */
@@ -281,7 +335,6 @@
         margin: 25px 0;
         position: relative;
     }
-
 
     .product-image-container img {
         max-width: 100%;
@@ -354,7 +407,9 @@
         }
 
         .btn-stripe,
-        .btn-add-cart {
+        .btn-add-cart,
+        .btn-google-pay,
+        .btn-view-cart {
             width: 100%;
             min-width: auto;
         }
@@ -448,62 +503,6 @@
         <p style="margin-top: 15px; font-size: 16px; color: white;">Keď ide o zdravie, nekompromisujte s cenami!</p>
     </div>
 
-            <script>
-                // One-click: build minimal cart and POST to StartStripeCheckout for server-side Stripe session creation
-                window.lwsGooglePayQuickBuy = function (productId) {
-                    try {
-                        var catalog = window.__lws_products || {};
-                        var prod = catalog[productId] || null;
-                        if (!prod) { alert('Produkt sa nenasiel'); return; }
-
-                        // Build minimal cart JSON expected by server: { "<id>": { "Quantity": 1, "Image": "..." } }
-                        var cartObj = {};
-                        cartObj[productId.toString()] = { Quantity: 1, Image: (prod.Image || '') };
-                        var cartJson = JSON.stringify(cartObj);
-
-                        // prepare shipping info from local storage if available
-                        var ship = {};
-                        try { ship = (typeof loadShipping === 'function') ? loadShipping() : JSON.parse(localStorage.getItem('lws_shipping_v1') || '{}'); } catch (e) { ship = {}; }
-
-                        // Name/email may be collected in sidecart fields if present
-                        var name = document.getElementById('sidecart-customer-name') ? document.getElementById('sidecart-customer-name').value.trim() : '';
-                        var email = document.getElementById('sidecart-customer-email') ? document.getElementById('sidecart-customer-email').value.trim() : '';
-
-                        // Create hidden form
-                        var form = document.createElement('form');
-                        form.method = 'POST';
-                        form.action = '/Home/StartStripeCheckout';
-
-                        // anti-forgery token clone if present
-                        var tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
-                        if (tokenInput) form.appendChild(tokenInput.cloneNode(true));
-
-                        function append(name, val) {
-                            var i = document.createElement('input');
-                            i.type = 'hidden'; i.name = name; i.value = val || ''; form.appendChild(i);
-                        }
-
-                        append('CartJson', cartJson);
-                        append('PaymentMethod', 'stripe');
-                        append('ShippingMethod', ship.method || '');
-                        append('ZasielkovnaPickupPoint', ship.pickupPoint || '');
-                        append('ZasielkovnaPickupPointName', ship.pickupPointName || '');
-                        append('PickupPointDetailsJson', ship.pickupPointJson || '');
-                        append('ZasielkovnaPickupPointJson', ship.pickupPointJson || '');
-                        append('ShippingAddressLine1', ship.addressLine1 || '');
-                        append('ShippingAddressLine2', ship.addressLine2 || '');
-                        append('ShippingCity', ship.city || '');
-                        append('ShippingZip', ship.zip || '');
-                        append('ShippingCountry', ship.country || '');
-                        append('Name', name || '');
-                        append('Email', email || '');
-
-                        document.body.appendChild(form);
-                        form.submit();
-                    } catch (e) { console.error(e); alert('Chyba pri spusteni platby. Skúste to prosím znova.'); }
-                };
-            </script>
-
     <!-- Loading Spinner -->
     <div id="searchSpinnerOverlay" class="search-spinner-overlay">
         <div class="spinner-container">
@@ -528,7 +527,7 @@
         </div>
 
         <div class="discount-notice">
-            🎉 Použite kód <strong>LETOJETU26</strong> pri platbe a získajte 10% zľavu!
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
 
         <div class="product-pricing">
@@ -544,10 +543,9 @@
                 <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                     <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
                 </a>
-                <button type="button" class="btn-googlepay" onclick="window.lwsGooglePayQuickBuy('1')">
-                    <img src="https://www.gstatic.com/devrel-devsite/prod/v0d3ba93926ab9dd98ec6053b457769278e41b1a086e404f96cace35cf1aaba3a/google_pay_logo.svg" alt="Google Pay" style="height:20px;" />
-                    Kúpiť cez Google Pay
-                </button>
+                <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                    <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
+                </a>
                 <button type="button" class="btn-add-cart add-to-cart" data-id="1">
                     <i class="fa fa-shopping-cart"></i> Pridať do košíka
                 </button>
@@ -591,6 +589,9 @@
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
             </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
+            </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="6">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
             </button>
@@ -611,9 +612,10 @@
         </details>
     </section>
 
-    <!-- Product 2: Zinobiotic (40€) -->
+    <!-- Product 2: Zinobiotic (40€ → 36.00€) -->
     <section class="product-card products" id="product-2" data-product-id="2" data-product-name="Zinobiotic" data-product-aliases="zinobiotic,probiotika,probiotiká" data-product-image='@Url.Content("~/Image/Zinobiotic2025.png")'>
-        <button class="product-heart-btn" onclick="toggleProductFavorite(event, '2', 'Zinobiotic', '@Url.Content("~/Image/Zinobiotic2025.png")', 40.00)" title="Pridať do obľúbených" aria-label="Pridať do obľúbených">❤️</button>
+        <button class="product-heart-btn" onclick="toggleProductFavorite(event, '2', 'Zinobiotic', '@Url.Content("~/Image/Zinobiotic2025.png")', 36.00)" title="Pridať do obľúbených" aria-label="Pridať do obľúbených">❤️</button>
+        <span class="product-badge discount">-10% ZĽAVA</span>
 
         <div class="product-header">
             <h2>🦠 Zinobiotic+</h2>
@@ -623,14 +625,23 @@
             Nie je to len doplnok – je to systém pre vaše zdravie. Podpora zdravého črevného mikrobiómu.
         </div>
 
-        <div class="product-pricing">
-            <span class="price-current">40,00€</span>
+        <div class="discount-notice">
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
-        <div class="loyalty-points-note">⭐ Po zaplatení získate <strong>@loyaltyPoints(40.00m) bodov</strong> do vernostného programu</div>
+
+        <div class="product-pricing">
+            <span class="price-original">40,00€</span>
+            <span class="price-current">36,00€</span>
+            <span class="price-save">Ušetríte 4,00€</span>
+        </div>
+        <div class="loyalty-points-note">⭐ Po zaplatení získate <strong>@loyaltyPoints(36.00m) bodov</strong> do vernostného programu</div>
 
         <div class="product-actions">
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
+            </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
             </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="2">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
@@ -669,7 +680,7 @@
         </div>
 
         <div class="discount-notice">
-            🎉 Použite kód <strong>LETOJETU26</strong> pri platbe a získajte 10% zľavu!
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
 
         <div class="product-pricing">
@@ -682,6 +693,9 @@
         <div class="product-actions">
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
+            </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
             </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="3">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
@@ -726,6 +740,9 @@
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
             </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
+            </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="4">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
             </button>
@@ -763,7 +780,7 @@
         </div>
 
         <div class="discount-notice">
-            🎉 Použite kód <strong>LETOJETU26</strong> pri platbe a získajte 10% zľavu!
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
 
         <div class="product-pricing">
@@ -776,6 +793,9 @@
         <div class="product-actions">
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
+            </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
             </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="5">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
@@ -814,7 +834,7 @@
         </div>
 
         <div class="discount-notice">
-            🎉 Použite kód <strong>LETOJETU26</strong> pri platbe a získajte 10% zľavu!
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
 
         <div class="product-pricing">
@@ -873,7 +893,7 @@
         </div>
 
         <div class="discount-notice">
-            🎉 Použite kód <strong>LETOJETU26</strong> pri platbe a získajte 10% zľavu!
+            🎉 Použite kód <strong>Jesenjetu26</strong> pri platbe a získajte 10% zľavu!
         </div>
 
         <div class="product-pricing">
@@ -886,6 +906,9 @@
         <div class="product-actions">
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
+            </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
             </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="8">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
@@ -930,6 +953,9 @@
             <a href="https://buy.stripe.com/bJebJ1as6gng0SM8Sq4wM04?locale=sk" class="btn-stripe" target="_blank">
                 <i class="fa fa-credit-card"></i> Kúpiť cez Stripe
             </a>
+            <a href="@Url.Action("Kosik","Home")" class="btn-google-pay" title="Google Pay UI - pripravene pre buducu integraciu">
+                <span class="gpay-mark" aria-hidden="true"><span class="gpay-g-blue">G</span><span class="gpay-o-red">o</span><span class="gpay-o-yellow">o</span><span class="gpay-g-blue2">g</span><span class="gpay-g-green">l</span><span class="gpay-o-red">e</span><span class="gpay-lt"> Pay</span></span><span class="gpay-prep">Soon</span>
+            </a>
             <button type="button" class="btn-add-cart add-to-cart" data-id="7">
                 <i class="fa fa-shopping-cart"></i> Pridať do košíka
             </button>
@@ -948,6 +974,54 @@
             <summary>📋 Zobraziť podrobnosti o produkte</summary>
             <p>
                 Balzam na pery – prírodný hojivý zázrak. Teraz dostupný v príchuti Malina/Slivka. Perfektný darček pre niekoho špeciálneho.
+            </p>
+        </details>
+    </section>
+
+    <!-- Product 9: BalancePack4in1 (210€ → 189€) -->
+    <section class="product-card products" id="product-9" data-product-id="9" data-product-name="BalancePack4v1" data-product-aliases="balance pack, balancepack, balance pack 4 in 1, balancepack4in1" data-product-image='@Url.Content("~/Image/BalanceOil.png")'>
+        <button class="product-heart-btn" onclick="toggleProductFavorite(event, '9', 'BalancePack4v1', '@Url.Content("~/Image/Balancepack4v1.png")', 189.00)" title="Pridať do obľúbených" aria-label="Pridať do obľúbených">❤️</button>
+
+        <span class="product-badge new">🎁 BALÍK</span>
+        <span class="product-badge discount">-10% ZĽAVA</span>
+        <div class="product-header">
+            <h2>🎁 BalancePack 4-in-1</h2>
+        </div>
+
+        <div class="product-description">
+            Kompletný balík pre každodennú starostlivosť o zdravie: BalanceOil, Zinobiotic, ZinzinoXtend a CollagenBoozt.
+        </div>
+
+        <div class="discount-notice">
+            381 Kompletný balík teraz so 10% zľavou! Použite kód <strong>Jesenjetu26</strong> pri platbe.
+        </div>
+
+        <div class="product-pricing">
+            <span class="price-original">210,00€</span>
+            <span class="price-current">189,00€</span>
+            <span class="price-save">Ušetríte 21,00€</span>
+        </div>
+        <div class="loyalty-points-note">⭐ Po zaplatení získate <strong>@loyaltyPoints(189.00m) bodov</strong> do vernostného programu</div>
+
+        <div class="product-actions">
+            <button type="button" class="btn-add-cart add-to-cart" data-id="9">
+                <i class="fa fa-shopping-cart"></i> Pridať do košíka
+            </button>
+            <button type="button" class="btn-view-cart" onclick="openSideCart()" title="Skontrolovať položky v košíku">
+                <i class="fa fa-eye"></i> Košík
+            </button>
+        </div>
+
+        <div class="product-image-container">
+            <a data-fancybox="gallery" href='@Url.Content("~/Image/BalancePack4v1.png")'>
+                <img src='@Url.Content("~/Image/BalancePack4v1.png")' alt="BalancePack 4-in-1">
+            </a>
+        </div>
+
+        <details class="product-details">
+            <summary>📋 Zobraziť podrobnosti o produkte</summary>
+            <p>
+                BalancePack 4-in-1 obsahuje BalanceOil, Zinobiotic, ZinzinoXtend a CollagenBoozt. Balík je určený na podporu vyváženej výživy, trávenia, imunity, pokožky a kĺbov.
             </p>
         </details>
     </section>
