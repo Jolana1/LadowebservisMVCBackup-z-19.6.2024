@@ -2250,7 +2250,9 @@ gtag('js', new Date());
                 <li class="nav-item nav-translate-item">
                     <div id="google_translate_element" class="image-container img-rounded" title="Preklad jazyka"></div>
                 </li>
-
+                <li class="nav-item urgency-timer">
+                    <a class="image-container img-rounded glyphicon glyphicon-shopping-cart" href="/Home/Produkty" title="Aktuálne ponuky produktov">Aktuálna ponuka</a>
+                </li>
                 <li class="dropdown nav-segment-dropdown">
                     <a class="dropdown-toggle img-rounded" data-toggle="dropdown" href="#BeautySegment" title="Kozmetika a zdravie">
                         <span class="fa fa-leaf"></span>Kozmetika &amp; zdravie
@@ -2260,7 +2262,7 @@ gtag('js', new Date());
                             <a class="w3-hover-white" href="/Home/Zdravie" title="Úvod pre kozmetiku a zdravie"><span class="fa fa-home"></span>Domov pre zdravie</a>
                         </li>
                         <li>
-                            <a class="w3-hover-white" href="/Home/Produkty" title="Produkty a kozmetika"><span class="fa fa-heart"></span>Produkty a kozmetika</a>
+                            <a class="w3-hover-white" href="/Home/DownloadEbook" title="E-book zdarma"><span class="fa fa-heart"></span>E-book zdarma</a>
                         </li>
                         <li>
                             <a class="w3-hover-white" href="/Home/Kosik" title="Košík a objednávka"><span class="fa fa-shopping-cart"></span>Košík a objednávka</a>
@@ -2292,9 +2294,7 @@ gtag('js', new Date());
                     <a class="image-container img-rounded glyphicon glyphicon-envelope" href="/Home/Kontakt" title="Kontakt a podpora">Kontakt</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="image-container img-rounded glyphicon glyphicon-book" href="/Home/DownloadEbook" title="Ebook zdarma">Ebook zdarma</a>
-                </li>
+                
             </ul>
         </div>
 
@@ -2325,9 +2325,15 @@ gtag('js', new Date());
 
             <!-- Cart Summary -->
             <div id="cart-summary">
-                <strong>💰 Celková Suma:</strong>
+                <strong>💰 Súhrn košíka:</strong>
+                <div style="font-size: 13px; color: #666; margin: 6px 0;">
+                    Medzisúčet: €<span id="total-amount">0.00</span>
+                </div>
+                <div style="font-size: 13px; color: #666; margin: 6px 0;">
+                    Doprava: €<span id="shipping-amount">0.00</span>
+                </div>
                 <div style="font-size: 16px; color: #28a745; font-weight: 700; margin: 8px 0;">
-                    €<span id="total-amount">0.00</span>
+                    Celkom (s DPH): €<span id="grand-total-amount">0.00</span>
                 </div>
                 <div id="total-discount" style="font-size: 12px; color: #5d33fb; margin-top: 6px;"></div>
             </div>
@@ -2352,13 +2358,6 @@ gtag('js', new Date());
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div id="sidecart-action-buttons" style="display: flex; gap: 8px; margin: 15px 0; flex-direction: column;">
-                <a id="sidecart-checkout-link" class="btn btn-primary" href="/Home/Kosik?checkout=1" style="padding: 12px; font-size: 14px; font-weight: 600; background: #5d33fb; border-color: #5d33fb; color: #fff; text-align: center;">
-                    ✓ Odoslať objednávku pre bankový prevod
-                </a>
-            </div>
-
             <!-- Stripe Buy Button -->
             <div id="sidecart-stripe-panel" style="padding:10px; border-radius:12px; margin-bottom:12px;">
                 <div style="margin:0 0 8px 0; font-size:11px; color:#666; text-align:center; line-height:1.4;">
@@ -2370,6 +2369,12 @@ gtag('js', new Date());
                                        publishable-key="pk_live_51P80kcHrPMzQ1ua8JUHSe4iUQ9sLHonQMmFzwyRKnq2xTpB6mhuJVc4OdBKa04BJzpsjjliSrBoNnftkBxwntFF300mePdWSx3"
                                        style="display:block; max-width:100%;">
                     </stripe-buy-button>
+                </div>
+                <!-- Action Buttons -->
+                <div id="sidecart-action-buttons" style="display: flex; gap: 8px; margin: 15px 0; flex-direction: column;">
+                    <a id="sidecart-checkout-link" class="btn btn-primary" href="/Home/Kosik?checkout=1" style="padding: 12px; font-size: 14px; font-weight: 600; background: #5d33fb; border-color: #5d33fb; color: #fff; text-align: center;">
+                        ✓ Odoslať objednávku pre bankový prevod
+                    </a>
                 </div>
             </div>
 
@@ -2391,9 +2396,9 @@ gtag('js', new Date());
 
             <!-- Quick Contact Info -->
             <div style="margin-top: 12px; padding: 10px; background: #f0f0f0; border-radius: 6px; font-size: 11px; color: #666; line-height: 1.4;">
-                <p style="margin: 0 0 4px 0;"><strong>📞 Tel:</strong> +421917952432</p>
+                <p style="margin: 0 0 4px 0;"><strong>📞 Tel:</strong> +421907151293</p>
                 <p style="margin: 0 0 4px 0;"><strong>📧 Email:</strong> <a href="mailto:info@ladowebservis.sk" style="color: #5d33fb; text-decoration: none;">info@ladowebservis.sk</a></p>
-                
+                <p style="margin: 0 0 4px 0;"><strong>🕒 Otvorené 24 hodín:</strong> Víkendy: 10:00-16:00</p>
             </div>
 
         </div>
@@ -2983,7 +2988,7 @@ gtag('js', new Date());
                         </div>
                         <div class="contact-info-item">
                             <i class="fa fa-clock-o"></i>
-                            <span>Po-Pia: 9:00-17:00</span>
+                            <span>Víkendy: 10:00-16:00 cez pracovné dni nonstop</span>
                         </div>
                     </div>
 
